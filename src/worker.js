@@ -25,7 +25,13 @@ async function handleAuth(request, env) {
       "state",
       crypto.getRandomValues(new Uint8Array(12)).join(""),
     );
-    return Response.redirect(redirectUrl.href, 301);
+    return new Response(null, {
+      status: 302,
+      headers: {
+        "Location": redirectUrl.href,
+        "Cache-Control": "no-store",
+      },
+    });
   } catch (error) {
     return new Response(error.message, { status: 500 });
   }
@@ -65,13 +71,13 @@ async function handleCallback(request, env) {
     const result = await response.json();
     if (result.error) {
       return new Response(renderBody("error", result), {
-        headers: { "content-type": "text/html;charset=UTF-8" },
+        headers: { "content-type": "text/html;charset=UTF-8", "Cache-Control": "no-store" },
         status: 401,
       });
     }
     const body = renderBody("success", { token: result.access_token, provider: "github" });
     return new Response(body, {
-      headers: { "content-type": "text/html;charset=UTF-8" },
+      headers: { "content-type": "text/html;charset=UTF-8", "Cache-Control": "no-store" },
       status: 200,
     });
   } catch (error) {
