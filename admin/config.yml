@@ -5,7 +5,6 @@ backend:
   base_url: https://bandaralasmari.com
   auth_endpoint: api/auth
 
-locale: "ar"
 media_folder: "assets/images"
 public_folder: "/assets/images"
 

@@ -8,5 +8,84 @@
 </head>
 <body>
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+  <script>
+    CMS.registerPreviewStyle("/css/site.css");
+    CMS.registerPreviewStyle("/css/pages.css");
+    CMS.registerPreviewStyle("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,500&family=Inter:wght@300;400;500;600&family=Amiri:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600&display=swap");
+
+    var PageWrap = createClass({
+      render: function () {
+        return h("div", { dir: "rtl", lang: "ar", style: { padding: "32px" } }, this.props.children);
+      }
+    });
+
+    // ---- Projects (folder collection: one entry = one project) ----
+    var ProjectPreview = createClass({
+      render: function () {
+        var data = this.props.entry.get("data");
+        var url = data.get("url");
+        return h(PageWrap, {},
+          h("section", { className: "hero hero-page", style: { minHeight: "auto", paddingTop: 0 } },
+            h("span", { className: "eyebrow" }, "الأعمال"),
+            h("h1", { className: "display" }, data.get("title_ar")),
+            h("p", { className: "lead page-block" }, data.get("summary_ar")),
+            url ? h("div", { className: "hero-cta" },
+              h("span", { className: "btn btn-gold" }, "زيارة المشروع الحي"),
+              h("span", { className: "btn btn-ghost" }, "كل المشاريع")
+            ) : h("div", { className: "hero-cta" },
+              h("span", { className: "btn btn-ghost" }, "كل المشاريع")
+            )
+          )
+        );
+      }
+    });
+    CMS.registerPreviewTemplate("projects", ProjectPreview);
+
+    // ---- Shared card renderer for the three "list in one file" collections ----
+    function renderCard(item, getAsset, opts) {
+      var image = item.get("image");
+      var credly = opts.hasCredly && item.get("credly_badge_id");
+      var verifyUrl = item.get("verify_url");
+      var title = item.get("title_ar");
+      var subtitle = item.get(opts.subtitleField);
+
+      var media;
+      if (credly) {
+        media = h("span", { className: "cert-placeholder" }, "شارة Credly تفاعلية — تظهر حيّة على الموقع الفعلي");
+      } else if (image) {
+        media = h("img", { src: getAsset(image).toString(), alt: "" });
+      } else {
+        media = h("span", { className: "cert-placeholder" }, opts.noImageText);
+      }
+
+      return h("article", { className: "card cert-card", key: item.get("id") || title },
+        h("div", { className: "cert-media" }, media),
+        verifyUrl ? h("span", { className: "cert-verify" }, "تحقق من الشهادة") : null,
+        h("h3", {}, title),
+        h("p", { className: "org" }, subtitle)
+      );
+    }
+
+    function makeListPreview(dataKey, subtitleField, noImageText, hasCredly) {
+      return createClass({
+        render: function () {
+          var list = this.props.entry.getIn(["data", dataKey]);
+          var getAsset = this.props.getAsset;
+          if (!list) return h(PageWrap, {}, h("p", {}, "لا توجد عناصر بعد."));
+          return h(PageWrap, {},
+            h("div", { className: "grid g3", style: { display: "grid", gap: "22px", gridTemplateColumns: "repeat(auto-fit,minmax(240px,1fr))" } },
+              list.map(function (item) {
+                return renderCard(item, getAsset, { subtitleField: subtitleField, noImageText: noImageText, hasCredly: hasCredly });
+              }).toArray()
+            )
+          );
+        }
+      });
+    }
+
+    CMS.registerPreviewTemplate("certificates", makeListPreview("certificates", "org_ar", "لا تتوفر صورة لهذه الشهادة بعد", false));
+    CMS.registerPreviewTemplate("licenses", makeListPreview("licenses", "desc_ar", "لا تتوفر صورة لهذه الرخصة بعد", false));
+    CMS.registerPreviewTemplate("badges", makeListPreview("badges", "org_ar", "لا تتوفر معاينة لهذه الشارة بعد", true));
+  </script>
 </body>
 </html>
