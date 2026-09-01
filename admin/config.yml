@@ -14,6 +14,8 @@ collections:
     label: "المشاريع"
     folder: "data/projects"
     create: true
+    extension: "json"
+    format: "json"
     slug: "{{fields.slug}}"
     identifier_field: "title_ar"
     fields:
