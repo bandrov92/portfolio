@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#ffffff" id="metaTheme">
+<title>Bandarov — الشارات الرقمية</title>
+<meta name="description" content="الشارات الرقمية الموثّقة لبندر عايض الأسمري.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,500&family=Inter:wght@300;400;500;600&family=Amiri:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/site.css">
+<link rel="stylesheet" href="css/pages.css">
+</head>
+<body class="inner">
+
+<header class="topbar">
+  <a class="brand" href="index.html#home"><img src="assets/images/logo.webp" alt="Bandarov logo"><b>BANDAROV</b></a>
+  <nav class="site-nav" aria-label="Main">
+    <a class="ctrl" href="index.html#home" data-i18n="nav_home">الرئيسية</a>
+    <a class="ctrl" href="index.html#projects" data-i18n="nav_projects">المشاريع</a>
+    <a class="ctrl" href="certificates.html" data-i18n="nav_credentials">الشهادات</a>
+    <a class="ctrl" href="licenses.html" data-i18n="nav_licenses">التراخيص</a>
+    <a class="ctrl is-active" href="badges.html" aria-current="page" data-i18n="nav_badges">الشارات</a>
+    <a class="ctrl" href="index.html#contact" data-i18n="nav_contact">تواصل</a>
+  </nav>
+  <div class="controls">
+    <button class="ctrl" id="langBtn" aria-label="Switch language">EN</button>
+    <button class="ctrl" id="themeBtn" aria-label="Toggle theme"><span id="themeIco">◐</span><span data-i18n="theme"></span></button>
+  </div>
+</header>
+
+<section class="hero hero-page" id="hero">
+  <div class="hero-mesh"></div>
+  <span class="eyebrow" data-i18n="nav_badges">الشارات</span>
+  <h1 class="display" data-i18n="badges_hub_t">الشارات الرقمية</h1>
+  <p class="lead" data-i18n="badges_hub_p">شارات رقمية موثّقة تُعرض مباشرة من منصات التحقق الرسمية.</p>
+</section>
+
+<section class="reveal in" id="badgeGrid">
+  <div class="grid g3" id="badgeCards"></div>
+</section>
+
+<footer><span data-i18n="footer">© 2026 بندر عايض الأسمري — Bandarov. جميع الحقوق محفوظة.</span></footer>
+
+<script src="main.js" defer></script>
+<script defer>
+window.addEventListener("DOMContentLoaded", async ()=>{
+  let badges = [];
+  try{
+    const res = await fetch("data/badges.json");
+    const data = await res.json();
+    badges = data.badges || [];
+  }catch(e){
+    badges = [];
+  }
+
+  function render(){
+    const isAr = document.documentElement.lang === "ar";
+    const d = I18N[isAr?"ar":"en"];
+    document.title = "Bandarov — " + d.badges_hub_t;
+    const wrap = document.getElementById("badgeCards");
+    wrap.innerHTML = "";
+    let hasCredly = false;
+
+    badges.forEach(b=>{
+      const card = document.createElement("article");
+      card.className = "card cert-card";
+      const media = document.createElement("div");
+      media.className = "cert-media badge-media";
+
+      if(b.credly_badge_id){
+        hasCredly = true;
+        const embed = document.createElement("div");
+        embed.setAttribute("data-iframe-width","150");
+        embed.setAttribute("data-iframe-height","270");
+        embed.setAttribute("data-share-badge-id", b.credly_badge_id);
+        embed.setAttribute("data-share-badge-host","https://www.credly.com");
+        media.appendChild(embed);
+      }else if(b.image){
+        const img = document.createElement("img");
+        img.src = b.image;
+        img.alt = isAr ? b.title_ar : b.title_en;
+        media.appendChild(img);
+      }else{
+        const ph = document.createElement("span");
+        ph.className = "cert-placeholder";
+        ph.textContent = d.badge_no_image;
+        media.appendChild(ph);
+      }
+      card.appendChild(media);
+
+      if(b.verify_url){
+        const verify = document.createElement("a");
+        verify.className = "cert-verify";
+        verify.href = b.verify_url;
+        verify.target = "_blank";
+        verify.rel = "noopener";
+        verify.textContent = d.verify;
+        card.appendChild(verify);
+      }
+
+      const h3 = document.createElement("h3");
+      h3.textContent = isAr ? b.title_ar : b.title_en;
+      const org = document.createElement("p");
+      org.className = "org";
+      org.textContent = isAr ? b.org_ar : b.org_en;
+      card.append(h3, org);
+      wrap.appendChild(card);
+    });
+
+    if(hasCredly){
+      const s = document.createElement("script");
+      s.src = "https://cdn.credly.com/assets/utilities/embed.js";
+      s.async = true;
+      document.body.appendChild(s);
+    }
+  }
+
+  render();
+  document.getElementById("langBtn").addEventListener("click", render);
+});
+</script>
+</body>
+</html>

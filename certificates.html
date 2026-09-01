@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#ffffff" id="metaTheme">
+<title>Bandarov — الشهادات التدريبية</title>
+<meta name="description" content="الشهادات التدريبية لبندر عايض الأسمري.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,500&family=Inter:wght@300;400;500;600&family=Amiri:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/site.css">
+<link rel="stylesheet" href="css/pages.css">
+</head>
+<body class="inner">
+
+<header class="topbar">
+  <a class="brand" href="index.html#home"><img src="assets/images/logo.webp" alt="Bandarov logo"><b>BANDAROV</b></a>
+  <nav class="site-nav" aria-label="Main">
+    <a class="ctrl" href="index.html#home" data-i18n="nav_home">الرئيسية</a>
+    <a class="ctrl" href="index.html#projects" data-i18n="nav_projects">المشاريع</a>
+    <a class="ctrl is-active" href="certificates.html" aria-current="page" data-i18n="nav_credentials">الشهادات</a>
+    <a class="ctrl" href="licenses.html" data-i18n="nav_licenses">التراخيص</a>
+    <a class="ctrl" href="badges.html" data-i18n="nav_badges">الشارات</a>
+    <a class="ctrl" href="index.html#contact" data-i18n="nav_contact">تواصل</a>
+  </nav>
+  <div class="controls">
+    <button class="ctrl" id="langBtn" aria-label="Switch language">EN</button>
+    <button class="ctrl" id="themeBtn" aria-label="Toggle theme"><span id="themeIco">◐</span><span data-i18n="theme"></span></button>
+  </div>
+</header>
+
+<section class="hero hero-page" id="hero">
+  <div class="hero-mesh"></div>
+  <span class="eyebrow" data-i18n="s_certs">الشهادات</span>
+  <h1 class="display" data-i18n="certs_hub_t">مركز الشهادات المهنية</h1>
+  <p class="lead" data-i18n="certs_hub_p">جميع الشهادات المهنية المختارة في مكان واحد.</p>
+</section>
+
+<section class="reveal in" id="certGrid">
+  <div class="grid g3" id="certCards"></div>
+</section>
+
+<footer><span data-i18n="footer">© 2026 بندر عايض الأسمري — Bandarov. جميع الحقوق محفوظة.</span></footer>
+
+<script src="main.js" defer></script>
+<script defer>
+window.addEventListener("DOMContentLoaded", async ()=>{
+  let certs = [];
+  try{
+    const res = await fetch("data/certificates.json");
+    const data = await res.json();
+    certs = data.certificates || [];
+  }catch(e){
+    certs = [];
+  }
+
+  function render(){
+    const isAr = document.documentElement.lang === "ar";
+    const d = I18N[isAr?"ar":"en"];
+    document.title = "Bandarov — " + d.certs_hub_t;
+    const wrap = document.getElementById("certCards");
+    wrap.innerHTML = "";
+    certs.forEach(c=>{
+      const card = document.createElement("article");
+      card.className = "card cert-card";
+      const media = document.createElement("div");
+      media.className = "cert-media";
+      if(c.image){
+        const img = document.createElement("img");
+        img.src = c.image;
+        img.alt = isAr ? c.title_ar : c.title_en;
+        media.appendChild(img);
+      }else{
+        const ph = document.createElement("span");
+        ph.className = "cert-placeholder";
+        ph.textContent = d.cert_no_image;
+        media.appendChild(ph);
+      }
+      card.appendChild(media);
+      if(c.verify_url){
+        const verify = document.createElement("a");
+        verify.className = "cert-verify";
+        verify.href = c.verify_url;
+        verify.target = "_blank";
+        verify.rel = "noopener";
+        verify.textContent = d.verify;
+        card.appendChild(verify);
+      }
+      const h3 = document.createElement("h3");
+      h3.textContent = isAr ? c.title_ar : c.title_en;
+      const org = document.createElement("p");
+      org.className = "org";
+      org.textContent = isAr ? c.org_ar : c.org_en;
+      card.append(h3, org);
+      wrap.appendChild(card);
+    });
+  }
+
+  render();
+  document.getElementById("langBtn").addEventListener("click", render);
+});
+</script>
+</body>
+</html>

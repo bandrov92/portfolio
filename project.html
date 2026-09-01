@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#ffffff" id="metaTheme">
+<title>Bandarov — مشروع</title>
+<meta name="description" content="دراسة حالة لمشروع تقني تعليمي من أعمال بندر عايض الأسمري.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,500&family=Inter:wght@300;400;500;600&family=Amiri:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/site.css">
+<link rel="stylesheet" href="css/pages.css">
+</head>
+<body class="inner">
+
+<header class="topbar">
+  <a class="brand" href="index.html#home"><img src="assets/images/logo.webp" alt="Bandarov logo"><b>BANDAROV</b></a>
+  <nav class="site-nav" aria-label="Main">
+    <a class="ctrl" href="index.html#home" data-i18n="nav_home">الرئيسية</a>
+    <a class="ctrl is-active" href="index.html#projects" aria-current="page" data-i18n="nav_projects">المشاريع</a>
+    <a class="ctrl" href="certificates.html" data-i18n="nav_credentials">الشهادات</a>
+    <a class="ctrl" href="licenses.html" data-i18n="nav_licenses">التراخيص</a>
+    <a class="ctrl" href="badges.html" data-i18n="nav_badges">الشارات</a>
+    <a class="ctrl" href="index.html#contact" data-i18n="nav_contact">تواصل</a>
+  </nav>
+  <div class="controls">
+    <button class="ctrl" id="langBtn" aria-label="Switch language">EN</button>
+    <button class="ctrl" id="themeBtn" aria-label="Toggle theme"><span id="themeIco">◐</span><span data-i18n="theme"></span></button>
+  </div>
+</header>
+
+<section class="hero hero-page" id="hero">
+  <div class="hero-mesh"></div>
+  <span class="eyebrow" data-i18n="s_proj">الأعمال</span>
+  <h1 class="display" id="projTitle">—</h1>
+  <p class="lead page-block" id="projSummary">—</p>
+  <div class="hero-cta">
+    <a class="btn btn-gold" id="projLiveBtn" href="#" target="_blank" rel="noopener" data-i18n="proj_visit" style="display:none">زيارة المشروع الحي</a>
+    <a class="btn btn-ghost" href="index.html#projects" data-i18n="proj_back">كل المشاريع</a>
+  </div>
+</section>
+
+<section class="reveal in" id="projNotFound" style="display:none">
+  <h2 class="display" data-i18n="proj_404_t">المشروع غير موجود</h2>
+  <p class="lead" data-i18n="proj_404_p">تعذّر العثور على هذا المشروع. عد إلى قائمة المشاريع.</p>
+</section>
+
+<footer><span data-i18n="footer">© 2026 بندر عايض الأسمري — Bandarov. جميع الحقوق محفوظة.</span></footer>
+
+<script src="main.js" defer></script>
+<script defer>
+window.addEventListener("DOMContentLoaded", async ()=>{
+  const slug = new URLSearchParams(location.search).get("slug");
+  let project = null;
+  if(slug){
+    try{
+      const res = await fetch("data/projects/" + slug + ".json");
+      project = res.ok ? await res.json() : null;
+    }catch(e){
+      project = null;
+    }
+  }
+
+  function render(){
+    const titleEl = document.getElementById("projTitle");
+    const summaryEl = document.getElementById("projSummary");
+    const liveBtn = document.getElementById("projLiveBtn");
+    const notFound = document.getElementById("projNotFound");
+    const hero = document.getElementById("hero");
+    const isAr = document.documentElement.lang === "ar";
+
+    if(!project){
+      hero.style.display = "none";
+      notFound.style.display = "";
+      document.title = "Bandarov — " + (isAr ? "المشروع غير موجود" : "Project not found");
+      return;
+    }
+
+    hero.style.display = "";
+    notFound.style.display = "none";
+    titleEl.textContent = isAr ? project.title_ar : project.title_en;
+    summaryEl.textContent = isAr ? project.summary_ar : project.summary_en;
+    document.title = "Bandarov — " + (isAr ? project.title_ar : project.title_en);
+
+    if(project.url){
+      liveBtn.href = project.url;
+      liveBtn.style.display = "";
+    }else{
+      liveBtn.style.display = "none";
+    }
+  }
+
+  render();
+  document.getElementById("langBtn").addEventListener("click", render);
+});
+</script>
+</body>
+</html>

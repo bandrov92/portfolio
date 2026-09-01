@@ -1,0 +1,22 @@
+{
+  "licenses": [
+    {
+      "id": "lic1",
+      "title_ar": "رخصة مدرب مهنية",
+      "title_en": "Professional Trainer License",
+      "desc_ar": "هيئة تقويم التعليم والتدريب (ETEC) — رخصة رقم 971، سارية حتى مايو 2031، مع شهادة تدريب المدربين TOT.",
+      "desc_en": "Education & Training Evaluation Commission (ETEC) — License No. 971, valid through May 2031, with Training of Trainers (TOT) certification.",
+      "image": "",
+      "verify_url": "https://etec.gov.sa/"
+    },
+    {
+      "id": "lic2",
+      "title_ar": "تطوير مهني موثّق",
+      "title_en": "Documented Professional Development",
+      "desc_ar": "أكثر من 1000 ساعة تطوير مهني معتمد عبر 64 دورة (2015–2026)، تشمل التفكير التصميمي، وقيادة الذكاء الاصطناعي التوليدي واستراتيجيته، والتحول الرقمي، وإدارة الأداء وتقويمه.",
+      "desc_en": "Over 1,000 hours of approved PD across 64 certified courses (2015–2026), including Design Thinking, Generative AI Leadership & Strategy, Digital Transformation, and Performance Management & Evaluation.",
+      "image": "",
+      "verify_url": ""
+    }
+  ]
+}

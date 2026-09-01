@@ -1,0 +1,58 @@
+{
+  "certificates": [
+    {
+      "id": "cert1",
+      "title_ar": "تخصص القيادة واستراتيجية الذكاء الاصطناعي التوليدي",
+      "title_en": "Generative AI Leadership & Strategy Specialization",
+      "org_ar": "جامعة الملك خالد — مسارات التعلم المرن",
+      "org_en": "King Khalid University — Flexible Learning Paths",
+      "image": "",
+      "verify_url": "https://kku.edu.sa/"
+    },
+    {
+      "id": "cert2",
+      "title_ar": "خبير مايكروسوفت للإبداع",
+      "title_en": "Microsoft Innovative Educator Expert",
+      "org_ar": "Microsoft Innovative Educator Expert 2025–2026",
+      "org_en": "MIE Expert 2025–2026",
+      "image": "",
+      "verify_url": "https://education.microsoft.com/"
+    },
+    {
+      "id": "cert3",
+      "title_ar": "مساعد الذكاء الاصطناعي والذكاء الاصطناعي المسؤول",
+      "title_en": "AI Assistant & Responsible AI",
+      "org_ar": "المعهد الوطني للتطوير المهني التعليمي",
+      "org_en": "National Institute for Educational Professional Development",
+      "image": "",
+      "verify_url": "https://ncepd.moe.gov.sa/"
+    },
+    {
+      "id": "cert4",
+      "title_ar": "التفكير التصميمي",
+      "title_en": "Design Thinking",
+      "org_ar": "جامعة الملك خالد",
+      "org_en": "King Khalid University",
+      "image": "",
+      "verify_url": "https://kku.edu.sa/"
+    },
+    {
+      "id": "cert5",
+      "title_ar": "أساسيات المعايير والكفايات المهنية التربوية",
+      "title_en": "Educational Professional Standards & Competencies",
+      "org_ar": "شهادة مهنية تربوية — 2026",
+      "org_en": "Professional education certificate — 2026",
+      "image": "",
+      "verify_url": "https://etec.gov.sa/"
+    },
+    {
+      "id": "cert6",
+      "title_ar": "تحليل البيانات بالذكاء الاصطناعي",
+      "title_en": "AI-Powered Data Analysis",
+      "org_ar": "جامعة الملك عبدالعزيز",
+      "org_en": "King Abdulaziz University",
+      "image": "",
+      "verify_url": "https://www.kau.edu.sa/"
+    }
+  ]
+}

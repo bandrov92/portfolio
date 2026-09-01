@@ -1,0 +1,87 @@
+backend:
+  name: github
+  repo: bandrov92/portfolio
+  branch: master
+  base_url: https://bandaralasmari.com
+  auth_endpoint: api/auth
+
+locale: "ar"
+media_folder: "assets/images"
+public_folder: "/assets/images"
+
+collections:
+  - name: "projects"
+    label: "المشاريع"
+    folder: "data/projects"
+    create: true
+    slug: "{{fields.slug}}"
+    identifier_field: "title_ar"
+    fields:
+      - {label: "معرّف داخلي", name: "id", widget: "hidden", default: ""}
+      - {label: "المعرّف في الرابط (slug)", name: "slug", widget: "string", hint: "بالإنجليزية وبدون مسافات، مثال: my-new-project — يظهر في رابط الصفحة"}
+      - {label: "العنوان (عربي)", name: "title_ar", widget: "string"}
+      - {label: "العنوان (Title EN)", name: "title_en", widget: "string"}
+      - {label: "الوصف (عربي)", name: "summary_ar", widget: "text"}
+      - {label: "الوصف (Summary EN)", name: "summary_en", widget: "text"}
+      - {label: "رابط المشروع الخارجي (اختياري)", name: "url", widget: "string", required: false, default: ""}
+
+  - name: "certificates"
+    label: "الشهادات التدريبية"
+    files:
+      - name: "certificates"
+        label: "قائمة الشهادات التدريبية"
+        file: "data/certificates.json"
+        fields:
+          - label: "الشهادات"
+            name: "certificates"
+            widget: "list"
+            summary: "{{title_ar}}"
+            fields:
+              - {label: "معرّف داخلي", name: "id", widget: "hidden", default: ""}
+              - {label: "العنوان (عربي)", name: "title_ar", widget: "string"}
+              - {label: "العنوان (Title EN)", name: "title_en", widget: "string"}
+              - {label: "الجهة المانحة (عربي)", name: "org_ar", widget: "string"}
+              - {label: "الجهة المانحة (Issuer EN)", name: "org_en", widget: "string"}
+              - {label: "صورة الشهادة (اختياري)", name: "image", widget: "image", required: false, default: "", media_folder: "/assets/images/certs", public_folder: "/assets/images/certs"}
+              - {label: "رابط التحقق (اختياري)", name: "verify_url", widget: "string", required: false, default: ""}
+
+  - name: "licenses"
+    label: "الرخص المهنية والاعتمادات"
+    files:
+      - name: "licenses"
+        label: "قائمة الرخص والاعتمادات"
+        file: "data/licenses.json"
+        fields:
+          - label: "الرخص"
+            name: "licenses"
+            widget: "list"
+            summary: "{{title_ar}}"
+            fields:
+              - {label: "معرّف داخلي", name: "id", widget: "hidden", default: ""}
+              - {label: "العنوان (عربي)", name: "title_ar", widget: "string"}
+              - {label: "العنوان (Title EN)", name: "title_en", widget: "string"}
+              - {label: "الوصف (عربي)", name: "desc_ar", widget: "text"}
+              - {label: "الوصف (Description EN)", name: "desc_en", widget: "text"}
+              - {label: "صورة (اختياري)", name: "image", widget: "image", required: false, default: "", media_folder: "/assets/images/licenses", public_folder: "/assets/images/licenses"}
+              - {label: "رابط التحقق (اختياري)", name: "verify_url", widget: "string", required: false, default: ""}
+
+  - name: "badges"
+    label: "الشارات الرقمية"
+    files:
+      - name: "badges"
+        label: "قائمة الشارات"
+        file: "data/badges.json"
+        fields:
+          - label: "الشارات"
+            name: "badges"
+            widget: "list"
+            summary: "{{title_ar}}"
+            fields:
+              - {label: "معرّف داخلي", name: "id", widget: "hidden", default: ""}
+              - {label: "العنوان (عربي)", name: "title_ar", widget: "string"}
+              - {label: "العنوان (Title EN)", name: "title_en", widget: "string"}
+              - {label: "الجهة المانحة (عربي)", name: "org_ar", widget: "string"}
+              - {label: "الجهة المانحة (Issuer EN)", name: "org_en", widget: "string"}
+              - {label: "معرّف شارة Credly (اختياري)", name: "credly_badge_id", widget: "string", required: false, default: "", hint: "من كود التضمين: قيمة data-share-badge-id — إن وُجد، يُعرض شارة تفاعلية حيّة بدل الصورة"}
+              - {label: "صورة بديلة (اختياري)", name: "image", widget: "image", required: false, default: "", media_folder: "/assets/images/badges", public_folder: "/assets/images/badges"}
+              - {label: "رابط التحقق (اختياري)", name: "verify_url", widget: "string", required: false, default: ""}
