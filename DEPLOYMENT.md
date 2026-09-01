@@ -2,7 +2,9 @@
 
 The production entry file is `index.html`.
 
-Current hosting: **Cloudflare Workers with Static Assets** (project name `portfolio`), git-connected to this repo's `master` branch and auto-deployed via `wrangler.jsonc` on every push (no build command — Cloudflare runs `wrangler deploy` directly). This is a different product from classic Cloudflare Pages: routing for `/api/*` is handled by `src/worker.js`, which serves everything else via the `ASSETS` binding. `_headers` and `_redirects` still work the same way they do on Pages.
+Current hosting: **Cloudflare Workers with Static Assets** (project name `portfolio`). This is a different product from classic Cloudflare Pages: routing for `/api/*` is handled by `src/worker.js`, which serves everything else via the `ASSETS` binding. `_headers` and `_redirects` still work the same way they do on Pages.
+
+Deployment is handled by **GitHub Actions** (`.github/workflows/deploy.yml`), not Cloudflare's built-in Git integration — that integration wipes dashboard-set secrets on every push-triggered deploy (a known upstream issue), which broke the `/admin` OAuth login repeatedly. The workflow runs `wrangler deploy --secrets-file` on every push to `master`, so `GITHUB_CLIENT_ID`/`GITHUB_CLIENT_SECRET` are re-applied every single deploy and never get dropped. Required GitHub Actions repo secrets: `CF_API_TOKEN`, `CF_ACCOUNT_ID`, `CMS_CLIENT_ID`, `CMS_CLIENT_SECRET`. Cloudflare's own Git integration for this Worker has been disconnected to avoid two deployment pipelines racing on the same push.
 
 Other options if ever migrating away from Workers:
 - Netlify: drag the whole folder into Netlify deploys, or connect the folder to a Git repository (note: `src/worker.js` + `wrangler.jsonc` are Cloudflare-specific and would need to be replaced with Netlify's own OAuth/Git Gateway approach for the `/admin` CMS to keep working).
@@ -29,9 +31,9 @@ Folder layout:
 `admin/index.html` + `admin/config.yml` provide a browser-based content editor at `/admin/` — no code editing needed to add/update projects, certificates, licenses, or badges. Requires one-time setup:
 
 1. Create a GitHub OAuth App (Settings → Developer settings → OAuth Apps → New OAuth App). Homepage URL and Authorization callback URL both = the site's root URL (e.g. `https://bandaralasmari.com`).
-2. In the Cloudflare dashboard, on the **`portfolio` Worker** (not a "Pages" project — Settings → Variables and Secrets), add `GITHUB_CLIENT_ID` and `GITHUB_CLIENT_SECRET` from that OAuth App.
+2. Store its Client ID/Secret as GitHub Actions repo secrets `CMS_CLIENT_ID` / `CMS_CLIENT_SECRET` (see above) — the deploy workflow maps these to the `GITHUB_CLIENT_ID`/`GITHUB_CLIENT_SECRET` Worker secrets on every deploy.
 3. `src/worker.js` (the Worker's entry point, declared via `wrangler.jsonc`'s `main` field) handles `/api/auth` and `/api/callback` directly and serves every other path from static assets via the `ASSETS` binding — this is the OAuth handshake GitHub's backend requires.
-4. Visit `/admin/` and log in with the GitHub account that has write access to this repo. Saving a change there commits directly to this repository and triggers a normal redeploy.
+4. Visit `/admin/` and log in with the GitHub account that has write access to this repo. Saving a change there commits directly to this repository, which triggers the GitHub Actions deploy above.
 
 Before publishing:
 - Keep `index.html`, `_headers`, `_redirects`, `.nojekyll`, and `robots.txt` in the deployed folder.
