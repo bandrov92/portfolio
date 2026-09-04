@@ -3,8 +3,8 @@
   "slug": "teacher-promotion-guide",
   "title_ar": "دليل ترقيات المعلمين التفاعلي",
   "title_en": "Interactive Teacher Promotion Guide",
-  "summary_ar": "منصة Teacher Pro SA — أداة ويب تفاعلية تساعد المعلمين السعوديين على فهم متطلبات الترقية، استكشاف المسارات المهنية، والوصول إلى اللوائح بصورة مبسطة.",
-  "summary_en": "Teacher Pro SA — an interactive web platform helping Saudi teachers understand promotion requirements, explore professional pathways, and access regulations in a simplified format.",
+  "summary_ar": "منصة Teacher Pro SA (مؤسس ومصمم منتج) — أداة ويب تفاعلية تساعد المعلمين السعوديين على فهم متطلبات الترقية، استكشاف المسارات المهنية، والوصول إلى اللوائح بصورة مبسطة، مستضافة على بيئة Netlify.",
+  "summary_en": "Teacher Pro SA (Founder & Product Designer) — an interactive web platform helping Saudi teachers understand promotion requirements, explore professional pathways, and access regulations in a simplified format, hosted on Netlify.",
   "url": "https://teacher-pro-sa.netlify.app/",
   "case_study": {
     "headline_ar": "من بلاغ مستخدم إلى نسخة ثانية أكثر دقة",
