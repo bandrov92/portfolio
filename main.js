@@ -85,7 +85,7 @@ const I18N = {
   k4_p:"إشراف على مجتمع تيليجرام واسع متخصص في أنظمة ترقيات المعلمين السعوديين، يقدّم إجابات موثوقة ومبسّطة عن اللوائح.",
   s_contact:"تواصل", con_t:"لنصنع شيئاً ذا أثر",
   con_p:"متاح للتعاون في مشاريع التحول الرقمي التعليمي، وتصميم البرامج التدريبية، وتقويم المحتوى وتوطينه.",
-  c_email:"البريد الإلكتروني", c_phone:"الهاتف", c_loc:"الموقع", c_loc_v:"نجران — المملكة العربية السعودية",
+  c_email:"البريد الإلكتروني", c_phone:"الهاتف", c_loc:"الموقع", c_loc_v:"عسير | نجران: المملكة العربية السعودية 🇸🇦",
   footer:"© 2026 بندر بن عايض الأسمري — Bandarov. جميع الحقوق محفوظة.",
   wheel_now:"أنت في:",
   sections:["الرئيسية","نبذة","الرؤية","الخبرة","التأهيل","الشهادات","المشاريع","المستقبل","الإنتاج المعرفي","تواصل"]
@@ -176,7 +176,7 @@ const I18N = {
   k4_p:"Moderation of a large Telegram community focused on Saudi teacher promotion regulations, offering reliable, simplified answers on official bylaws.",
   s_contact:"Contact", con_t:"Let's build something that matters",
   con_p:"Available for collaboration on educational digital transformation, training program design, and content evaluation & localization.",
-  c_email:"Email", c_phone:"Phone", c_loc:"Location", c_loc_v:"Najran — Saudi Arabia",
+  c_email:"Email", c_phone:"Phone", c_loc:"Location", c_loc_v:"Asir | Najran: Kingdom of Saudi Arabia 🇸🇦",
   footer:"© 2026 Bandar Ayidh Alasmari — Bandarov. All rights reserved.",
   wheel_now:"You are at:",
   sections:["Home","About","Vision","Career","Credentials","Certificates","Projects","Future","Knowledge","Contact"]
