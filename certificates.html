@@ -64,13 +64,17 @@ window.addEventListener("DOMContentLoaded", async ()=>{
       period: "مدة البرنامج",
       number: "رقم الشهادة",
       tracks: "محاور الزمالة الرئيسية",
-      related: "مسارات Vanderbilt عبر Coursera"
+      related: "مسارات Vanderbilt عبر Coursera",
+      pending: "قيد الإصدار",
+      pendingNote: "(في مراحل الاعتماد النهائية)"
     } : {
       issued: "Issued",
       period: "Program period",
       number: "Certificate number",
       tracks: "Fellowship core tracks",
-      related: "Vanderbilt courses via Coursera"
+      related: "Vanderbilt courses via Coursera",
+      pending: "Pending issuance",
+      pendingNote: "(In final accreditation stages)"
     };
     document.title = "Bandarov — " + d.certs_hub_t;
     const wrap = document.getElementById("certCards");
@@ -80,7 +84,7 @@ window.addEventListener("DOMContentLoaded", async ()=>{
       card.className = "card cert-card";
       const tracks = c[isAr ? "tracks_ar" : "tracks_en"] || c.tracks_ar || c.tracks_en || [];
       const related = c[isAr ? "related_credentials_ar" : "related_credentials_en"] || c.related_credentials_ar || c.related_credentials_en || [];
-      if(tracks.length || related.length) card.classList.add("is-featured");
+      if(tracks.length || related.length || c.image || c.pending) card.classList.add("is-featured");
       const media = document.createElement("div");
       media.className = "cert-media";
       if(c.image){
@@ -88,6 +92,17 @@ window.addEventListener("DOMContentLoaded", async ()=>{
         img.src = c.image;
         img.alt = isAr ? c.title_ar : c.title_en;
         media.appendChild(img);
+      }else if(c.pending){
+        const ph = document.createElement("div");
+        ph.className = "cert-placeholder cert-placeholder-pending";
+        const icon = document.createElement("span");
+        icon.className = "cert-pending-icon";
+        icon.setAttribute("aria-hidden", "true");
+        icon.textContent = "⏳";
+        const text = document.createElement("span");
+        text.textContent = labels.pending;
+        ph.append(icon, text);
+        media.appendChild(ph);
       }else{
         const ph = document.createElement("span");
         ph.className = "cert-placeholder";
@@ -106,12 +121,35 @@ window.addEventListener("DOMContentLoaded", async ()=>{
         verify.textContent = d.verify;
         content.appendChild(verify);
       }
+      const titleRow = document.createElement("div");
+      titleRow.className = "cert-title-row";
       const h3 = document.createElement("h3");
       h3.textContent = isAr ? c.title_ar : c.title_en;
+      titleRow.appendChild(h3);
+      if(c.pending){
+        const statusBadge = document.createElement("span");
+        statusBadge.className = "cert-status-badge";
+        statusBadge.textContent = labels.pending;
+        titleRow.appendChild(statusBadge);
+      }
+      content.appendChild(titleRow);
+
       const org = document.createElement("p");
       org.className = "org";
       org.textContent = isAr ? c.org_ar : c.org_en;
-      content.append(h3, org);
+      if(c.org_logo){
+        const orgRow = document.createElement("div");
+        orgRow.className = "cert-org-row";
+        const orgLogo = document.createElement("img");
+        orgLogo.className = "cert-org-logo";
+        orgLogo.src = c.org_logo;
+        orgLogo.alt = isAr ? c.org_ar : c.org_en;
+        orgLogo.loading = "lazy";
+        orgRow.append(orgLogo, org);
+        content.appendChild(orgRow);
+      }else{
+        content.appendChild(org);
+      }
 
       const descText = isAr ? c.desc_ar : c.desc_en;
       if(descText){
@@ -121,24 +159,31 @@ window.addEventListener("DOMContentLoaded", async ()=>{
         content.appendChild(desc);
       }
 
-      const metaItems = [
-        {label: labels.issued, value: isAr ? c.issued_ar : c.issued_en},
-        {label: labels.period, value: isAr ? c.period_ar : c.period_en},
-        {label: labels.number, value: c.certificate_number}
-      ].filter(item=>item.value);
-      if(metaItems.length){
-        const meta = document.createElement("div");
-        meta.className = "cert-meta";
-        metaItems.forEach(item=>{
-          const row = document.createElement("span");
-          const label = document.createElement("b");
-          label.textContent = item.label;
-          const value = document.createElement("em");
-          value.textContent = item.value;
-          row.append(label, value);
-          meta.appendChild(row);
-        });
-        content.appendChild(meta);
+      if(c.pending){
+        const pendingNote = document.createElement("p");
+        pendingNote.className = "cert-pending-note";
+        pendingNote.textContent = labels.pendingNote;
+        content.appendChild(pendingNote);
+      }else{
+        const metaItems = [
+          {label: labels.issued, value: isAr ? c.issued_ar : c.issued_en},
+          {label: labels.period, value: isAr ? c.period_ar : c.period_en},
+          {label: labels.number, value: c.certificate_number}
+        ].filter(item=>item.value);
+        if(metaItems.length){
+          const meta = document.createElement("div");
+          meta.className = "cert-meta";
+          metaItems.forEach(item=>{
+            const row = document.createElement("span");
+            const label = document.createElement("b");
+            label.textContent = item.label;
+            const value = document.createElement("em");
+            value.textContent = item.value;
+            row.append(label, value);
+            meta.appendChild(row);
+          });
+          content.appendChild(meta);
+        }
       }
 
       if(tracks.length){

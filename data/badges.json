@@ -2,13 +2,102 @@
   "badges": [
     {
       "id": "badge1",
-      "title_ar": "McKinsey.org Forward Program",
+      "title_ar": "أمن السحابة",
+      "title_en": "Cloud Security",
+      "org_ar": "IBM SkillsBuild",
+      "org_en": "IBM SkillsBuild",
+      "skills_ar": ["أمن البنية السحابية", "التحكم في الوصول السحابي", "تقييم مخاطر السحابة"],
+      "skills_en": ["Cloud infrastructure security", "Cloud access control", "Cloud risk assessment"],
+      "image": "/assets/badges/cloud-security.png",
+      "verify_url": "#"
+    },
+    {
+      "id": "badge2",
+      "title_ar": "الحوكمة، المخاطر، الامتثال وخصوصية البيانات",
+      "title_en": "Governance, Risk, Compliance and Data Privacy",
+      "org_ar": "IBM SkillsBuild",
+      "org_en": "IBM SkillsBuild",
+      "skills_ar": ["إطار الحوكمة المؤسسية", "إدارة الامتثال التنظيمي", "خصوصية البيانات"],
+      "skills_en": ["Governance frameworks", "Regulatory compliance", "Data privacy management"],
+      "image": "/assets/badges/governance-risk-compliance-and-data-privacy.png",
+      "verify_url": "#"
+    },
+    {
+      "id": "badge3",
+      "title_ar": "شهادة IBM SkillsBuild للأمن السيبراني",
+      "title_en": "IBM SkillsBuild Cybersecurity Certificate",
+      "org_ar": "IBM SkillsBuild",
+      "org_en": "IBM SkillsBuild",
+      "skills_ar": ["أساسيات الأمن السيبراني", "تحليل التهديدات الرقمية", "أدوات SIEM"],
+      "skills_en": ["Cybersecurity fundamentals", "Threat analysis", "SIEM tools"],
+      "image": "/assets/badges/ibm-skillsbuild-cybersecurity-certificate.png",
+      "verify_url": "#"
+    },
+    {
+      "id": "badge4",
+      "title_ar": "الاستجابة للحوادث والتحقيق الجنائي في الأنظمة",
+      "title_en": "Incident Response and Systems Forensics",
+      "org_ar": "IBM SkillsBuild",
+      "org_en": "IBM SkillsBuild",
+      "skills_ar": ["الاستجابة للحوادث الأمنية", "التحقيق الجنائي الرقمي", "تحليل الأدلة الرقمية"],
+      "skills_en": ["Security incident response", "Digital forensics", "Evidence analysis"],
+      "image": "/assets/badges/incident-response-and-systems-forensics.png",
+      "verify_url": "#"
+    },
+    {
+      "id": "badge5",
+      "title_ar": "برنامج McKinsey.org Forward",
       "title_en": "McKinsey.org Forward Program",
       "org_ar": "McKinsey.org",
       "org_en": "McKinsey.org",
-      "credly_badge_id": "23aa865a-f983-4844-a6c6-8ea7b612bab8",
-      "image": "",
-      "verify_url": ""
+      "skills_ar": ["الاستعداد المهني والتوظيف", "التفكير النقدي والتواصل", "بناء المرونة الشخصية"],
+      "skills_en": ["Career readiness", "Critical thinking & communication", "Personal resilience"],
+      "image": "/assets/badges/mckinsey-org-forward-program.png",
+      "verify_url": "#"
+    },
+    {
+      "id": "badge6",
+      "title_ar": "خبير مايكروسوفت المبتكر في التعليم 2025–2026",
+      "title_en": "Microsoft Innovative Educator Expert 2025–2026",
+      "org_ar": "Microsoft Education",
+      "org_en": "Microsoft Education",
+      "skills_ar": ["التعليم القائم على التقنية", "تطبيقات Microsoft التعليمية", "الابتكار الصفي"],
+      "skills_en": ["Technology-enabled teaching", "Microsoft education tools", "Classroom innovation"],
+      "image": "/assets/badges/microsoft-innovative-educator-expert-2025-2026.png",
+      "verify_url": "#"
+    },
+    {
+      "id": "badge7",
+      "title_ar": "عمليات وإدارة الأمن",
+      "title_en": "Security Operations and Management",
+      "org_ar": "IBM SkillsBuild",
+      "org_en": "IBM SkillsBuild",
+      "skills_ar": ["إدارة مركز العمليات الأمنية", "الرصد الأمني المستمر", "إدارة الحوادث التشغيلية"],
+      "skills_en": ["SOC management", "Continuous security monitoring", "Operational incident handling"],
+      "image": "/assets/badges/security-operations-and-management.png",
+      "verify_url": "#"
+    },
+    {
+      "id": "badge8",
+      "title_ar": "أمن الأنظمة والشبكات",
+      "title_en": "System and Network Security",
+      "org_ar": "IBM SkillsBuild",
+      "org_en": "IBM SkillsBuild",
+      "skills_ar": ["تأمين الشبكات", "حماية الأنظمة والخوادم", "بروتوكولات الاتصال الآمن"],
+      "skills_en": ["Network hardening", "System & server protection", "Secure communication protocols"],
+      "image": "/assets/badges/system-and-network-security.png",
+      "verify_url": "#"
+    },
+    {
+      "id": "badge9",
+      "title_ar": "إدارة الثغرات الأمنية",
+      "title_en": "Vulnerability Management",
+      "org_ar": "IBM SkillsBuild",
+      "org_en": "IBM SkillsBuild",
+      "skills_ar": ["فحص الثغرات الأمنية", "تقييم المخاطر التقنية", "خطط المعالجة والتصحيح"],
+      "skills_en": ["Vulnerability scanning", "Technical risk assessment", "Remediation planning"],
+      "image": "/assets/badges/vulnerability-management.png",
+      "verify_url": "#"
     }
   ]
 }

@@ -39,7 +39,10 @@
 </section>
 
 <section class="reveal in" id="badgeGrid">
-  <div class="grid g3" id="badgeCards"></div>
+  <div class="grid badges-grid" id="badgeCards"></div>
+  <div class="section-cta badges-cta">
+    <a class="btn btn-gold" id="badgesCredlyCta" href="https://www.credly.com/users/bandarov/badges/credly" target="_blank" rel="noopener"></a>
+  </div>
 </section>
 
 <footer><span data-i18n="footer">© 2026 بندر عايض الأسمري — Bandarov. جميع الحقوق محفوظة.</span></footer>
@@ -59,29 +62,32 @@ window.addEventListener("DOMContentLoaded", async ()=>{
   function render(){
     const isAr = document.documentElement.lang === "ar";
     const d = I18N[isAr?"ar":"en"];
+    const labels = isAr ? {
+      cta: "استعرض كافة الشارات وتفاصيل التوثيق الرسمية ↗"
+    } : {
+      cta: "Browse all badges and official verification details ↗"
+    };
     document.title = "Bandarov — " + d.badges_hub_t;
+    document.getElementById("badgesCredlyCta").textContent = labels.cta;
+
     const wrap = document.getElementById("badgeCards");
     wrap.innerHTML = "";
-    let hasCredly = false;
 
-    badges.forEach(b=>{
-      const card = document.createElement("article");
-      card.className = "card cert-card";
+    badges.forEach((b, idx)=>{
+      const card = document.createElement("a");
+      card.className = "card badge-card reveal-stagger";
+      card.href = b.verify_url || "#";
+      card.target = "_blank";
+      card.rel = "noopener";
+      card.style.transitionDelay = Math.min(idx * 70, 420) + "ms";
+
       const media = document.createElement("div");
-      media.className = "cert-media badge-media";
-
-      if(b.credly_badge_id){
-        hasCredly = true;
-        const embed = document.createElement("div");
-        embed.setAttribute("data-iframe-width","150");
-        embed.setAttribute("data-iframe-height","270");
-        embed.setAttribute("data-share-badge-id", b.credly_badge_id);
-        embed.setAttribute("data-share-badge-host","https://www.credly.com");
-        media.appendChild(embed);
-      }else if(b.image){
+      media.className = "badge-media-wrap";
+      if(b.image){
         const img = document.createElement("img");
         img.src = b.image;
         img.alt = isAr ? b.title_ar : b.title_en;
+        img.loading = "lazy";
         media.appendChild(img);
       }else{
         const ph = document.createElement("span");
@@ -91,31 +97,35 @@ window.addEventListener("DOMContentLoaded", async ()=>{
       }
       card.appendChild(media);
 
-      if(b.verify_url){
-        const verify = document.createElement("a");
-        verify.className = "cert-verify";
-        verify.href = b.verify_url;
-        verify.target = "_blank";
-        verify.rel = "noopener";
-        verify.textContent = d.verify;
-        card.appendChild(verify);
-      }
-
       const h3 = document.createElement("h3");
       h3.textContent = isAr ? b.title_ar : b.title_en;
+      card.appendChild(h3);
+
       const org = document.createElement("p");
-      org.className = "org";
+      org.className = "badge-org";
       org.textContent = isAr ? b.org_ar : b.org_en;
-      card.append(h3, org);
+      card.appendChild(org);
+
+      const skills = (isAr ? b.skills_ar : b.skills_en) || [];
+      if(skills.length){
+        const skillsWrap = document.createElement("div");
+        skillsWrap.className = "badge-skills";
+        skills.forEach(skill=>{
+          const pill = document.createElement("span");
+          pill.className = "badge-skill-pill";
+          pill.textContent = skill;
+          skillsWrap.appendChild(pill);
+        });
+        card.appendChild(skillsWrap);
+      }
+
       wrap.appendChild(card);
     });
 
-    if(hasCredly){
-      const s = document.createElement("script");
-      s.src = "https://cdn.credly.com/assets/utilities/embed.js";
-      s.async = true;
-      document.body.appendChild(s);
-    }
+    const badgeRevealObs = new IntersectionObserver(es=>{
+      es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add("in"); badgeRevealObs.unobserve(e.target); } });
+    }, {threshold:.12});
+    wrap.querySelectorAll(".reveal-stagger").forEach(el=>badgeRevealObs.observe(el));
   }
 
   render();

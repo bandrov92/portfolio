@@ -57,6 +57,32 @@
       "verify_url": ""
     },
     {
+      "id": "cert9",
+      "title_ar": "الشهادة المهنية الاحترافية في تقديم التعليم والتدريب الإلكتروني (OTT)",
+      "title_en": "Professional Certificate in Providing eLearning and eTraining (OTT)",
+      "org_ar": "المركز الوطني للتعليم الإلكتروني",
+      "org_en": "National eLearning Center",
+      "org_logo": "assets/images/nelc-logo.png",
+      "desc_ar": "اعتراف بالكفاءة والمهنية في تقديم التعليم والتدريب الإلكتروني، وامتلاك الخبرة التعليمية التي تُمكّن من إيجاد فرص تعلم مبتكرة ومرنة تلبي حاجة كل متعلم، وتعزيز التعلم التعاوني والنشط والتكيّفي.",
+      "desc_en": "Recognition of competence and professionalism in delivering e-learning and online training, with the educational expertise to create innovative, flexible learning opportunities that meet each learner's needs and strengthen collaborative, active, and adaptive learning.",
+      "pending": true,
+      "image": "",
+      "verify_url": "https://nelc.gov.sa/en/projects-and-initiatives/professional-certificates/ott"
+    },
+    {
+      "id": "cert10",
+      "title_ar": "الشهادة المهنية الاحترافية في تصميم خبرات التعليم الإلكتروني (eLXD)",
+      "title_en": "Professional Certificate in Designing eLearning Experiences (eLXD)",
+      "org_ar": "المركز الوطني للتعليم الإلكتروني",
+      "org_en": "National eLearning Center",
+      "org_logo": "assets/images/nelc-logo.png",
+      "desc_ar": "اعتراف بالقدرة على تصميم خبرات التعليم الإلكتروني باحترافية، عبر تحليل شامل لبيئة التعلم والفئة المستهدفة والأهداف المراد تحقيقها، وصولاً إلى التصميم التعليمي الكامل لمنظومة التعلم.",
+      "desc_en": "Recognition of the ability to professionally design e-learning experiences through a comprehensive analysis of the learning environment, target audience, and objectives — through to the full instructional design of the learning ecosystem.",
+      "pending": true,
+      "image": "",
+      "verify_url": "https://nelc.gov.sa/en/projects-and-initiatives/professional-certificates/elxd"
+    },
+    {
       "id": "cert8",
       "title_ar": "مسار الذكاء الاصطناعي والبيانات — مستوى متوسط",
       "title_en": "AI and Data Track — Intermediate Level",

@@ -16,10 +16,13 @@
 - إضافة شهادة الزمالة الوطنية في التعليم الإلكتروني كأول شهادة مصورة ومفصلة في `certificates.html`، مع صورة WebP محسّنة ومحاور البرنامج الثلاثة داخل تفاصيل قابلة للفتح.
 - إثراء شهادة "تخصص القيادة واستراتيجية الذكاء الاصطناعي التوليدي" بصورة فعلية ووصف مهني، وربط مسارات Vanderbilt University عبر Coursera كثلاث شهادات مستقلة داخل البطاقة نفسها.
 - منع تخزين ملفات بيانات المحتوى (`data/*.json`) في كاش المتصفح عند العرض، حتى تظهر إضافات الشهادات والمشاريع بسرعة في المعاينة وبعد النشر.
+- جعل تخطيط بطاقة الشهادة أفقياً (`is-featured`) تلقائياً لأي شهادة تملك صورة فعلية (`c.image`)، بدل الاعتماد فقط على وجود محاور (`tracks`) أو شهادات مرتبطة (`related_credentials`).
+- إضافة شهادتي OTT (الشهادة المهنية الاحترافية في تقديم التعليم والتدريب الإلكتروني) وeLXD (تصميم خبرات التعليم الإلكتروني) من المركز الوطني للتعليم الإلكتروني (NELC) كشهادتين "قيد الإصدار" (`pending: true`) في `certificates.html`: شارة "قيد الإصدار" بجوار العنوان، نص بارز "(في مراحل الاعتماد النهائية)" بدل تاريخ/رقم الشهادة، أيقونة ساعة رملية كصورة نائبة، وشعار NELC (`assets/images/nelc-logo.png`) بجوار اسم الجهة المانحة. رتّبت شهادات `certificates.html` بالتسلسل: الزمالة الوطنية ← OTT ← eLXD ← مسار الذكاء الاصطناعي والبيانات ← باقي الشهادات.
+- إعادة بناء `badges.html` بالكامل: أُزيلت شارة McKinsey المُضمَّنة عبر Credly Live Embed، واستُبدلت بـ9 شارات ثابتة (Cloud Security, GRC & Data Privacy, IBM SkillsBuild Cybersecurity, Incident Response & Forensics, McKinsey.org Forward, Microsoft Innovative Educator Expert, Security Operations, System & Network Security, Vulnerability Management) في `data/badges.json` بصور من `assets/badges/*.png` وحقل مهارات جديد (`skills_ar`/`skills_en`). شبكة 3/2/1 عمود متجاوبة، كل بطاقة رابط `<a>` كامل قابل للنقر، أنيميشن ظهور متتابع (staggered fade/slide-up)، وCTA نهائي يشير إلى ملف Credly العام (`credly.com/users/bandarov/badges/credly`). حُدِّث `admin/config.yml` لمطابقة الحقول الجديدة (`skills`, مسار `/assets/badges`) وحُذف حقل `credly_badge_id` غير المستخدم بعد الآن.
 
 ## آخر نسخة منشورة
 
-- آخر commit مدفوع بنجاح إلى `master`: `7897e09` — "Add AGENTS.md and PROJECT_STATUS.md".
+- آخر commit مدفوع بنجاح إلى `master`: `0678d3c` — راجع `git log` للتأكد من آخر حالة، ثم تحقّق من أن التعديلات أعلاه (الشهادات المعاد ترتيبها + OTT/eLXD + إعادة بناء الشارات) أصبحت مدفوعة أيضاً.
 - خط النشر: push إلى `master` → GitHub Actions (`deploy.yml`) → `wrangler deploy --secrets-file` → Cloudflare Worker `portfolio` → `bandaralasmari.com`.
 - تحقّق دائماً من نجاح آخر تشغيل فعلياً هنا: `https://github.com/bandrov92/portfolio/actions` (لا تثق بملخّص أي أداة، تحقّق من الصفحة الحقيقية أو بـ`curl`).
 
@@ -27,7 +30,7 @@
 
 - `projects/project-template.html` صفحة قديمة يتيمة، غير مرتبطة من أي مكان فعّال باستثناء رابط "دراسة حالة" في القائمة الرئيسية. قرار حذفها معلّق بانتظار المستخدم.
 - يوجد Cloudflare Worker منفصل قديم غير مستخدم باسم `e-portfolio` (على `workers.dev`، بلا طلبات) — لا علاقة له بهذا المشروع، لم يُحسم قرار حذفه.
-- شهادة الزمالة الوطنية في التعليم الإلكتروني أُضيفت بصورة فعلية، بينما بقية الشهادات/الرخص/الشارات ما زالت تحتاج صوراً أو روابط تحقق عند توفرها.
+- شهادات الزمالة الوطنية/OTT/eLXD/الذكاء الاصطناعي التوليدي والشارات التسع في `badges.html` أصبحت بصور فعلية، بينما بقية الشهادات (`cert2`–`cert6`) والرخص ما زالت تحتاج صوراً أو روابط تحقق عند توفرها. روابط `verify_url` لشهادتي OTT وeLXD وللشارات التسع لا تزال "#" مؤقتة بانتظار الروابط الحقيقية.
 - خطوط Thmanyah المخصصة (`fonts/thmanyah-*.woff2/otf/ttf`) غير مرفوعة — الموقع يعمل بخطوط بديلة (Amiri, Cormorant Garamond, IBM Plex Sans Arabic, Inter) عبر Google Fonts دون مشاكل، هذا اختياري فقط.
 - صور معرض المشاريع الحالية (`assets/images/projects/gallery-0*.webp`) لقطات شاشة مؤقتة (placeholder)، لم تُستبدل بلقطات حقيقية.
 - نطاق صلاحية GitHub OAuth (`repo user`) يمنح الوصول لكل مستودعات المستخدم عند تسجيل الدخول، وليس فقط هذا المستودع — سلوك افتراضي في Decap CMS، أُبلغ المستخدم به.

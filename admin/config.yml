@@ -71,6 +71,8 @@ collections:
               - {label: "العنوان (Title EN)", name: "title_en", widget: "string"}
               - {label: "الجهة المانحة (عربي)", name: "org_ar", widget: "string"}
               - {label: "الجهة المانحة (Issuer EN)", name: "org_en", widget: "string"}
+              - {label: "شعار الجهة المانحة (اختياري)", name: "org_logo", widget: "image", required: false, default: "", hint: "يظهر بجوار اسم الجهة المانحة في البطاقة", media_folder: "/assets/images", public_folder: "/assets/images"}
+              - {label: "الشهادة قيد الإصدار (بدون تاريخ/رقم نهائي)", name: "pending", widget: "boolean", required: false, default: false, hint: "عند التفعيل: يُستبدل تاريخ الإصدار ورقم الشهادة بنص 'في مراحل الاعتماد النهائية'، وتُضاف شارة 'قيد الإصدار'"}
               - {label: "وصف مختصر (عربي)", name: "desc_ar", widget: "text", required: false, default: ""}
               - {label: "Short description (EN)", name: "desc_en", widget: "text", required: false, default: ""}
               - {label: "تاريخ الإصدار (عربي)", name: "issued_ar", widget: "string", required: false, default: ""}
@@ -168,6 +170,15 @@ collections:
               - {label: "العنوان (Title EN)", name: "title_en", widget: "string"}
               - {label: "الجهة المانحة (عربي)", name: "org_ar", widget: "string"}
               - {label: "الجهة المانحة (Issuer EN)", name: "org_en", widget: "string"}
-              - {label: "معرّف شارة Credly (اختياري)", name: "credly_badge_id", widget: "string", required: false, default: "", hint: "من كود التضمين: قيمة data-share-badge-id — إن وُجد، يُعرض شارة تفاعلية حيّة بدل الصورة"}
-              - {label: "صورة بديلة (اختياري)", name: "image", widget: "image", required: false, default: "", media_folder: "/assets/images/badges", public_folder: "/assets/images/badges"}
-              - {label: "رابط التحقق (اختياري)", name: "verify_url", widget: "string", required: false, default: ""}
+              - label: "أبرز المهارات (عربي)"
+                name: "skills_ar"
+                widget: "list"
+                required: false
+                field: {label: "مهارة", name: "item", widget: "string"}
+              - label: "Key skills (EN)"
+                name: "skills_en"
+                widget: "list"
+                required: false
+                field: {label: "Skill", name: "item", widget: "string"}
+              - {label: "صورة الشارة", name: "image", widget: "image", required: false, default: "", media_folder: "/assets/badges", public_folder: "/assets/badges"}
+              - {label: "رابط التحقق/التوثيق", name: "verify_url", widget: "string", required: false, default: "", hint: "رابط صفحة التحقق من الشارة — تصبح البطاقة كاملة قابلة للنقر إليه"}
