@@ -4,6 +4,8 @@
 
 ## آخر ما تم إنجازه
 
+- إضافة بيئة تطوير رسمية لوكلاء Cursor السحابيين عبر `.cursor/environment.json`: خطوة `install` تُحمّل `wrangler@4` إلى كاش npx، وطرفية `wrangler dev` تُشغّل الـ Worker الكامل (`src/worker.js`) مع ربط `ASSETS` والمسارات `/api/auth` و`/api/callback` وقواعد `_redirects`/`_headers` على `http://localhost:8787` (بما فيها `/admin/`). حالة wrangler تُحفظ خارج جذر المستودع (`--persist-to /tmp/wrangler-state`) لتفادي حلقة إعادة تحميل لا نهائية سببها مراقبة مجلد الأصول `.` لملفات `.wrangler/`. هذا للتطوير المحلي فقط ولا يمسّ خط النشر عبر GitHub Actions.
+
 - تحويل الموقع من صفحة واحدة (`index.html` بكل شيء مضمّناً) إلى موقع متعدد الصفحات: `index.html`, `project.html`, `certificates.html`, `licenses.html`, `badges.html`، مع CSS/JS مفصولة (`css/site.css`, `css/pages.css`, `main.js`).
 - بناء لوحة إدارة محتوى كاملة عبر **Decap CMS** على `/admin/` تغطي 4 أقسام: المشاريع، الشهادات التدريبية، الرخص والاعتمادات، الشارات الرقمية (بادجات Credly حية).
 - اكتشاف أن الاستضافة الفعلية **Cloudflare Worker باسم `portfolio`** (Static Assets)، وليست Cloudflare Pages كما افتُرض أولاً — أعيد بناء مصادقة GitHub OAuth بالكامل على هذا الأساس (`src/worker.js` + `wrangler.jsonc`).
