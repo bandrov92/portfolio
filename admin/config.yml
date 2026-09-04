@@ -25,6 +25,7 @@ collections:
       - {label: "الوصف (عربي)", name: "summary_ar", widget: "text"}
       - {label: "الوصف (Summary EN)", name: "summary_en", widget: "text"}
       - {label: "رابط المشروع الخارجي (اختياري)", name: "url", widget: "string", required: false, default: ""}
+      - {label: "شعار المشروع (اختياري)", name: "logo", widget: "image", required: false, default: "", hint: "يظهر أعلى عنوان المشروع في صفحة دراسة الحالة", media_folder: "/assets/images/projects", public_folder: "/assets/images/projects"}
       - label: "دراسة حالة موسعة (اختياري)"
         name: "case_study"
         widget: "object"
@@ -53,6 +54,89 @@ collections:
             field: {label: "Point", name: "item", widget: "string"}
           - {label: "الدرس المستفاد (عربي)", name: "lesson_ar", widget: "text", required: false, default: ""}
           - {label: "Lesson learned (EN)", name: "lesson_en", widget: "text", required: false, default: ""}
+          - {label: "أبرز قيمة مستفادة — مقتبس مميّز (عربي)", name: "key_takeaway_ar", widget: "text", required: false, default: ""}
+          - {label: "Key takeaway — highlighted quote (EN)", name: "key_takeaway_en", widget: "text", required: false, default: ""}
+          - label: "بطاقة معلومات سريعة (Hero)"
+            name: "quick_facts"
+            widget: "list"
+            required: false
+            collapsed: true
+            summary: "{{label_ar}}: {{value_ar}}"
+            fields:
+              - {label: "التسمية (عربي)", name: "label_ar", widget: "string", required: false, default: ""}
+              - {label: "Label (EN)", name: "label_en", widget: "string", required: false, default: ""}
+              - {label: "القيمة (عربي)", name: "value_ar", widget: "string", required: false, default: ""}
+              - {label: "Value (EN)", name: "value_en", widget: "string", required: false, default: ""}
+          - {label: "نظرة عامة — نص موسّع (عربي)", name: "overview_ar", widget: "text", required: false, default: ""}
+          - {label: "Overview — extended text (EN)", name: "overview_en", widget: "text", required: false, default: ""}
+          - label: "بنود التحدي (عربي، بديل موسّع عن حقل التحدي أعلاه)"
+            name: "challenge_items_ar"
+            widget: "list"
+            required: false
+            field: {label: "بند", name: "item", widget: "string"}
+          - label: "Challenge items (EN)"
+            name: "challenge_items_en"
+            widget: "list"
+            required: false
+            field: {label: "Item", name: "item", widget: "string"}
+          - label: "بنود الحل (عربي، بديل موسّع عن حقل الحل أعلاه)"
+            name: "solution_items_ar"
+            widget: "list"
+            required: false
+            field: {label: "بند", name: "item", widget: "string"}
+          - label: "Solution items (EN)"
+            name: "solution_items_en"
+            widget: "list"
+            required: false
+            field: {label: "Item", name: "item", widget: "string"}
+          - label: "دوري في المشروع — بصيغة المتكلم (عربي)"
+            name: "role_items_ar"
+            widget: "list"
+            required: false
+            field: {label: "بند", name: "item", widget: "string"}
+          - label: "My role — first person (EN)"
+            name: "role_items_en"
+            widget: "list"
+            required: false
+            field: {label: "Item", name: "item", widget: "string"}
+          - label: "الكفاءات التي يجسدها المشروع (عربي)"
+            name: "competencies_ar"
+            widget: "list"
+            required: false
+            collapsed: true
+            summary: "{{title}}"
+            fields:
+              - {label: "عنوان الكفاءة", name: "title", widget: "string"}
+              - {label: "الوصف", name: "desc", widget: "text"}
+          - label: "Competencies demonstrated (EN)"
+            name: "competencies_en"
+            widget: "list"
+            required: false
+            collapsed: true
+            summary: "{{title}}"
+            fields:
+              - {label: "Competency title", name: "title", widget: "string"}
+              - {label: "Description", name: "desc", widget: "text"}
+          - label: "أبرز المخرجات (عربي)"
+            name: "outputs_ar"
+            widget: "list"
+            required: false
+            field: {label: "بند", name: "item", widget: "string"}
+          - label: "Key outputs (EN)"
+            name: "outputs_en"
+            widget: "list"
+            required: false
+            field: {label: "Item", name: "item", widget: "string"}
+          - label: "الكلمات المفتاحية المهنية (عربي)"
+            name: "tags_ar"
+            widget: "list"
+            required: false
+            field: {label: "كلمة", name: "item", widget: "string"}
+          - label: "Professional keywords (EN)"
+            name: "tags_en"
+            widget: "list"
+            required: false
+            field: {label: "Keyword", name: "item", widget: "string"}
 
   - name: "certificates"
     label: "الشهادات التدريبية"

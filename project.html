@@ -33,9 +33,11 @@
 
 <section class="hero hero-page" id="hero">
   <div class="hero-mesh"></div>
+  <img id="projLogo" class="proj-logo" src="" alt="" style="display:none">
   <span class="eyebrow" data-i18n="s_proj">الأعمال</span>
   <h1 class="display" id="projTitle">—</h1>
   <p class="lead page-block" id="projSummary">—</p>
+  <div class="chips" id="projQuickFacts" style="display:none;justify-content:center"></div>
   <div class="hero-cta">
     <a class="btn btn-gold" id="projLiveBtn" href="#" target="_blank" rel="noopener" data-i18n="proj_visit" style="display:none">زيارة المشروع الحي</a>
     <a class="btn btn-ghost" href="index.html#projects" data-i18n="proj_back">كل المشاريع</a>
@@ -55,6 +57,55 @@
   </div>
 
   <blockquote class="case-lesson" id="caseLesson"></blockquote>
+</section>
+
+<section class="reveal in" id="secOverview" style="display:none">
+  <span class="eyebrow" id="ovEyebrow"></span>
+  <h2 class="display" id="ovTitle"></h2>
+  <p class="lead page-block" id="ovText"></p>
+</section>
+
+<section class="reveal in" id="secChallenge" style="display:none">
+  <span class="eyebrow" id="chEyebrow"></span>
+  <h2 class="display" id="chTitle"></h2>
+  <ul class="case-bullets" id="chList"></ul>
+</section>
+
+<section class="reveal in" id="secSolution" style="display:none">
+  <span class="eyebrow" id="soEyebrow"></span>
+  <h2 class="display" id="soTitle"></h2>
+  <ul class="case-bullets" id="soList"></ul>
+</section>
+
+<section class="reveal in" id="secRole" style="display:none">
+  <span class="eyebrow" id="roEyebrow"></span>
+  <h2 class="display" id="roTitle"></h2>
+  <ul class="role-list" id="roList"></ul>
+</section>
+
+<section class="reveal in" id="secCompetencies" style="display:none">
+  <span class="eyebrow" id="coEyebrow"></span>
+  <h2 class="display" id="coTitle"></h2>
+  <div class="grid g3" id="coGrid"></div>
+</section>
+
+<section class="reveal in" id="secOutputs" style="display:none">
+  <span class="eyebrow" id="ouEyebrow"></span>
+  <h2 class="display" id="ouTitle"></h2>
+  <ul class="case-bullets" id="ouList"></ul>
+</section>
+
+<section class="reveal in" id="secLessons" style="display:none">
+  <span class="eyebrow" id="leEyebrow"></span>
+  <h2 class="display" id="leTitle"></h2>
+  <p class="lead page-block" id="leText"></p>
+  <blockquote class="case-lesson" id="leQuote"></blockquote>
+</section>
+
+<section class="reveal in" id="secTags" style="display:none">
+  <span class="eyebrow" id="taEyebrow"></span>
+  <h2 class="display" id="taTitle"></h2>
+  <div class="chips tags-row" id="taList"></div>
 </section>
 
 <section class="reveal in" id="projNotFound" style="display:none">
@@ -127,6 +178,14 @@ window.addEventListener("DOMContentLoaded", async ()=>{
 
     hero.style.display = "";
     notFound.style.display = "none";
+    const logoEl = document.getElementById("projLogo");
+    if(project.logo){
+      logoEl.src = project.logo;
+      logoEl.alt = isAr ? project.title_ar : project.title_en;
+      logoEl.style.display = "";
+    }else{
+      logoEl.style.display = "none";
+    }
     titleEl.textContent = isAr ? project.title_ar : project.title_en;
     summaryEl.textContent = isAr ? project.summary_ar : project.summary_en;
     document.title = "Bandarov — " + (isAr ? project.title_ar : project.title_en);
@@ -141,10 +200,167 @@ window.addEventListener("DOMContentLoaded", async ()=>{
     }
 
     const caseData = project.case_study || null;
+
+    // Quick facts chips (hero info card) — works independently of the case-study body.
+    const quickFactsWrap = document.getElementById("projQuickFacts");
+    const quickFacts = (caseData && Array.isArray(caseData.quick_facts)) ? caseData.quick_facts : [];
+    quickFactsWrap.innerHTML = "";
+    if(quickFacts.length){
+      quickFacts.forEach(f=>{
+        const label = (isAr ? f.label_ar : f.label_en) || f.label_ar || f.label_en || "";
+        const value = (isAr ? f.value_ar : f.value_en) || f.value_ar || f.value_en || "";
+        if(!label && !value) return;
+        const span = document.createElement("span");
+        span.className = "chip";
+        const b = document.createElement("b");
+        b.textContent = label;
+        span.appendChild(b);
+        span.append(document.createTextNode("\u00A0" + value));
+        quickFactsWrap.appendChild(span);
+      });
+      quickFactsWrap.style.display = "";
+    }else{
+      quickFactsWrap.style.display = "none";
+    }
+
+    const extLabels = isAr ? {
+      overview: "نظرة عامة",
+      role: "دوري في المشروع",
+      competencies: "الكفاءات التي يجسدها المشروع",
+      outputs: "أبرز المخرجات",
+      lessons: "الدروس المهنية المستفادة",
+      tags: "الكلمات المفتاحية المهنية"
+    } : {
+      overview: "Overview",
+      role: "My Role",
+      competencies: "Competencies Demonstrated",
+      outputs: "Key Outputs",
+      lessons: "Professional Lessons Learned",
+      tags: "Professional Keywords"
+    };
+    const pickList = (obj, key)=>{
+      const primary = obj?.[key + (isAr ? "_ar" : "_en")];
+      if(Array.isArray(primary) && primary.length) return primary;
+      const fallback = obj?.[key + "_ar"] || obj?.[key + "_en"];
+      return Array.isArray(fallback) ? fallback : [];
+    };
+    const pickItemField = (item, key)=> item?.[key] ?? (item?.[key + "_ar"] || item?.[key + "_en"] || "");
+
+    const extendedSectionIds = ["secOverview","secChallenge","secSolution","secRole","secCompetencies","secOutputs","secLessons","secTags"];
+
     if(!caseData){
       caseStudy.style.display = "none";
+      extendedSectionIds.forEach(id=> document.getElementById(id).style.display = "none");
       return;
     }
+
+    const overviewText = pick(caseData, "overview");
+    const challengeItems = pickList(caseData, "challenge_items");
+    const solutionItems = pickList(caseData, "solution_items");
+    const roleItems = pickList(caseData, "role_items");
+    const competencies = pickList(caseData, "competencies");
+    const outputItems = pickList(caseData, "outputs");
+    const keyTakeaway = pick(caseData, "key_takeaway");
+    const tags = pickList(caseData, "tags");
+
+    const isExtended = !!(overviewText || challengeItems.length || solutionItems.length || roleItems.length || competencies.length || outputItems.length || keyTakeaway || tags.length);
+
+    if(isExtended){
+      caseStudy.style.display = "none";
+
+      const setSection = (id, eyebrowId, titleId, eyebrowText, titleText, hasContent)=>{
+        const section = document.getElementById(id);
+        if(!hasContent){ section.style.display = "none"; return; }
+        section.style.display = "";
+        document.getElementById(eyebrowId).textContent = eyebrowText;
+        document.getElementById(titleId).textContent = titleText;
+      };
+
+      // Overview
+      setSection("secOverview","ovEyebrow","ovTitle", labels.eyebrow, extLabels.overview, !!overviewText);
+      document.getElementById("ovText").textContent = overviewText;
+
+      // Challenge
+      setSection("secChallenge","chEyebrow","chTitle", labels.eyebrow, labels.challenge, challengeItems.length>0);
+      const chList = document.getElementById("chList");
+      chList.innerHTML = "";
+      challengeItems.forEach(text=>{
+        const li = document.createElement("li");
+        li.textContent = text;
+        chList.appendChild(li);
+      });
+
+      // Solution
+      setSection("secSolution","soEyebrow","soTitle", labels.eyebrow, labels.solution, solutionItems.length>0);
+      const soList = document.getElementById("soList");
+      soList.innerHTML = "";
+      solutionItems.forEach(text=>{
+        const li = document.createElement("li");
+        li.textContent = text;
+        soList.appendChild(li);
+      });
+
+      // Role (first person)
+      setSection("secRole","roEyebrow","roTitle", labels.eyebrow, extLabels.role, roleItems.length>0);
+      const roList = document.getElementById("roList");
+      roList.innerHTML = "";
+      roleItems.forEach(text=>{
+        const li = document.createElement("li");
+        li.textContent = text;
+        roList.appendChild(li);
+      });
+
+      // Competencies
+      setSection("secCompetencies","coEyebrow","coTitle", labels.eyebrow, extLabels.competencies, competencies.length>0);
+      const coGrid = document.getElementById("coGrid");
+      coGrid.innerHTML = "";
+      competencies.forEach(item=>{
+        const card = document.createElement("div");
+        card.className = "card";
+        const h3 = document.createElement("h3");
+        h3.textContent = pickItemField(item, "title");
+        const p = document.createElement("p");
+        p.textContent = pickItemField(item, "desc");
+        card.append(h3, p);
+        coGrid.appendChild(card);
+      });
+
+      // Key outputs
+      setSection("secOutputs","ouEyebrow","ouTitle", labels.eyebrow, extLabels.outputs, outputItems.length>0);
+      const ouList = document.getElementById("ouList");
+      ouList.innerHTML = "";
+      outputItems.forEach(text=>{
+        const li = document.createElement("li");
+        li.textContent = text;
+        ouList.appendChild(li);
+      });
+
+      // Lessons learned
+      const lessonText = pick(caseData, "lesson");
+      setSection("secLessons","leEyebrow","leTitle", labels.eyebrow, extLabels.lessons, !!(lessonText || keyTakeaway));
+      const leTextEl = document.getElementById("leText");
+      leTextEl.textContent = lessonText;
+      leTextEl.style.display = lessonText ? "" : "none";
+      const leQuoteEl = document.getElementById("leQuote");
+      leQuoteEl.textContent = keyTakeaway;
+      leQuoteEl.style.display = keyTakeaway ? "" : "none";
+
+      // Tags
+      setSection("secTags","taEyebrow","taTitle", labels.eyebrow, extLabels.tags, tags.length>0);
+      const taList = document.getElementById("taList");
+      taList.innerHTML = "";
+      tags.forEach(text=>{
+        const span = document.createElement("span");
+        span.className = "chip tag-pill";
+        span.textContent = text;
+        taList.appendChild(span);
+      });
+
+      return;
+    }
+
+    // Legacy simple case-study rendering (headline/context/challenge/solution/impact/updates/lesson as plain text)
+    extendedSectionIds.forEach(id=> document.getElementById(id).style.display = "none");
 
     const headline = pick(caseData, "headline");
     const context = pick(caseData, "context");
