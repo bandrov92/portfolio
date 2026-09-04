@@ -35,11 +35,11 @@
   <div class="hero-mesh"></div>
   <span class="eyebrow" data-i18n="s_edu">التأهيل</span>
   <h1 class="display" data-i18n="licenses_hub_t">الرخص المهنية والاعتمادات</h1>
-  <p class="lead" data-i18n="licenses_hub_p">التراخيص والاعتمادات المهنية الموثّقة الصادرة عن جهات رسمية.</p>
+  <p class="lead" data-i18n="licenses_hub_p">مجموعة مختارة من الرخص والاعتمادات الرسمية الموثّقة — كل واحدة منها معلم فارق في المسار المهني.</p>
 </section>
 
 <section class="reveal in" id="licenseGrid">
-  <div class="grid g3" id="licenseCards"></div>
+  <div class="licenses-list" id="licenseCards"></div>
 </section>
 
 <footer><span data-i18n="footer">© 2026 بندر عايض الأسمري — Bandarov. جميع الحقوق محفوظة.</span></footer>
@@ -59,41 +59,120 @@ window.addEventListener("DOMContentLoaded", async ()=>{
   function render(){
     const isAr = document.documentElement.lang === "ar";
     const d = I18N[isAr?"ar":"en"];
+    const labels = isAr ? {
+      number: "رقم الاعتماد",
+      validity: "الصلاحية"
+    } : {
+      number: "Credential No.",
+      validity: "Validity"
+    };
     document.title = "Bandarov — " + d.licenses_hub_t;
     const wrap = document.getElementById("licenseCards");
     wrap.innerHTML = "";
-    licenses.forEach(l=>{
+    licenses.forEach((l, i)=>{
       const card = document.createElement("article");
-      card.className = "card cert-card";
-      const media = document.createElement("div");
-      media.className = "cert-media";
+      card.className = "card license-card";
+
+      const emblem = document.createElement("div");
+      emblem.className = "license-emblem";
+      const emblemInner = document.createElement("div");
+      emblemInner.className = "license-emblem-inner";
       if(l.image){
         const img = document.createElement("img");
         img.src = l.image;
         img.alt = isAr ? l.title_ar : l.title_en;
-        media.appendChild(img);
+        img.loading = "lazy";
+        emblemInner.appendChild(img);
       }else{
-        const ph = document.createElement("span");
-        ph.className = "cert-placeholder";
-        ph.textContent = d.license_no_image;
-        media.appendChild(ph);
+        const icon = document.createElement("span");
+        icon.setAttribute("aria-hidden", "true");
+        icon.textContent = l.icon || "🎖️";
+        emblemInner.appendChild(icon);
       }
-      card.appendChild(media);
+      emblem.appendChild(emblemInner);
+      card.appendChild(emblem);
+
+      const content = document.createElement("div");
+      content.className = "license-content";
+
+      const num = document.createElement("span");
+      num.className = "license-num";
+      num.textContent = String(i+1).padStart(2,"0");
+      content.appendChild(num);
+
+      const titleRow = document.createElement("div");
+      titleRow.className = "license-title-row";
+      const h3 = document.createElement("h3");
+      h3.textContent = isAr ? l.title_ar : l.title_en;
+      titleRow.appendChild(h3);
+      const status = isAr ? l.status_ar : l.status_en;
+      if(status){
+        const badge = document.createElement("span");
+        badge.className = "license-status-badge";
+        badge.textContent = status;
+        titleRow.appendChild(badge);
+      }
+      content.appendChild(titleRow);
+
+      const org = isAr ? l.org_ar : l.org_en;
+      if(org){
+        const orgEl = document.createElement("p");
+        orgEl.className = "license-org";
+        orgEl.textContent = org;
+        content.appendChild(orgEl);
+      }
+
+      const descText = isAr ? l.desc_ar : l.desc_en;
+      if(descText){
+        const desc = document.createElement("p");
+        desc.className = "license-desc";
+        desc.textContent = descText;
+        content.appendChild(desc);
+      }
+
+      const stats = (isAr ? l.stats_ar : l.stats_en) || [];
+      if(stats.length){
+        const statsWrap = document.createElement("div");
+        statsWrap.className = "license-stats";
+        stats.forEach(s=>{
+          const chip = document.createElement("span");
+          chip.className = "chip";
+          chip.innerHTML = s;
+          statsWrap.appendChild(chip);
+        });
+        content.appendChild(statsWrap);
+      }
+
+      const metaItems = [
+        {label: labels.number, value: l.credential_number},
+        {label: labels.validity, value: isAr ? l.period_ar : l.period_en}
+      ].filter(item=>item.value);
+      if(metaItems.length){
+        const meta = document.createElement("div");
+        meta.className = "license-meta";
+        metaItems.forEach(item=>{
+          const row = document.createElement("span");
+          const label = document.createElement("b");
+          label.textContent = item.label;
+          const value = document.createElement("em");
+          value.textContent = item.value;
+          row.append(label, value);
+          meta.appendChild(row);
+        });
+        content.appendChild(meta);
+      }
+
       if(l.verify_url){
         const verify = document.createElement("a");
-        verify.className = "cert-verify";
+        verify.className = "btn btn-ghost license-verify-btn";
         verify.href = l.verify_url;
         verify.target = "_blank";
         verify.rel = "noopener";
         verify.textContent = d.verify;
-        card.appendChild(verify);
+        content.appendChild(verify);
       }
-      const h3 = document.createElement("h3");
-      h3.textContent = isAr ? l.title_ar : l.title_en;
-      const desc = document.createElement("p");
-      desc.className = "org";
-      desc.textContent = isAr ? l.desc_ar : l.desc_en;
-      card.append(h3, desc);
+
+      card.appendChild(content);
       wrap.appendChild(card);
     });
   }

@@ -146,11 +146,29 @@ collections:
             summary: "{{title_ar}}"
             fields:
               - {label: "معرّف داخلي", name: "id", widget: "hidden", default: ""}
+              - {label: "أيقونة الشعار (اختياري، رمز تعبيري مثل 🎓)", name: "icon", widget: "string", required: false, default: "🎖️", hint: "تظهر داخل الميدالية عند عدم وجود صورة"}
               - {label: "العنوان (عربي)", name: "title_ar", widget: "string"}
               - {label: "العنوان (Title EN)", name: "title_en", widget: "string"}
+              - {label: "الجهة المانحة (عربي)", name: "org_ar", widget: "string", required: false, default: ""}
+              - {label: "الجهة المانحة (Issuer EN)", name: "org_en", widget: "string", required: false, default: ""}
               - {label: "الوصف (عربي)", name: "desc_ar", widget: "text"}
               - {label: "الوصف (Description EN)", name: "desc_en", widget: "text"}
-              - {label: "صورة (اختياري)", name: "image", widget: "image", required: false, default: "", media_folder: "/assets/images/licenses", public_folder: "/assets/images/licenses"}
+              - {label: "شارة الحالة (عربي، مثال: سارية)", name: "status_ar", widget: "string", required: false, default: ""}
+              - {label: "Status badge (EN, e.g. Active)", name: "status_en", widget: "string", required: false, default: ""}
+              - {label: "رقم الرخصة/الاعتماد (اختياري)", name: "credential_number", widget: "string", required: false, default: ""}
+              - {label: "الصلاحية أو الفترة (عربي)", name: "period_ar", widget: "string", required: false, default: ""}
+              - {label: "Validity or period (EN)", name: "period_en", widget: "string", required: false, default: ""}
+              - label: "إحصاءات بارزة (عربي، اختياري)"
+                name: "stats_ar"
+                widget: "list"
+                required: false
+                field: {label: "نص (يدعم <b> للتمييز)", name: "item", widget: "string"}
+              - label: "Highlighted stats (EN, optional)"
+                name: "stats_en"
+                widget: "list"
+                required: false
+                field: {label: "Text (supports <b> for emphasis)", name: "item", widget: "string"}
+              - {label: "صورة/شعار (اختياري)", name: "image", widget: "image", required: false, default: "", media_folder: "/assets/images/licenses", public_folder: "/assets/images/licenses"}
               - {label: "رابط التحقق (اختياري)", name: "verify_url", widget: "string", required: false, default: ""}
 
   - name: "badges"
