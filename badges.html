@@ -49,7 +49,7 @@
 window.addEventListener("DOMContentLoaded", async ()=>{
   let badges = [];
   try{
-    const res = await fetch("data/badges.json");
+    const res = await fetch("data/badges.json", { cache: "no-store" });
     const data = await res.json();
     badges = data.badges || [];
   }catch(e){

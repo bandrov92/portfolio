@@ -25,6 +25,34 @@ collections:
       - {label: "الوصف (عربي)", name: "summary_ar", widget: "text"}
       - {label: "الوصف (Summary EN)", name: "summary_en", widget: "text"}
       - {label: "رابط المشروع الخارجي (اختياري)", name: "url", widget: "string", required: false, default: ""}
+      - label: "دراسة حالة موسعة (اختياري)"
+        name: "case_study"
+        widget: "object"
+        required: false
+        collapsed: true
+        fields:
+          - {label: "عنوان دراسة الحالة (عربي)", name: "headline_ar", widget: "string", required: false, default: ""}
+          - {label: "عنوان دراسة الحالة (EN)", name: "headline_en", widget: "string", required: false, default: ""}
+          - {label: "السياق (عربي)", name: "context_ar", widget: "text", required: false, default: ""}
+          - {label: "السياق (EN)", name: "context_en", widget: "text", required: false, default: ""}
+          - {label: "التحدي (عربي)", name: "challenge_ar", widget: "text", required: false, default: ""}
+          - {label: "التحدي (EN)", name: "challenge_en", widget: "text", required: false, default: ""}
+          - {label: "الحل (عربي)", name: "solution_ar", widget: "text", required: false, default: ""}
+          - {label: "الحل (EN)", name: "solution_en", widget: "text", required: false, default: ""}
+          - {label: "الأثر (عربي)", name: "impact_ar", widget: "text", required: false, default: ""}
+          - {label: "الأثر (EN)", name: "impact_en", widget: "text", required: false, default: ""}
+          - label: "ما تغيّر في النسخة الثانية (عربي)"
+            name: "updates_ar"
+            widget: "list"
+            required: false
+            field: {label: "نقطة", name: "item", widget: "string"}
+          - label: "What changed in the second release (EN)"
+            name: "updates_en"
+            widget: "list"
+            required: false
+            field: {label: "Point", name: "item", widget: "string"}
+          - {label: "الدرس المستفاد (عربي)", name: "lesson_ar", widget: "text", required: false, default: ""}
+          - {label: "Lesson learned (EN)", name: "lesson_en", widget: "text", required: false, default: ""}
 
   - name: "certificates"
     label: "الشهادات التدريبية"
@@ -43,6 +71,63 @@ collections:
               - {label: "العنوان (Title EN)", name: "title_en", widget: "string"}
               - {label: "الجهة المانحة (عربي)", name: "org_ar", widget: "string"}
               - {label: "الجهة المانحة (Issuer EN)", name: "org_en", widget: "string"}
+              - {label: "وصف مختصر (عربي)", name: "desc_ar", widget: "text", required: false, default: ""}
+              - {label: "Short description (EN)", name: "desc_en", widget: "text", required: false, default: ""}
+              - {label: "تاريخ الإصدار (عربي)", name: "issued_ar", widget: "string", required: false, default: ""}
+              - {label: "Issued date (EN)", name: "issued_en", widget: "string", required: false, default: ""}
+              - {label: "مدة البرنامج (عربي)", name: "period_ar", widget: "string", required: false, default: ""}
+              - {label: "Program period (EN)", name: "period_en", widget: "string", required: false, default: ""}
+              - {label: "رقم الشهادة", name: "certificate_number", widget: "string", required: false, default: ""}
+              - label: "محاور الشهادة (عربي)"
+                name: "tracks_ar"
+                widget: "list"
+                required: false
+                collapsed: true
+                fields:
+                  - {label: "المسمى الفرعي", name: "label", widget: "string", required: false, default: ""}
+                  - {label: "عنوان المحور", name: "title", widget: "string"}
+                  - {label: "وصف المحور", name: "description", widget: "text", required: false, default: ""}
+                  - label: "النقاط"
+                    name: "points"
+                    widget: "list"
+                    required: false
+                    field: {label: "نقطة", name: "item", widget: "string"}
+              - label: "Certificate tracks (EN)"
+                name: "tracks_en"
+                widget: "list"
+                required: false
+                collapsed: true
+                fields:
+                  - {label: "Label", name: "label", widget: "string", required: false, default: ""}
+                  - {label: "Track title", name: "title", widget: "string"}
+                  - {label: "Track description", name: "description", widget: "text", required: false, default: ""}
+                  - label: "Points"
+                    name: "points"
+                    widget: "list"
+                    required: false
+                    field: {label: "Point", name: "item", widget: "string"}
+              - label: "شهادات/مسارات مرتبطة (عربي)"
+                name: "related_credentials_ar"
+                widget: "list"
+                required: false
+                collapsed: true
+                fields:
+                  - {label: "عنوان الشهادة", name: "title", widget: "string"}
+                  - {label: "الجهة", name: "issuer", widget: "string", required: false, default: ""}
+                  - {label: "تاريخ الإصدار", name: "issued", widget: "string", required: false, default: ""}
+                  - {label: "وصف مختصر", name: "description", widget: "text", required: false, default: ""}
+                  - {label: "رابط التحقق أو المشاركة", name: "url", widget: "string", required: false, default: ""}
+              - label: "Related credentials (EN)"
+                name: "related_credentials_en"
+                widget: "list"
+                required: false
+                collapsed: true
+                fields:
+                  - {label: "Certificate title", name: "title", widget: "string"}
+                  - {label: "Issuer", name: "issuer", widget: "string", required: false, default: ""}
+                  - {label: "Issued date", name: "issued", widget: "string", required: false, default: ""}
+                  - {label: "Short description", name: "description", widget: "text", required: false, default: ""}
+                  - {label: "Verification or share URL", name: "url", widget: "string", required: false, default: ""}
               - {label: "صورة الشهادة (اختياري)", name: "image", widget: "image", required: false, default: "", media_folder: "/assets/images/certs", public_folder: "/assets/images/certs"}
               - {label: "رابط التحقق (اختياري)", name: "verify_url", widget: "string", required: false, default: ""}
 

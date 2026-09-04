@@ -24,6 +24,17 @@
       render: function () {
         var data = this.props.entry.get("data");
         var url = data.get("url");
+        var caseStudy = data.get("case_study");
+        var updates = caseStudy && caseStudy.get("updates_ar");
+        var hasCaseStudy = caseStudy && (
+          caseStudy.get("headline_ar") ||
+          caseStudy.get("context_ar") ||
+          caseStudy.get("challenge_ar") ||
+          caseStudy.get("solution_ar") ||
+          caseStudy.get("impact_ar") ||
+          caseStudy.get("lesson_ar") ||
+          (updates && updates.size)
+        );
         return h(PageWrap, {},
           h("section", { className: "hero hero-page", style: { minHeight: "auto", paddingTop: 0 } },
             h("span", { className: "eyebrow" }, "الأعمال"),
@@ -35,7 +46,34 @@
             ) : h("div", { className: "hero-cta" },
               h("span", { className: "btn btn-ghost" }, "كل المشاريع")
             )
-          )
+          ),
+          hasCaseStudy ? h("section", { className: "reveal in case-study", style: { paddingTop: "28px" } },
+            h("span", { className: "eyebrow" }, "دراسة حالة"),
+            caseStudy.get("headline_ar") ? h("h2", { className: "display" }, caseStudy.get("headline_ar")) : null,
+            caseStudy.get("context_ar") ? h("p", { className: "lead page-block" }, caseStudy.get("context_ar")) : null,
+            h("div", { className: "case-grid" },
+              caseStudy.get("challenge_ar") ? h("article", { className: "case-card" },
+                h("div", { className: "case-num" }, "01"),
+                h("h3", {}, "التحدي"),
+                h("p", {}, caseStudy.get("challenge_ar"))
+              ) : null,
+              caseStudy.get("solution_ar") ? h("article", { className: "case-card" },
+                h("div", { className: "case-num" }, "02"),
+                h("h3", {}, "الحل"),
+                h("p", {}, caseStudy.get("solution_ar"))
+              ) : null,
+              caseStudy.get("impact_ar") ? h("article", { className: "case-card" },
+                h("div", { className: "case-num" }, "03"),
+                h("h3", {}, "الأثر"),
+                h("p", {}, caseStudy.get("impact_ar"))
+              ) : null
+            ),
+            updates && updates.size ? h("div", { className: "case-updates" },
+              h("h3", {}, "ما تغيّر في النسخة الثانية"),
+              h("ul", {}, updates.map(function (item) { return h("li", {}, item); }).toArray())
+            ) : null,
+            caseStudy.get("lesson_ar") ? h("blockquote", { className: "case-lesson" }, caseStudy.get("lesson_ar")) : null
+          ) : null
         );
       }
     });
@@ -48,21 +86,78 @@
       var verifyUrl = item.get("verify_url");
       var title = item.get("title_ar");
       var subtitle = item.get(opts.subtitleField);
+      var desc = item.get("desc_ar");
+      var issued = item.get("issued_ar");
+      var period = item.get("period_ar");
+      var number = item.get("certificate_number");
+      var tracks = item.get("tracks_ar");
+      var hasTracks = tracks && tracks.size;
+      var related = item.get("related_credentials_ar");
+      var hasRelated = related && related.size;
 
       var media;
       if (credly) {
         media = h("span", { className: "cert-placeholder" }, "شارة Credly تفاعلية — تظهر حيّة على الموقع الفعلي");
       } else if (image) {
-        media = h("img", { src: getAsset(image).toString(), alt: "" });
+        media = h("img", { src: image.indexOf("/assets/") === 0 ? image : getAsset(image).toString(), alt: "" });
       } else {
         media = h("span", { className: "cert-placeholder" }, opts.noImageText);
       }
 
-      return h("article", { className: "card cert-card", key: item.get("id") || title },
+      var metaItems = [
+        issued ? ["تاريخ الإصدار", issued] : null,
+        period ? ["مدة البرنامج", period] : null,
+        number ? ["رقم الشهادة", number] : null
+      ].filter(Boolean);
+
+      return h("article", { className: (hasTracks || hasRelated) ? "card cert-card is-featured" : "card cert-card", key: item.get("id") || title },
         h("div", { className: "cert-media" }, media),
-        verifyUrl ? h("span", { className: "cert-verify" }, "تحقق من الشهادة") : null,
-        h("h3", {}, title),
-        h("p", { className: "org" }, subtitle)
+        h("div", { className: "cert-content" },
+          verifyUrl ? h("span", { className: "cert-verify" }, "تحقق من الشهادة") : null,
+          h("h3", {}, title),
+          h("p", { className: "org" }, subtitle),
+          desc ? h("p", { className: "cert-desc" }, desc) : null,
+          metaItems.length ? h("div", { className: "cert-meta" },
+            metaItems.map(function (row) {
+              return h("span", { key: row[0] }, h("b", {}, row[0]), h("em", {}, row[1]));
+            })
+          ) : null,
+          hasTracks ? h("details", { className: "cert-tracks", open: true },
+            h("summary", {}, "محاور الزمالة الرئيسية"),
+            h("div", { className: "cert-tracks-grid" },
+              tracks.map(function (track) {
+                var points = track.get("points");
+                return h("div", { className: "cert-track", key: track.get("title") },
+                  track.get("label") ? h("span", { className: "cert-track-label" }, track.get("label")) : null,
+                  h("h4", {}, track.get("title")),
+                  track.get("description") ? h("p", {}, track.get("description")) : null,
+                  points && points.size ? h("ul", {}, points.map(function (point) {
+                    return h("li", {}, point);
+                  }).toArray()) : null
+                );
+              }).toArray()
+            )
+          ) : null,
+          hasRelated ? h("div", { className: "cert-related" },
+            h("h4", { className: "cert-related-title" }, "مسارات Vanderbilt عبر Coursera"),
+            h("div", { className: "cert-related-grid" },
+              related.map(function (credential) {
+                return h(credential.get("url") ? "a" : "div", {
+                  className: "cert-related-item",
+                  href: credential.get("url") || undefined,
+                  target: credential.get("url") ? "_blank" : undefined,
+                  rel: credential.get("url") ? "noopener" : undefined,
+                  key: credential.get("title")
+                },
+                  credential.get("issuer") ? h("span", { className: "cert-related-issuer" }, credential.get("issuer")) : null,
+                  credential.get("title") ? h("strong", {}, credential.get("title")) : null,
+                  credential.get("issued") ? h("em", {}, credential.get("issued")) : null,
+                  credential.get("description") ? h("p", {}, credential.get("description")) : null
+                );
+              }).toArray()
+            )
+          ) : null
+        )
       );
     }
 

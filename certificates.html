@@ -49,7 +49,7 @@
 window.addEventListener("DOMContentLoaded", async ()=>{
   let certs = [];
   try{
-    const res = await fetch("data/certificates.json");
+    const res = await fetch("data/certificates.json", { cache: "no-store" });
     const data = await res.json();
     certs = data.certificates || [];
   }catch(e){
@@ -59,12 +59,28 @@ window.addEventListener("DOMContentLoaded", async ()=>{
   function render(){
     const isAr = document.documentElement.lang === "ar";
     const d = I18N[isAr?"ar":"en"];
+    const labels = isAr ? {
+      issued: "تاريخ الإصدار",
+      period: "مدة البرنامج",
+      number: "رقم الشهادة",
+      tracks: "محاور الزمالة الرئيسية",
+      related: "مسارات Vanderbilt عبر Coursera"
+    } : {
+      issued: "Issued",
+      period: "Program period",
+      number: "Certificate number",
+      tracks: "Fellowship core tracks",
+      related: "Vanderbilt courses via Coursera"
+    };
     document.title = "Bandarov — " + d.certs_hub_t;
     const wrap = document.getElementById("certCards");
     wrap.innerHTML = "";
     certs.forEach(c=>{
       const card = document.createElement("article");
       card.className = "card cert-card";
+      const tracks = c[isAr ? "tracks_ar" : "tracks_en"] || c.tracks_ar || c.tracks_en || [];
+      const related = c[isAr ? "related_credentials_ar" : "related_credentials_en"] || c.related_credentials_ar || c.related_credentials_en || [];
+      if(tracks.length || related.length) card.classList.add("is-featured");
       const media = document.createElement("div");
       media.className = "cert-media";
       if(c.image){
@@ -79,6 +95,8 @@ window.addEventListener("DOMContentLoaded", async ()=>{
         media.appendChild(ph);
       }
       card.appendChild(media);
+      const content = document.createElement("div");
+      content.className = "cert-content";
       if(c.verify_url){
         const verify = document.createElement("a");
         verify.className = "cert-verify";
@@ -86,14 +104,128 @@ window.addEventListener("DOMContentLoaded", async ()=>{
         verify.target = "_blank";
         verify.rel = "noopener";
         verify.textContent = d.verify;
-        card.appendChild(verify);
+        content.appendChild(verify);
       }
       const h3 = document.createElement("h3");
       h3.textContent = isAr ? c.title_ar : c.title_en;
       const org = document.createElement("p");
       org.className = "org";
       org.textContent = isAr ? c.org_ar : c.org_en;
-      card.append(h3, org);
+      content.append(h3, org);
+
+      const descText = isAr ? c.desc_ar : c.desc_en;
+      if(descText){
+        const desc = document.createElement("p");
+        desc.className = "cert-desc";
+        desc.textContent = descText;
+        content.appendChild(desc);
+      }
+
+      const metaItems = [
+        {label: labels.issued, value: isAr ? c.issued_ar : c.issued_en},
+        {label: labels.period, value: isAr ? c.period_ar : c.period_en},
+        {label: labels.number, value: c.certificate_number}
+      ].filter(item=>item.value);
+      if(metaItems.length){
+        const meta = document.createElement("div");
+        meta.className = "cert-meta";
+        metaItems.forEach(item=>{
+          const row = document.createElement("span");
+          const label = document.createElement("b");
+          label.textContent = item.label;
+          const value = document.createElement("em");
+          value.textContent = item.value;
+          row.append(label, value);
+          meta.appendChild(row);
+        });
+        content.appendChild(meta);
+      }
+
+      if(tracks.length){
+        const details = document.createElement("details");
+        details.className = "cert-tracks";
+        const summary = document.createElement("summary");
+        summary.textContent = labels.tracks;
+        details.appendChild(summary);
+        const grid = document.createElement("div");
+        grid.className = "cert-tracks-grid";
+        tracks.forEach(track=>{
+          const trackCard = document.createElement("div");
+          trackCard.className = "cert-track";
+          if(track.label){
+            const label = document.createElement("span");
+            label.className = "cert-track-label";
+            label.textContent = track.label;
+            trackCard.appendChild(label);
+          }
+          if(track.title){
+            const title = document.createElement("h4");
+            title.textContent = track.title;
+            trackCard.appendChild(title);
+          }
+          if(track.description){
+            const desc = document.createElement("p");
+            desc.textContent = track.description;
+            trackCard.appendChild(desc);
+          }
+          if(track.points?.length){
+            const list = document.createElement("ul");
+            track.points.forEach(point=>{
+              const li = document.createElement("li");
+              li.textContent = point;
+              list.appendChild(li);
+            });
+            trackCard.appendChild(list);
+          }
+          grid.appendChild(trackCard);
+        });
+        details.appendChild(grid);
+        content.appendChild(details);
+      }
+      if(related.length){
+        const relatedWrap = document.createElement("div");
+        relatedWrap.className = "cert-related";
+        const relatedTitle = document.createElement("h4");
+        relatedTitle.className = "cert-related-title";
+        relatedTitle.textContent = labels.related;
+        relatedWrap.appendChild(relatedTitle);
+        const relatedGrid = document.createElement("div");
+        relatedGrid.className = "cert-related-grid";
+        related.forEach(item=>{
+          const relatedItem = document.createElement(item.url ? "a" : "div");
+          relatedItem.className = "cert-related-item";
+          if(item.url){
+            relatedItem.href = item.url;
+            relatedItem.target = "_blank";
+            relatedItem.rel = "noopener";
+          }
+          if(item.issuer){
+            const issuer = document.createElement("span");
+            issuer.className = "cert-related-issuer";
+            issuer.textContent = item.issuer;
+            relatedItem.appendChild(issuer);
+          }
+          if(item.title){
+            const title = document.createElement("strong");
+            title.textContent = item.title;
+            relatedItem.appendChild(title);
+          }
+          if(item.issued){
+            const issued = document.createElement("em");
+            issued.textContent = item.issued;
+            relatedItem.appendChild(issued);
+          }
+          if(item.description){
+            const desc = document.createElement("p");
+            desc.textContent = item.description;
+            relatedItem.appendChild(desc);
+          }
+          relatedGrid.appendChild(relatedItem);
+        });
+        relatedWrap.appendChild(relatedGrid);
+        content.appendChild(relatedWrap);
+      }
+      card.appendChild(content);
       wrap.appendChild(card);
     });
   }

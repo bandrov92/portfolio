@@ -42,6 +42,21 @@
   </div>
 </section>
 
+<section class="reveal in case-study" id="projectCaseStudy" style="display:none">
+  <span class="eyebrow" id="caseEyebrow">دراسة حالة</span>
+  <h2 class="display" id="caseHeadline"></h2>
+  <p class="lead page-block" id="caseContext"></p>
+
+  <div class="case-grid" id="caseCards"></div>
+
+  <div class="case-updates" id="caseUpdatesBlock" style="display:none">
+    <h3 id="caseUpdatesTitle"></h3>
+    <ul id="caseUpdates"></ul>
+  </div>
+
+  <blockquote class="case-lesson" id="caseLesson"></blockquote>
+</section>
+
 <section class="reveal in" id="projNotFound" style="display:none">
   <h2 class="display" data-i18n="proj_404_t">المشروع غير موجود</h2>
   <p class="lead" data-i18n="proj_404_p">تعذّر العثور على هذا المشروع. عد إلى قائمة المشاريع.</p>
@@ -54,11 +69,13 @@
 window.addEventListener("DOMContentLoaded", async ()=>{
   const slug = new URLSearchParams(location.search).get("slug");
   let project = null;
+  let projectLoadFailed = false;
   if(slug){
     try{
-      const res = await fetch("data/projects/" + slug + ".json");
+      const res = await fetch("data/projects/" + slug + ".json", { cache: "no-store" });
       project = res.ok ? await res.json() : null;
     }catch(e){
+      projectLoadFailed = true;
       project = null;
     }
   }
@@ -69,12 +86,42 @@ window.addEventListener("DOMContentLoaded", async ()=>{
     const liveBtn = document.getElementById("projLiveBtn");
     const notFound = document.getElementById("projNotFound");
     const hero = document.getElementById("hero");
+    const caseStudy = document.getElementById("projectCaseStudy");
     const isAr = document.documentElement.lang === "ar";
+    const isFilePreview = location.protocol === "file:";
+    const labels = isAr ? {
+      eyebrow: "دراسة حالة",
+      challenge: "التحدي",
+      solution: "الحل",
+      impact: "الأثر",
+      updates: "ما تغيّر في النسخة الثانية"
+    } : {
+      eyebrow: "Case study",
+      challenge: "Challenge",
+      solution: "Solution",
+      impact: "Impact",
+      updates: "What changed in the second release"
+    };
+    const pick = (obj, key)=> obj?.[key + (isAr ? "_ar" : "_en")] || obj?.[key + "_ar"] || obj?.[key + "_en"] || "";
 
     if(!project){
       hero.style.display = "none";
+      caseStudy.style.display = "none";
       notFound.style.display = "";
-      document.title = "Bandarov — " + (isAr ? "المشروع غير موجود" : "Project not found");
+      const titleEl = notFound.querySelector("h2");
+      const textEl = notFound.querySelector("p");
+      const needsServer = isFilePreview || projectLoadFailed;
+      const title = needsServer
+        ? (isAr ? "المعاينة تحتاج خادماً محلياً" : "Local preview requires a server")
+        : (isAr ? "المشروع غير موجود" : "Project not found");
+      const message = needsServer
+        ? (isAr
+          ? "هذه الصفحة تجلب بيانات المشروع من ملفات JSON، وفتحها مباشرة من الجهاز بصيغة file:// قد يمنع المتصفح تحميل البيانات. افتحها عبر رابط محلي يبدأ بـ http://."
+          : "This page loads project data from JSON files. Opening it directly as file:// may block the browser from loading that data. Use a local http:// preview instead.")
+        : (isAr ? "تعذّر العثور على هذا المشروع. عد إلى قائمة المشاريع." : "We couldn't find this project. Return to the projects list.");
+      titleEl.textContent = title;
+      textEl.textContent = message;
+      document.title = "Bandarov — " + title;
       return;
     }
 
@@ -83,6 +130,8 @@ window.addEventListener("DOMContentLoaded", async ()=>{
     titleEl.textContent = isAr ? project.title_ar : project.title_en;
     summaryEl.textContent = isAr ? project.summary_ar : project.summary_en;
     document.title = "Bandarov — " + (isAr ? project.title_ar : project.title_en);
+    const metaDesc = document.querySelector('meta[name="description"]');
+    if(metaDesc) metaDesc.setAttribute("content", isAr ? project.summary_ar : project.summary_en);
 
     if(project.url){
       liveBtn.href = project.url;
@@ -90,6 +139,69 @@ window.addEventListener("DOMContentLoaded", async ()=>{
     }else{
       liveBtn.style.display = "none";
     }
+
+    const caseData = project.case_study || null;
+    if(!caseData){
+      caseStudy.style.display = "none";
+      return;
+    }
+
+    const headline = pick(caseData, "headline");
+    const context = pick(caseData, "context");
+    const lesson = pick(caseData, "lesson");
+    const cards = [
+      {title: labels.challenge, text: pick(caseData, "challenge")},
+      {title: labels.solution, text: pick(caseData, "solution")},
+      {title: labels.impact, text: pick(caseData, "impact")}
+    ].filter(item=>item.text);
+    const updates = caseData[isAr ? "updates_ar" : "updates_en"] || caseData.updates_ar || caseData.updates_en || [];
+
+    if(!headline && !context && !lesson && !cards.length && !updates.length){
+      caseStudy.style.display = "none";
+      return;
+    }
+
+    caseStudy.style.display = "";
+    document.getElementById("caseEyebrow").textContent = labels.eyebrow;
+    document.getElementById("caseHeadline").textContent = headline;
+    document.getElementById("caseHeadline").style.display = headline ? "" : "none";
+    document.getElementById("caseContext").textContent = context;
+    document.getElementById("caseContext").style.display = context ? "" : "none";
+
+    const cardWrap = document.getElementById("caseCards");
+    cardWrap.innerHTML = "";
+    cards.forEach((item, index)=>{
+      const card = document.createElement("article");
+      card.className = "case-card";
+      const num = document.createElement("div");
+      num.className = "case-num";
+      num.textContent = String(index + 1).padStart(2, "0");
+      const h3 = document.createElement("h3");
+      h3.textContent = item.title;
+      const p = document.createElement("p");
+      p.textContent = item.text;
+      card.append(num, h3, p);
+      cardWrap.appendChild(card);
+    });
+
+    const updatesBlock = document.getElementById("caseUpdatesBlock");
+    const updatesList = document.getElementById("caseUpdates");
+    updatesList.innerHTML = "";
+    if(updates.length){
+      document.getElementById("caseUpdatesTitle").textContent = labels.updates;
+      updates.forEach(text=>{
+        const li = document.createElement("li");
+        li.textContent = text;
+        updatesList.appendChild(li);
+      });
+      updatesBlock.style.display = "";
+    }else{
+      updatesBlock.style.display = "none";
+    }
+
+    const lessonEl = document.getElementById("caseLesson");
+    lessonEl.textContent = lesson;
+    lessonEl.style.display = lesson ? "" : "none";
   }
 
   render();

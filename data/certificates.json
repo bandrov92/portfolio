@@ -1,13 +1,137 @@
 {
   "certificates": [
     {
+      "id": "cert7",
+      "title_ar": "الزمالة الوطنية في التعليم الإلكتروني",
+      "title_en": "National EdTech Fellowship",
+      "org_ar": "الجامعة السعودية الإلكترونية — المركز الوطني للتعليم الإلكتروني",
+      "org_en": "Saudi Electronic University — National eLearning Center",
+      "desc_ar": "مُنحت تقديراً للكفاءة المهنية والمشاركة الفاعلة في تطوير ممارسات التعليم الإلكتروني، وامتلاك المهارات اللازمة لقيادة مبادرات التحول الرقمي في البيئات التعليمية.",
+      "desc_en": "Awarded in recognition of professional competence, active contribution to advancing e-learning practices, and demonstrated ability to lead digital transformation initiatives in educational environments.",
+      "issued_ar": "23 يوليو 2026 — 9 صفر 1448هـ",
+      "issued_en": "July 23, 2026 — 9 Safar 1448 AH",
+      "period_ar": "28 أبريل 2026 إلى 28 يوليو 2026",
+      "period_en": "April 28, 2026 to July 28, 2026",
+      "certificate_number": "CERT-2026-0069",
+      "tracks_ar": [
+        {
+          "label": "التمكين التقني",
+          "title": "محور تقنيات التعليم",
+          "description": "تطوير مهارات استخدام الأدوات والمنصات الرقمية الحديثة في العملية التعليمية.",
+          "points": ["منصات إدارة التعلم", "أدوات التفاعل الرقمي", "تقنيات الذكاء الاصطناعي"]
+        },
+        {
+          "label": "الإطار الوطني",
+          "title": "محور السياسات والممارسات",
+          "description": "فهم الإطار التنظيمي الوطني ومعايير جودة التعليم الإلكتروني وتطبيقها في العملية التعليمية.",
+          "points": ["معايير NELC", "ضمان الجودة", "التقييم والاعتماد"]
+        },
+        {
+          "label": "التميز القيادي",
+          "title": "محور القيادة",
+          "description": "بناء الكفاءات القيادية اللازمة لإدارة التغيير وتنفيذ المشاريع التعليمية.",
+          "points": ["القيادة الرقمية", "إدارة التغيير", "تنفيذ المشاريع"]
+        }
+      ],
+      "tracks_en": [
+        {
+          "label": "Technical Enablement",
+          "title": "Educational Technology Track",
+          "description": "Developing skills in modern digital tools and platforms for teaching and learning.",
+          "points": ["Learning management systems", "Digital interaction tools", "Artificial intelligence technologies"]
+        },
+        {
+          "label": "National Framework",
+          "title": "Policies & Practices Track",
+          "description": "Understanding and applying the national regulatory framework and e-learning quality standards.",
+          "points": ["NELC standards", "Quality assurance", "Evaluation and accreditation"]
+        },
+        {
+          "label": "Leadership Excellence",
+          "title": "Leadership Track",
+          "description": "Building leadership capabilities for managing change and implementing educational projects.",
+          "points": ["Digital leadership", "Change management", "Project implementation"]
+        }
+      ],
+      "image": "/assets/images/certs/national-edtech-fellowship.webp",
+      "verify_url": ""
+    },
+    {
+      "id": "cert8",
+      "title_ar": "مسار الذكاء الاصطناعي والبيانات — مستوى متوسط",
+      "title_en": "AI and Data Track — Intermediate Level",
+      "org_ar": "الأكاديمية السعودية الرقمية — FutureX / المركز الوطني للتعليم الإلكتروني",
+      "org_en": "Saudi Digital Academy — FutureX / National eLearning Center",
+      "desc_ar": "شهادة إتمام مسار تعليمي في الذكاء الاصطناعي والبيانات بمستوى متوسط، بعد اجتياز جميع مقررات المسار بنجاح ضمن منصة مهارات المستقبل FutureX.",
+      "desc_en": "A completion certificate for an intermediate learning path in artificial intelligence and data, earned after successfully completing all required modules through the FutureX platform.",
+      "issued_ar": "17 يونيو 2026",
+      "issued_en": "June 17, 2026",
+      "period_ar": "14 يوليو 2025 إلى 29 يونيو 2026",
+      "period_en": "July 14, 2025 to June 29, 2026",
+      "certificate_number": "FX25EM506ZNK5D",
+      "image": "/assets/images/certs/ai-data-futurex-intermediate.webp",
+      "verify_url": "https://ce.nelc.gov.sa/storage/pdf/sda127/FX25EM506ZNK5D-ar-1781718368.pdf"
+    },
+    {
       "id": "cert1",
       "title_ar": "تخصص القيادة واستراتيجية الذكاء الاصطناعي التوليدي",
       "title_en": "Generative AI Leadership & Strategy Specialization",
       "org_ar": "جامعة الملك خالد — مسارات التعلم المرن",
       "org_en": "King Khalid University — Flexible Learning Paths",
-      "image": "",
-      "verify_url": "https://kku.edu.sa/"
+      "desc_ar": "مسار تدريبي جمع بين قيادة الذكاء الاصطناعي التوليدي، هندسة الأوامر، وبناء الثقة والمسؤولية في تطبيقاته عبر محتوى تدريبي من Vanderbilt University الأمريكية على Coursera. كانت من أميز التجارب المعرفية التي خضتها.",
+      "desc_en": "A flexible learning path connecting generative AI leadership, prompt engineering, and trustworthy AI practices through Vanderbilt University courses on Coursera.",
+      "issued_ar": "20 أكتوبر 2025",
+      "issued_en": "October 20, 2025",
+      "period_ar": "1 أكتوبر 2025 إلى 20 أكتوبر 2025",
+      "period_en": "October 1, 2025 to October 20, 2025",
+      "related_credentials_ar": [
+        {
+          "title": "Generative AI for Leaders",
+          "issuer": "Vanderbilt University الأمريكية عبر Coursera",
+          "issued": "27 أكتوبر 2025",
+          "description": "مدخل قيادي لفهم فرص الذكاء الاصطناعي التوليدي وتطبيقاته في اتخاذ القرار وبناء المبادرات.",
+          "url": "https://coursera.org/share/fdb5c99f5129bcde93374223686db4bc"
+        },
+        {
+          "title": "Prompt Engineering for ChatGPT",
+          "issuer": "Vanderbilt University الأمريكية عبر Coursera",
+          "issued": "4 نوفمبر 2025",
+          "description": "تطوير مهارات صياغة الأوامر وبناء التفاعل العملي مع نماذج الذكاء الاصطناعي التوليدي.",
+          "url": "https://coursera.org/share/1fb094475d26d453c88080fbf6931e7a"
+        },
+        {
+          "title": "Trustworthy Generative AI",
+          "issuer": "Vanderbilt University الأمريكية عبر Coursera",
+          "issued": "6 نوفمبر 2025",
+          "description": "تعميق فهم الثقة والمسؤولية والتحقق عند توظيف الذكاء الاصطناعي التوليدي في السياقات المهنية.",
+          "url": "https://coursera.org/share/21c7a1adb656beaa873b71b7cb96dbdd"
+        }
+      ],
+      "related_credentials_en": [
+        {
+          "title": "Generative AI for Leaders",
+          "issuer": "Vanderbilt University via Coursera",
+          "issued": "October 27, 2025",
+          "description": "A leadership lens on generative AI opportunities, decision-making, and initiative design.",
+          "url": "https://coursera.org/share/fdb5c99f5129bcde93374223686db4bc"
+        },
+        {
+          "title": "Prompt Engineering for ChatGPT",
+          "issuer": "Vanderbilt University via Coursera",
+          "issued": "November 4, 2025",
+          "description": "Practical development of prompt design and interaction patterns with generative AI models.",
+          "url": "https://coursera.org/share/1fb094475d26d453c88080fbf6931e7a"
+        },
+        {
+          "title": "Trustworthy Generative AI",
+          "issuer": "Vanderbilt University via Coursera",
+          "issued": "November 6, 2025",
+          "description": "A focused look at trust, responsibility, and verification in professional generative AI use.",
+          "url": "https://coursera.org/share/21c7a1adb656beaa873b71b7cb96dbdd"
+        }
+      ],
+      "image": "/assets/images/certs/generative-ai-leadership-strategy-specialization.webp",
+      "verify_url": ""
     },
     {
       "id": "cert2",
