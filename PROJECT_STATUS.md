@@ -32,7 +32,7 @@
 
 ## آخر نسخة منشورة
 
-- آخر commit مدفوع بنجاح إلى `master`: `3ba95d3` — "Update contact location to Asir | Najran, Saudi Arabia with flag" (راجع `git log -1` للتأكد من الـhash الفعلي وقت القراءة إن تغيّر لاحقاً). تحقّق دائماً فعلياً عبر GitHub Actions API/الصفحة الحقيقية، لا تفترض النجاح.
+- آخر commit مدفوع بنجاح إلى `master`: `5d1f72d` — "Persist language and theme across pages, and add a standalone contact hub." نُشر عبر GitHub Actions (`Deploy to Cloudflare Workers`, run 34332084189, conclusion: success). تحقّقت الصفحة الحية: `/contact` و`/contact.html` ← 200، `preferences.js` ← 200، وروابط X/Instagram/TikTok ظاهرة مع بقاء YouTube بلا رابط. (راجع `git log -1` للتأكد من الـhash الفعلي وقت القراءة إن تغيّر لاحقاً).
 - خط النشر: push إلى `master` → GitHub Actions (`deploy.yml`) → `wrangler deploy --secrets-file` → Cloudflare Worker `portfolio` → `bandaralasmari.com`.
 - تحقّق دائماً من نجاح آخر تشغيل فعلياً هنا: `https://github.com/bandrov92/portfolio/actions` (لا تثق بملخّص أي أداة، تحقّق من الصفحة الحقيقية أو بـ`curl`).
 
