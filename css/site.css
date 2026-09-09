@@ -20,9 +20,18 @@ html[data-theme="dark"]{
   --shadow:0 18px 50px -20px rgba(0,0,0,.6);
 }
 *{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth; background:var(--bg)}
+html{scroll-behavior:auto; background:var(--bg)}
 h1,h2,h3{color:var(--ink)}
-@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+@view-transition{navigation:auto}
+::view-transition-old(root){animation:page-out .18s ease both}
+::view-transition-new(root){animation:page-in .28s ease both}
+@keyframes page-out{to{opacity:0}}
+@keyframes page-in{from{opacity:0}}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}
+  ::view-transition-old(root),::view-transition-new(root){animation:none}
+}
 body{
   background:var(--bg); color:var(--ink);
   font-family:var(--body-ar); font-weight:400; line-height:1.85; letter-spacing:0;

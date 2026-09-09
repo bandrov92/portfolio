@@ -61,6 +61,11 @@ const I18N = {
   license_no_image:"لا تتوفر صورة لهذه الرخصة بعد",
   badges_hub_t:"الشارات الرقمية", badges_hub_p:"شارات رقمية موثّقة تُعرض مباشرة من منصات التحقق الرسمية.",
   badge_no_image:"لا تتوفر معاينة لهذه الشارة بعد",
+  contact_hub_t:"مساحات التواصل الرقمي", contact_hub_p:"تابع المحتوى المهني والتعليمي، أو تواصل مباشرة عبر القناة الأنسب لك.",
+  social_eyebrow:"تابعني", social_channels_t:"منصات المحتوى", social_channels_p:"مساحات مخصصة لعرض أحدث المحتوى والصور البارزة من حساباتي الرقمية.",
+  social_pending:"سيُضاف رابط الحساب قريباً", social_visual_hint:"مساحة الصورة الرئيسية للمنصة",
+  direct_eyebrow:"لنتعاون", direct_channels_t:"قنوات التواصل المباشر", direct_channels_p:"للتعاون المهني والاستفسارات، اختر وسيلة التواصل المناسبة.",
+  contact_all:"استعرض جميع قنوات التواصل",
   verify:"تحقق من الشهادة",
   s_future:"الرؤية", fut_t:"مشاريع مستقبلية",
   fut_p:"مسارات عمل قادمة تجمع بين البحث الأكاديمي والتطوير التقني، وتتقدم وفق أولويات واضحة.",
@@ -85,7 +90,7 @@ const I18N = {
   k4_p:"إشراف على مجتمع تيليجرام واسع متخصص في أنظمة ترقيات المعلمين السعوديين، يقدّم إجابات موثوقة ومبسّطة عن اللوائح.",
   s_contact:"تواصل", con_t:"لنصنع شيئاً ذا أثر",
   con_p:"متاح للتعاون في مشاريع التحول الرقمي التعليمي، وتصميم البرامج التدريبية، وتقويم المحتوى وتوطينه.",
-  c_email:"البريد الإلكتروني", c_phone:"الهاتف", c_loc:"الموقع", c_loc_v:"عسير | نجران: المملكة العربية السعودية 🇸🇦",
+  c_email:"البريد الإلكتروني", c_phone:"الهاتف", c_loc:"الموقع", c_loc_v:"عسير | نجران: المملكة العربية السعودية 🇸🇦", direct_message:"تواصل مباشر",
   footer:"© 2026 بندر بن عايض الأسمري — Bandarov. جميع الحقوق محفوظة.",
   wheel_now:"أنت في:",
   sections:["الرئيسية","نبذة","الرؤية","الخبرة","التأهيل","الشهادات","المشاريع","المستقبل","الإنتاج المعرفي","تواصل"]
@@ -152,6 +157,11 @@ const I18N = {
   license_no_image:"No license image available yet",
   badges_hub_t:"Digital Badges", badges_hub_p:"Verified digital badges displayed live from official verification platforms.",
   badge_no_image:"No preview available for this badge yet",
+  contact_hub_t:"Digital Contact Spaces", contact_hub_p:"Follow my professional and educational content, or reach out through the channel that suits you.",
+  social_eyebrow:"Follow Me", social_channels_t:"Content Platforms", social_channels_p:"Dedicated spaces for featured visuals and the latest content from my digital channels.",
+  social_pending:"Account link coming soon", social_visual_hint:"Platform feature image area",
+  direct_eyebrow:"Let's Collaborate", direct_channels_t:"Direct Contact", direct_channels_p:"For professional collaboration and enquiries, choose the channel that works best for you.",
+  contact_all:"View all contact channels",
   verify:"Verify credential",
   s_future:"Vision", fut_t:"Future Projects",
   fut_p:"Upcoming workstreams that bridge academic research and technical development, advancing along clear priorities.",
@@ -176,7 +186,7 @@ const I18N = {
   k4_p:"Moderation of a large Telegram community focused on Saudi teacher promotion regulations, offering reliable, simplified answers on official bylaws.",
   s_contact:"Contact", con_t:"Let's build something that matters",
   con_p:"Available for collaboration on educational digital transformation, training program design, and content evaluation & localization.",
-  c_email:"Email", c_phone:"Phone", c_loc:"Location", c_loc_v:"Asir | Najran: Kingdom of Saudi Arabia 🇸🇦",
+  c_email:"Email", c_phone:"Phone", c_loc:"Location", c_loc_v:"Asir | Najran: Kingdom of Saudi Arabia 🇸🇦", direct_message:"Direct message",
   footer:"© 2026 Bandar Ayidh Alasmari — Bandarov. All rights reserved.",
   wheel_now:"You are at:",
   sections:["Home","About","Vision","Career","Credentials","Certificates","Projects","Future","Knowledge","Contact"]
@@ -185,8 +195,8 @@ const I18N = {
 
 const sectionIds=["home","about","vision","experience","education","certificates","projects","future","knowledge","contact"];
 const DEFAULT_THEME="light";
-let lang="ar", theme=DEFAULT_THEME;
-document.documentElement.setAttribute("data-theme",DEFAULT_THEME);
+const savedPreferences=window.PORTFOLIO_PREFERENCES || {language:"ar",theme:DEFAULT_THEME,save(){}};
+let lang=savedPreferences.language, theme=savedPreferences.theme;
 
 function applyTheme(){document.documentElement.setAttribute("data-theme",theme);
   document.getElementById("themeIco").textContent= theme==="dark"?"☾":"☀";
@@ -203,8 +213,16 @@ function applyLang(){
     updateWheel(currentIdx,false);
   }
 }
-document.getElementById("themeBtn").addEventListener("click",()=>{theme=theme==="dark"?"light":"dark";applyTheme();});
-document.getElementById("langBtn").addEventListener("click",()=>{lang=lang==="ar"?"en":"ar";applyLang();});
+document.getElementById("themeBtn").addEventListener("click",()=>{
+  theme=theme==="dark"?"light":"dark";
+  savedPreferences.save(lang,theme);
+  applyTheme();
+});
+document.getElementById("langBtn").addEventListener("click",()=>{
+  lang=lang==="ar"?"en":"ar";
+  savedPreferences.save(lang,theme);
+  applyLang();
+});
 
 /* ---- mobile nav toggle ---- */
 const topbarEl=document.querySelector(".topbar");
@@ -225,6 +243,27 @@ if(topbarEl && siteNav){
   });
   siteNav.querySelectorAll("a").forEach(a=>a.addEventListener("click",closeMenu));
 }
+
+/* ---- smooth in-page anchors without animating across page loads ---- */
+const normalizedPagePath=path=>path.replace(/\/index(?:\.html)?$/,"/").replace(/\.html$/,"").replace(/\/$/,"") || "/";
+document.addEventListener("click",event=>{
+  const link=event.target.closest("a[href]");
+  if(!link || event.defaultPrevented || event.button!==0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || link.target==="_blank") return;
+
+  const url=new URL(link.href,location.href);
+  const samePage=url.origin===location.origin && normalizedPagePath(url.pathname)===normalizedPagePath(location.pathname) && url.search===location.search;
+  if(!samePage || !url.hash) return;
+
+  let target;
+  try{target=document.getElementById(decodeURIComponent(url.hash.slice(1)));}
+  catch{return;}
+  if(!target) return;
+
+  event.preventDefault();
+  const reduceMotion=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  target.scrollIntoView({behavior:reduceMotion?"auto":"smooth"});
+  if(location.hash!==url.hash) history.pushState(null,"",url.hash);
+});
 
 /* ---- wheel ---- */
 const ring=document.getElementById("ring");

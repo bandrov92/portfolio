@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" role="img" aria-labelledby="title">
+  <title id="title">YouTube cover placeholder</title>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#6d0000"/>
+      <stop offset=".52" stop-color="#ff0033"/>
+      <stop offset="1" stop-color="#9b001f"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="675" fill="url(#bg)"/>
+  <circle cx="1040" cy="90" r="320" fill="#fff" opacity=".08"/>
+  <circle cx="90" cy="610" r="260" fill="#fff" opacity=".08"/>
+  <rect x="350" y="190" width="500" height="295" rx="82" fill="#fff"/>
+  <path d="m548 265 190 73-190 73z" fill="#ff0033"/>
+</svg>
