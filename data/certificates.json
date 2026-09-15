@@ -65,8 +65,10 @@
       "org_logo": "assets/images/nelc-logo.png",
       "desc_ar": "اعتراف بالكفاءة والمهنية في تقديم التعليم والتدريب الإلكتروني، وامتلاك الخبرة التعليمية التي تُمكّن من إيجاد فرص تعلم مبتكرة ومرنة تلبي حاجة كل متعلم، وتعزيز التعلم التعاوني والنشط والتكيّفي.",
       "desc_en": "Recognition of competence and professionalism in delivering e-learning and online training, with the educational expertise to create innovative, flexible learning opportunities that meet each learner's needs and strengthen collaborative, active, and adaptive learning.",
-      "pending": true,
-      "image": "",
+      "issued_ar": "15 سبتمبر 2026",
+      "issued_en": "September 15, 2026",
+      "certificate_number": "PC26G5KD8WE2QP",
+      "image": "/assets/images/certs/nelc-ott-professional.webp",
       "verify_url": "https://nelc.gov.sa/en/projects-and-initiatives/professional-certificates/ott"
     },
     {
@@ -78,8 +80,10 @@
       "org_logo": "assets/images/nelc-logo.png",
       "desc_ar": "اعتراف بالقدرة على تصميم خبرات التعليم الإلكتروني باحترافية، عبر تحليل شامل لبيئة التعلم والفئة المستهدفة والأهداف المراد تحقيقها، وصولاً إلى التصميم التعليمي الكامل لمنظومة التعلم.",
       "desc_en": "Recognition of the ability to professionally design e-learning experiences through a comprehensive analysis of the learning environment, target audience, and objectives — through to the full instructional design of the learning ecosystem.",
-      "pending": true,
-      "image": "",
+      "issued_ar": "15 سبتمبر 2026",
+      "issued_en": "September 15, 2026",
+      "certificate_number": "PC26N5J9Z0RGXD",
+      "image": "/assets/images/certs/nelc-elxd-professional.webp",
       "verify_url": "https://nelc.gov.sa/en/projects-and-initiatives/professional-certificates/elxd"
     },
     {

@@ -113,6 +113,31 @@ h2{font-size:clamp(1.9rem,4vw,2.9rem); margin:14px 0 10px; line-height:1.3}
 .card p{color:var(--ink-2); font-size:.93rem}
 .card .ico{width:42px; height:42px; border-radius:12px; background:var(--gold-faint); color:var(--gold);
   display:flex; align-items:center; justify-content:center; margin-bottom:16px; font-size:1.15rem}
+.g-featured{grid-template-columns:repeat(2,minmax(0,1fr))}
+.grid-follow{margin-top:22px}
+.card-featured{
+  background:linear-gradient(165deg, var(--navy) 0%, var(--navy-deep) 78%);
+  border:1.5px solid color-mix(in srgb, var(--gold) 62%, var(--navy));
+  box-shadow:var(--shadow), inset 0 0 0 1px rgba(227,189,106,.2);
+  padding:36px 32px;
+  min-height:220px;
+}
+.card-featured h3{color:#f6f7ff; font-size:1.32rem}
+.card-featured p{color:rgba(242,244,253,.84)}
+.card-featured .ico{
+  width:48px; height:48px; background:rgba(184,137,42,.22); color:var(--gold-soft);
+}
+.card-featured:hover{
+  transform:translateY(-6px);
+  border-color:var(--gold);
+}
+html[data-theme="dark"] .card-featured{
+  background:linear-gradient(165deg, #2a3878 0%, #0c122e 80%);
+  border-color:color-mix(in srgb, var(--gold) 55%, #2a3878);
+}
+@media (max-width:720px){
+  .g-featured{grid-template-columns:1fr}
+}
 .project-card{display:block; text-decoration:none; color:inherit; min-height:100%}
 .project-card .project-cta{
   display:inline-flex; align-items:center; gap:8px; margin-top:18px;
