@@ -1,6 +1,6 @@
 # PROJECT_STATUS.md
 
-آخر تحديث: 2026-09-09 — راجع `git log` للتأكد من الحالة الحقيقية عند القراءة، هذا الملف تصوير لحظي وقد يصبح قديماً.
+آخر تحديث: 2026-09-15 — راجع `git log` للتأكد من الحالة الحقيقية عند القراءة، هذا الملف تصوير لحظي وقد يصبح قديماً.
 
 ## آخر ما تم إنجازه
 
@@ -29,10 +29,12 @@
 - إصلاح حفظ اللغة والمظهر بين الصفحات: كانت الحالة تعيش في متغيرات الصفحة فقط فتعود كل صفحة جديدة إلى العربية والوضع الفاتح. أُضيف `preferences.js` (يُحمَّل في `<head>`) يقرأ ويكتب `localStorage` (`portfolio-language` / `portfolio-theme`) ويطبّق `lang`/`dir`/`data-theme` قبل رسم الصفحة لتقليل الوميض. `main.js` يقرأ هذه التفضيلات عند التشغيل ويحفظها عند كل تبديل.
 - تحسين التنقل بين الصفحات ذات الـ hash: أُوقف `scroll-behavior: smooth` على مستوى `html` حتى لا تمرّ الصفحة الجديدة من أعلاها إلى القسم المطلوب. التمرير السلس بقي للروابط داخل الصفحة نفسها عبر معالج نقر في `main.js`، مع انتقال صفحات خفيف (`@view-transition`) يحترم `prefers-reduced-motion`.
 - إضافة صفحة تواصل مستقلة `contact.html`: بطاقات بصرية كبيرة لـ X وYouTube وTikTok وInstagram (صور غلاف في `assets/images/socials/` قابلة للاستبدال). الحسابات المفعّلة حالياً: X `https://x.com/Xcnzi`، Instagram `https://www.instagram.com/2rqo/`، TikTok `https://www.tiktok.com/@x9nzo`. YouTube بقي بحالة «سيُضاف رابط الحساب قريباً» بطلب المستخدم حتى يجهّز القناة. قسم منفصل لـ WhatsApp وTelegram وLinkedIn والبريد والموقع. روابط «تواصل» في الشريط وCTA الصفحة الرئيسية تشير إلى `contact.html`، مع الإبقاء على ملخص التواصل في `index.html#contact`.
+- إصدار شهادتي NELC الاحترافيتين فعلياً في 15 سبتمبر 2026: أُزيل `pending: true` من OTT (`PC26G5KD8WE2QP`) وeLXD (`PC26N5J9Z0RGXD`)، وأُضيف تاريخ الإصدار وصور WebP من ملفات PDF الرسمية (`assets/images/certs/nelc-ott-professional.webp` و`nelc-elxd-professional.webp`). أُضيفتا أيضاً كحبوب في `index.html#certificates`.
+- إعادة ترتيب قسم التأهيل في الصفحة الرئيسية (`#education`): أُزيلت بطاقة «تطوير مهني موثّق» من الصفحة الرئيسية فقط (ما زالت في `licenses.html`)، وأُضيفت OTT وeLXD كبطاقتين مستقلتين، وصارت بطاقتا الماجستير والزمالة في صف مستقل بخلفية كحلية وإطار ذهبي (`.card-featured`).
 
 ## آخر نسخة منشورة
 
-- آخر commit مدفوع بنجاح إلى `master`: `5d1f72d` — "Persist language and theme across pages, and add a standalone contact hub." نُشر عبر GitHub Actions (`Deploy to Cloudflare Workers`, run 34332084189, conclusion: success). تحقّقت الصفحة الحية: `/contact` و`/contact.html` ← 200، `preferences.js` ← 200، وروابط X/Instagram/TikTok ظاهرة مع بقاء YouTube بلا رابط. (راجع `git log -1` للتأكد من الـhash الفعلي وقت القراءة إن تغيّر لاحقاً).
+- آخر commit مدفوع بنجاح إلى `master`: `d8dcd25` — "Publish issued NELC OTT and eLXD certificates, and highlight graduate credentials on the homepage." نُشر عبر GitHub Actions (`Deploy to Cloudflare Workers`, run 34980951478, conclusion: success). تحقّقت الصفحة الحية: `/certificates` ← 200 مع صور OTT/eLXD وأرقام الشهادات، `/assets/images/certs/nelc-ott-professional.webp` و`nelc-elxd-professional.webp` ← 200، وبطاقات `.card-featured` ظاهرة في الصفحة الرئيسية، مع غياب `pending: true` من JSON الحي. (راجع `git log -1` للتأكد من الـhash الفعلي وقت القراءة إن تغيّر لاحقاً).
 - خط النشر: push إلى `master` → GitHub Actions (`deploy.yml`) → `wrangler deploy --secrets-file` → Cloudflare Worker `portfolio` → `bandaralasmari.com`.
 - تحقّق دائماً من نجاح آخر تشغيل فعلياً هنا: `https://github.com/bandrov92/portfolio/actions` (لا تثق بملخّص أي أداة، تحقّق من الصفحة الحقيقية أو بـ`curl`).
 
