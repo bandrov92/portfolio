@@ -1,0 +1,55 @@
+{
+  "id": "p8",
+  "slug": "ai-content-design-fellowship",
+  "title_ar": "توظيف الذكاء الاصطناعي في تصميم المحتوى التعليمي",
+  "title_en": "Employing AI in Educational Content Design",
+  "summary_ar": "حقيبة تدريبية جماعية وفق نموذج ADDIE الكامل، لتمكين أعضاء هيئة التدريس من توظيف الذكاء الاصطناعي في تصميم المحتوى، ضمن برنامج الزمالة الوطنية في التعليم والتدريب الإلكتروني.",
+  "summary_en": "A collaborative training kit built on the full ADDIE model, empowering university faculty to apply AI in content design, under the National eLearning and eTraining Fellowship Program.",
+  "url": "https://ai-in-educationdesign.lovable.app",
+  "url_label_ar": "زيارة النسخة التفاعلية للحقيبة التدريبية ↗",
+  "url_label_en": "Visit the Interactive Training Kit ↗",
+  "case_study": {
+    "overview_ar": "صُمم هذا المشروع ضمن برنامج الزمالة الوطنية في التعليم والتدريب الإلكتروني (الجامعة السعودية الإلكترونية)، استجابة لحاجة أعضاء هيئة التدريس الجامعيين إلى توظيف تربوي منظم لأدوات الذكاء الاصطناعي في تصميم المحتوى التعليمي، بدل الاستخدام العشوائي غير الموجَّه.\n\nطُبِّق نموذج ADDIE بمراحله الخمس كاملة (التحليل، والتصميم، والتطوير، والتنفيذ، والتقويم)، مستنداً إلى مبادئ تعلّم الكبار لنولز وتصنيف بلوم المعدَّل، وأنتج حقيبة تدريبية متكاملة (دليل متدرب، أوراق عمل، اختبار قبلي وبعدي، مصفوفة تقييم) لوحدة مدتها 180 دقيقة، متوافقة مع معايير المركز الوطني للتعليم الإلكتروني (NELC). أُنجز المشروع جماعياً بالتعاون مع فاطمة عبدالله آل صقر القحطاني ومها بنت إبراهيم بن فوزان الفوزان، عبر تقسيم أدوار واضح بين التيسير والدعم التقني والتنسيق اللوجستي، نمط عمل جماعي منظم، لا مجهوداً فردياً.",
+    "overview_en": "This project was developed under the National eLearning and eTraining Fellowship Program (Saudi Electronic University), in response to university faculty's need for a structured, pedagogically grounded way to employ AI tools in educational content design, rather than ad hoc, unguided use.\n\nThe full five-phase ADDIE model was applied (Analyze, Design, Develop, Implement, and Evaluate), grounded in Knowles' adult learning principles and the Revised Bloom's Taxonomy, producing a complete training kit (trainee guide, worksheets, pre/post assessment, evaluation rubric) for a 180-minute unit aligned with National eLearning Center (NELC) standards. The project was completed collaboratively with Fatimah Abdullah Al Saqr Alqahtani and Maha Ibrahim Al Fawzan, through a clear division of roles across facilitation, technical support, and logistics coordination, a deliberately organized team effort, not an individual one.",
+    "quick_facts": [
+      {
+        "label_ar": "المدة",
+        "label_en": "Duration",
+        "value_ar": "180 دقيقة (3 ساعات)",
+        "value_en": "180 minutes (3 hours)"
+      },
+      {
+        "label_ar": "الفئة المستهدفة",
+        "label_en": "Target Audience",
+        "value_ar": "أعضاء هيئة التدريس الجامعيين",
+        "value_en": "University Faculty Members"
+      },
+      {
+        "label_ar": "النموذج",
+        "label_en": "Model",
+        "value_ar": "ADDIE",
+        "value_en": "ADDIE"
+      },
+      {
+        "label_ar": "التاريخ",
+        "label_en": "Date",
+        "value_ar": "يونيو 2026",
+        "value_en": "June 2026"
+      },
+      {
+        "label_ar": "الجهة",
+        "label_en": "Program",
+        "value_ar": "برنامج الزمالة الوطنية في التعليم والتدريب الإلكتروني | الجامعة السعودية الإلكترونية",
+        "value_en": "National eLearning & eTraining Fellowship Program | Saudi Electronic University"
+      },
+      {
+        "label_ar": "فريق الإعداد",
+        "label_en": "Team",
+        "value_ar": "بندر الأسمري، فاطمة آل صقر القحطاني، مها الفوزان (جماعي)",
+        "value_en": "Bandar Alasmari, Fatimah Al Saqr Alqahtani, Maha Alfawzan (collaborative)"
+      }
+    ],
+    "tags_ar": ["تصميم تعليمي", "نموذج ADDIE", "حقيبة تدريبية", "عمل جماعي"],
+    "tags_en": ["Instructional Design", "ADDIE Model", "Training Kit", "Teamwork"]
+  }
+}

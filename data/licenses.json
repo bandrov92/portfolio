@@ -1,51 +1,70 @@
 {
   "licenses": [
     {
+      "id": "lic4",
+      "icon": "🌐",
+      "title_ar": "عضو الشبكة العالمية للشباب للجودة والتميز (GYNQE)",
+      "title_en": "Member, Global Youth Network for Quality and Excellence (GYNQE)",
+      "org_ar": "الشبكة العالمية للشباب للجودة والتميز (GYNQE)",
+      "org_en": "Global Youth Network for Quality and Excellence (GYNQE)",
+      "desc_ar": "عضوية دولية بصفة \"خبير أو مرشد\" ضمن الشبكة العالمية للشباب للجودة والتميز (GYNQE)، وهي شبكة عالمية معنية بنشر ثقافة الجودة والتميّز المؤسسي بين الشباب، موثّقة برقم عضوية دولي.",
+      "desc_en": "An international membership as an \"Expert / Mentor\" within the Global Youth Network for Quality and Excellence (GYNQE), a global network advancing a culture of quality and institutional excellence among youth, documented with a verified international membership number.",
+      "status_ar": "خبير أو مرشد",
+      "status_en": "Expert / Mentor",
+      "credential_number": "UNESCO-RCQE-8FEB5A10",
+      "period_ar": "عضو منذ 17 سبتمبر 2026",
+      "period_en": "Member since September 17, 2026",
+      "image": "",
+      "cover": "assets/images/licenses/gynqe-expert-membership.jpg",
+      "verify_url": "",
+      "links": [
+        {
+          "label_ar": "الموقع الرسمي | GYNQE",
+          "label_en": "Official Website | GYNQE",
+          "url": "https://gynqe.unesco.rcqe.org/"
+        },
+        {
+          "label_ar": "المركز الإقليمي للجودة والتميز | RCQE",
+          "label_en": "Regional Center for Quality & Excellence | RCQE",
+          "url": "https://rcqe.org/ar"
+        }
+      ]
+    },
+    {
       "id": "lic1",
       "icon": "🎓",
       "title_ar": "رخصة مدرب مهنية",
       "title_en": "Professional Trainer License",
       "org_ar": "هيئة تقويم التعليم والتدريب (ETEC)",
       "org_en": "Education & Training Evaluation Commission (ETEC)",
-      "desc_ar": "ترخيص رسمي معتمد لممارسة التدريب المهني، مدعوم بشهادة تدريب المدربين (TOT).",
-      "desc_en": "An officially accredited license to practice professional training, backed by Training of Trainers (TOT) certification.",
+      "desc_ar": "ترخيص رسمي معتمد لممارسة التدريب المهني. المجال: الرخصة العامة.",
+      "desc_en": "An officially accredited license to practice professional training. Field: General License.",
       "status_ar": "سارية",
       "status_en": "Active",
       "credential_number": "971",
-      "period_ar": "سارية حتى مايو 2031",
-      "period_en": "Valid through May 2031",
+      "period_ar": "سارية حتى 24 مايو 2031",
+      "period_en": "Valid through May 24, 2031",
       "image": "",
       "verify_url": "https://etec.gov.sa/"
     },
     {
       "id": "lic3",
       "icon": "🏅",
-      "title_ar": "خبير مايكروسوفت للإبداع",
-      "title_en": "Microsoft Innovative Educator Expert",
-      "org_ar": "Microsoft Education",
-      "org_en": "Microsoft Education",
-      "desc_ar": "اعتراف عالمي من مايكروسوفت بالمعلمين المبدعين الذين يوظّفون التقنية لتطوير ممارسات تعليمية مبتكرة وتحسين نتائج المتعلمين.",
-      "desc_en": "Global recognition from Microsoft for innovative educators who leverage technology to advance teaching practices and improve learner outcomes.",
-      "status_ar": "نشطة 2025–2026",
-      "status_en": "Active 2025–2026",
-      "image": "",
+      "title_ar": "Microsoft Elevate Educator Expert (2026–2027)",
+      "title_en": "Microsoft Elevate Educator Expert (2026–2027)",
+      "org_ar": "Microsoft Elevate | Microsoft Education",
+      "org_en": "Microsoft Elevate | Microsoft Education",
+      "desc_ar": "اعتراف عالمي متجدد من مايكروسوفت ضمن برنامجها التعليمي الجديد \"Microsoft Elevate\" (الامتداد المطوَّر لبرنامج Innovative Educator السابق) تكريماً للمعلمين الخبراء الذين يوظّفون التقنية والذكاء الاصطناعي لتطوير ممارسات التعليم وتحسين نتائج المتعلمين.",
+      "desc_en": "A renewed global recognition from Microsoft under its new \"Microsoft Elevate\" education program (the evolved continuation of the earlier Innovative Educator program) honoring expert educators who leverage technology and AI to advance teaching practice and improve learner outcomes.",
+      "status_ar": "نشطة 2026–2027",
+      "status_en": "Active 2026–2027",
+      "credential_number": "",
+      "period_ar": "فئة 2026–2027",
+      "period_en": "2026–2027 cohort",
+      "stats_ar": ["مستوى <b>Expert</b>، أعلى تصنيفات برنامج Elevate"],
+      "stats_en": ["<b>Expert</b> tier, Microsoft Elevate's highest recognition level"],
+      "image": "assets/images/licenses/microsoft-elevate-educator-expert-2026-2027.png",
       "verify_url": "https://education.microsoft.com/"
-    },
-    {
-      "id": "lic2",
-      "icon": "📈",
-      "title_ar": "تطوير مهني موثّق",
-      "title_en": "Documented Professional Development",
-      "org_ar": "جهات تدريب معتمدة متعددة",
-      "org_en": "Multiple accredited training providers",
-      "desc_ar": "سجل تراكمي موثّق للتطوير المهني المستمر، يشمل التفكير التصميمي، وقيادة الذكاء الاصطناعي التوليدي واستراتيجيته، والتحول الرقمي، وإدارة الأداء وتقويمه.",
-      "desc_en": "A documented, cumulative record of continuous professional development — including Design Thinking, Generative AI Leadership & Strategy, Digital Transformation, and Performance Management & Evaluation.",
-      "period_ar": "2015 — 2026",
-      "period_en": "2015 — 2026",
-      "stats_ar": ["<b>+1,000</b> ساعة تدريب معتمدة", "<b>64</b> دورة موثقة"],
-      "stats_en": ["<b>1,000+</b> certified training hours", "<b>64</b> documented courses"],
-      "image": "",
-      "verify_url": ""
     }
   ]
 }

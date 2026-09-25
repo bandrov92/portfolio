@@ -49,6 +49,7 @@
 
 .page-block{max-width:62ch}
 .page-block p{color:var(--ink-2)}
+#ovText{white-space:pre-line}
 
 .case-study{padding-top:42px}
 .case-grid{
@@ -95,7 +96,7 @@
 }
 html[dir="rtl"] .case-bullets li, html[dir="rtl"] .role-list li{padding-inline-start:38px}
 .case-bullets li::before{
-  content:"—"; position:absolute; inset-inline-start:16px; top:16px;
+  content:"•"; position:absolute; inset-inline-start:16px; top:16px;
   color:var(--gold); font-weight:700;
 }
 .role-list{counter-reset:role-step}
@@ -106,6 +107,7 @@ html[dir="rtl"] .case-bullets li, html[dir="rtl"] .role-list li{padding-inline-s
 }
 .tags-row{margin-top:26px}
 .tag-pill{background:var(--surface-2)}
+.case-disclosure{margin-top:22px; color:var(--ink-3); font-size:.86rem; line-height:1.7}
 
 .gallery{
   display:grid; gap:22px; margin-top:42px;
@@ -187,6 +189,11 @@ html[dir="rtl"] .case-bullets li, html[dir="rtl"] .role-list li{padding-inline-s
   letter-spacing:.08em; text-decoration:none;
 }
 .cert-verify::after{content:"↗"; font-size:.85rem}
+.edu-link{
+  display:inline-flex; align-items:center; gap:6px; margin-top:12px;
+  color:var(--gold); font-family:var(--head); font-size:.78rem; font-weight:600;
+  letter-spacing:.08em; text-decoration:none;
+}
 .cert-tracks{
   width:100%; margin-top:18px; border:1px solid var(--line);
   border-radius:16px; background:var(--surface-2); overflow:hidden;
@@ -303,6 +310,43 @@ html[dir="rtl"] .case-bullets li, html[dir="rtl"] .role-list li{padding-inline-s
   .license-emblem{width:64px; height:64px}
   .license-emblem-inner{font-size:1.5rem}
 }
+
+/* License card with a full visual cover (e.g. an issued membership/credential card image)
+   — replaces the small circular emblem with a showcased, comfortably-framed image up top. */
+.license-card.has-cover{
+  grid-template-columns:1fr; padding:0; overflow:hidden;
+}
+.license-cover{
+  position:relative; width:100%;
+  padding:26px 26px 0; box-sizing:border-box;
+  background:var(--surface-2);
+}
+.license-cover img{
+  width:100%; height:auto; display:block;
+  border-radius:calc(var(--r) - 10px); border:1px solid var(--line);
+  box-shadow:0 14px 30px -18px rgba(0,0,0,.35);
+}
+.license-cover-num{
+  position:absolute; inset-inline-start:38px; top:38px; z-index:1;
+  display:inline-flex; align-items:center; justify-content:center;
+  min-width:34px; height:34px; padding:0 6px; border-radius:50%;
+  background:linear-gradient(140deg,var(--gold-soft),var(--gold) 55%,#8a6418);
+  color:#1a1206; box-shadow:0 8px 20px -8px rgba(0,0,0,.5);
+  font-family:var(--display-en); font-size:.8rem; font-weight:700; letter-spacing:.04em;
+}
+.license-card.has-cover .license-content{padding:24px 34px 34px; gap:10px}
+@media (max-width:640px){
+  .license-cover{padding:18px 18px 0}
+  .license-cover-num{inset-inline-start:28px; top:28px}
+  .license-card.has-cover .license-content{padding:20px 22px 28px}
+}
+
+/* Multiple related links under a license (e.g. official website + issuing body) — generous
+   spacing between pills so the card stays airy rather than crowded. */
+.license-links{
+  display:flex; flex-wrap:wrap; gap:14px; margin-top:16px; width:100%;
+}
+.license-links .license-verify-btn{margin-top:0}
 
 .badge-media{aspect-ratio:auto; height:300px; overflow:visible}
 

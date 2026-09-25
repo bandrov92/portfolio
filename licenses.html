@@ -6,7 +6,7 @@
 <meta name="color-scheme" content="light">
 <meta name="theme-color" content="#ffffff" id="metaTheme">
 <script src="preferences.js?v=20260909-1"></script>
-<title>Bandarov — الرخص المهنية والاعتمادات</title>
+<title>Bandarov | الرخص المهنية والاعتمادات</title>
 <meta name="description" content="الرخص المهنية والاعتمادات الموثقة لبندر عايض الأسمري.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -36,14 +36,14 @@
   <div class="hero-mesh"></div>
   <span class="eyebrow" data-i18n="s_edu">التأهيل</span>
   <h1 class="display" data-i18n="licenses_hub_t">الرخص المهنية والاعتمادات</h1>
-  <p class="lead" data-i18n="licenses_hub_p">مجموعة مختارة من الرخص والاعتمادات الرسمية الموثّقة — كل واحدة منها معلم فارق في المسار المهني.</p>
+  <p class="lead" data-i18n="licenses_hub_p">مجموعة مختارة من الرخص والاعتمادات الرسمية الموثّقة، كل واحدة منها معلم فارق في المسار المهني.</p>
 </section>
 
 <section class="reveal in" id="licenseGrid">
   <div class="licenses-list" id="licenseCards"></div>
 </section>
 
-<footer><span data-i18n="footer">© 2026 بندر عايض الأسمري — Bandarov. جميع الحقوق محفوظة.</span></footer>
+<footer><span data-i18n="footer">© 2026 بندر عايض الأسمري | Bandarov. جميع الحقوق محفوظة.</span></footer>
 
 <script src="main.js?v=20260909-1" defer></script>
 <script defer>
@@ -67,39 +67,57 @@ window.addEventListener("DOMContentLoaded", async ()=>{
       number: "Credential No.",
       validity: "Validity"
     };
-    document.title = "Bandarov — " + d.licenses_hub_t;
+    document.title = "Bandarov | " + d.licenses_hub_t;
     const wrap = document.getElementById("licenseCards");
     wrap.innerHTML = "";
     licenses.forEach((l, i)=>{
       const card = document.createElement("article");
-      card.className = "card license-card";
+      const hasCover = !!l.cover;
+      card.className = "card license-card" + (hasCover ? " has-cover" : "");
 
-      const emblem = document.createElement("div");
-      emblem.className = "license-emblem";
-      const emblemInner = document.createElement("div");
-      emblemInner.className = "license-emblem-inner";
-      if(l.image){
+      if(hasCover){
+        const cover = document.createElement("div");
+        cover.className = "license-cover";
+        const num = document.createElement("span");
+        num.className = "license-cover-num";
+        num.textContent = String(i+1).padStart(2,"0");
+        cover.appendChild(num);
         const img = document.createElement("img");
-        img.src = l.image;
+        img.src = l.cover;
         img.alt = isAr ? l.title_ar : l.title_en;
         img.loading = "lazy";
-        emblemInner.appendChild(img);
+        cover.appendChild(img);
+        card.appendChild(cover);
       }else{
-        const icon = document.createElement("span");
-        icon.setAttribute("aria-hidden", "true");
-        icon.textContent = l.icon || "🎖️";
-        emblemInner.appendChild(icon);
+        const emblem = document.createElement("div");
+        emblem.className = "license-emblem";
+        const emblemInner = document.createElement("div");
+        emblemInner.className = "license-emblem-inner";
+        if(l.image){
+          const img = document.createElement("img");
+          img.src = l.image;
+          img.alt = isAr ? l.title_ar : l.title_en;
+          img.loading = "lazy";
+          emblemInner.appendChild(img);
+        }else{
+          const icon = document.createElement("span");
+          icon.setAttribute("aria-hidden", "true");
+          icon.textContent = l.icon || "🎖️";
+          emblemInner.appendChild(icon);
+        }
+        emblem.appendChild(emblemInner);
+        card.appendChild(emblem);
       }
-      emblem.appendChild(emblemInner);
-      card.appendChild(emblem);
 
       const content = document.createElement("div");
       content.className = "license-content";
 
-      const num = document.createElement("span");
-      num.className = "license-num";
-      num.textContent = String(i+1).padStart(2,"0");
-      content.appendChild(num);
+      if(!hasCover){
+        const num = document.createElement("span");
+        num.className = "license-num";
+        num.textContent = String(i+1).padStart(2,"0");
+        content.appendChild(num);
+      }
 
       const titleRow = document.createElement("div");
       titleRow.className = "license-title-row";
@@ -163,7 +181,21 @@ window.addEventListener("DOMContentLoaded", async ()=>{
         content.appendChild(meta);
       }
 
-      if(l.verify_url){
+      const links = Array.isArray(l.links) ? l.links.filter(x=>x && x.url) : [];
+      if(links.length){
+        const linksWrap = document.createElement("div");
+        linksWrap.className = "license-links";
+        links.forEach(link=>{
+          const a = document.createElement("a");
+          a.className = "btn btn-ghost license-verify-btn";
+          a.href = link.url;
+          a.target = "_blank";
+          a.rel = "noopener";
+          a.textContent = (isAr ? link.label_ar : link.label_en) || d.verify;
+          linksWrap.appendChild(a);
+        });
+        content.appendChild(linksWrap);
+      }else if(l.verify_url){
         const verify = document.createElement("a");
         verify.className = "btn btn-ghost license-verify-btn";
         verify.href = l.verify_url;

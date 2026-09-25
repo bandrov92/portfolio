@@ -19,12 +19,14 @@ collections:
     identifier_field: "title_ar"
     fields:
       - {label: "معرّف داخلي", name: "id", widget: "hidden", default: ""}
-      - {label: "المعرّف في الرابط (slug)", name: "slug", widget: "string", hint: "بالإنجليزية وبدون مسافات، مثال: my-new-project — يظهر في رابط الصفحة"}
+      - {label: "المعرّف في الرابط (slug)", name: "slug", widget: "string", hint: "بالإنجليزية وبدون مسافات، مثال: my-new-project، يظهر في رابط الصفحة"}
       - {label: "العنوان (عربي)", name: "title_ar", widget: "string"}
       - {label: "العنوان (Title EN)", name: "title_en", widget: "string"}
       - {label: "الوصف (عربي)", name: "summary_ar", widget: "text"}
       - {label: "الوصف (Summary EN)", name: "summary_en", widget: "text"}
       - {label: "رابط المشروع الخارجي (اختياري)", name: "url", widget: "string", required: false, default: ""}
+      - {label: "عنوان زر الرابط الخارجي (عربي، اختياري)", name: "url_label_ar", widget: "string", required: false, default: ""}
+      - {label: "عنوان زر الرابط الخارجي (EN، اختياري)", name: "url_label_en", widget: "string", required: false, default: ""}
       - {label: "شعار المشروع (اختياري)", name: "logo", widget: "image", required: false, default: "", hint: "يظهر أعلى عنوان المشروع في صفحة دراسة الحالة", media_folder: "/assets/images/projects", public_folder: "/assets/images/projects"}
       - label: "دراسة حالة موسعة (اختياري)"
         name: "case_study"
@@ -54,8 +56,8 @@ collections:
             field: {label: "Point", name: "item", widget: "string"}
           - {label: "الدرس المستفاد (عربي)", name: "lesson_ar", widget: "text", required: false, default: ""}
           - {label: "Lesson learned (EN)", name: "lesson_en", widget: "text", required: false, default: ""}
-          - {label: "أبرز قيمة مستفادة — مقتبس مميّز (عربي)", name: "key_takeaway_ar", widget: "text", required: false, default: ""}
-          - {label: "Key takeaway — highlighted quote (EN)", name: "key_takeaway_en", widget: "text", required: false, default: ""}
+          - {label: "أبرز قيمة مستفادة | مقتبس مميّز (عربي)", name: "key_takeaway_ar", widget: "text", required: false, default: ""}
+          - {label: "Key takeaway | highlighted quote (EN)", name: "key_takeaway_en", widget: "text", required: false, default: ""}
           - label: "بطاقة معلومات سريعة (Hero)"
             name: "quick_facts"
             widget: "list"
@@ -67,8 +69,8 @@ collections:
               - {label: "Label (EN)", name: "label_en", widget: "string", required: false, default: ""}
               - {label: "القيمة (عربي)", name: "value_ar", widget: "string", required: false, default: ""}
               - {label: "Value (EN)", name: "value_en", widget: "string", required: false, default: ""}
-          - {label: "نظرة عامة — نص موسّع (عربي)", name: "overview_ar", widget: "text", required: false, default: ""}
-          - {label: "Overview — extended text (EN)", name: "overview_en", widget: "text", required: false, default: ""}
+          - {label: "نظرة عامة | نص موسّع (عربي)", name: "overview_ar", widget: "text", required: false, default: ""}
+          - {label: "Overview | extended text (EN)", name: "overview_en", widget: "text", required: false, default: ""}
           - label: "بنود التحدي (عربي، بديل موسّع عن حقل التحدي أعلاه)"
             name: "challenge_items_ar"
             widget: "list"
@@ -89,12 +91,12 @@ collections:
             widget: "list"
             required: false
             field: {label: "Item", name: "item", widget: "string"}
-          - label: "دوري في المشروع — بصيغة المتكلم (عربي)"
+          - label: "دوري في المشروع | بصيغة المتكلم (عربي)"
             name: "role_items_ar"
             widget: "list"
             required: false
             field: {label: "بند", name: "item", widget: "string"}
-          - label: "My role — first person (EN)"
+          - label: "My role | first person (EN)"
             name: "role_items_en"
             widget: "list"
             required: false
@@ -137,6 +139,50 @@ collections:
             widget: "list"
             required: false
             field: {label: "Keyword", name: "item", widget: "string"}
+          - label: "حدود المنظومة (عربي، اختياري)"
+            name: "boundaries_items_ar"
+            widget: "list"
+            required: false
+            field: {label: "بند", name: "item", widget: "string"}
+          - label: "System boundaries (EN, optional)"
+            name: "boundaries_items_en"
+            widget: "list"
+            required: false
+            field: {label: "Item", name: "item", widget: "string"}
+          - {label: "ملاحظة حول أدوات التطوير (عربي، اختياري)", name: "disclosure_ar", widget: "string", required: false, default: ""}
+          - {label: "A note on development tools (EN, optional)", name: "disclosure_en", widget: "string", required: false, default: ""}
+          - label: "جدول التوافق | عنصر الإطار وتفعيله (عربي، اختياري)"
+            name: "alignment_items_ar"
+            widget: "list"
+            required: false
+            collapsed: true
+            summary: "{{label}}"
+            fields:
+              - {label: "عنصر الإطار", name: "label", widget: "string", required: false, default: ""}
+              - {label: "تفعيل مِتريفا له", name: "value", widget: "string", required: false, default: ""}
+          - label: "Alignment pairs | framework element and METRIVA activation (EN, optional)"
+            name: "alignment_items_en"
+            widget: "list"
+            required: false
+            collapsed: true
+            summary: "{{label}}"
+            fields:
+              - {label: "Framework element", name: "label", widget: "string", required: false, default: ""}
+              - {label: "How METRIVA activates it", name: "value", widget: "string", required: false, default: ""}
+          - {label: "جملة التموضع (عربي، اختياري)", name: "alignment_positioning_ar", widget: "text", required: false, default: ""}
+          - {label: "Positioning statement (EN, optional)", name: "alignment_positioning_en", widget: "text", required: false, default: ""}
+          - {label: "ملاحظة التوافق التوضيحية (عربي، اختياري)", name: "alignment_note_ar", widget: "text", required: false, default: ""}
+          - {label: "Alignment note (EN, optional)", name: "alignment_note_en", widget: "text", required: false, default: ""}
+          - label: "مراجع التوافق الرسمية (عربي، اختياري)"
+            name: "alignment_references_ar"
+            widget: "list"
+            required: false
+            field: {label: "عنوان", name: "item", widget: "string"}
+          - label: "Official alignment references (EN, optional)"
+            name: "alignment_references_en"
+            widget: "list"
+            required: false
+            field: {label: "Title", name: "item", widget: "string"}
 
   - name: "certificates"
     label: "الشهادات التدريبية"
@@ -252,8 +298,18 @@ collections:
                 widget: "list"
                 required: false
                 field: {label: "Text (supports <b> for emphasis)", name: "item", widget: "string"}
-              - {label: "صورة/شعار (اختياري)", name: "image", widget: "image", required: false, default: "", media_folder: "/assets/images/licenses", public_folder: "/assets/images/licenses"}
-              - {label: "رابط التحقق (اختياري)", name: "verify_url", widget: "string", required: false, default: ""}
+              - {label: "صورة/شعار (اختياري)", name: "image", widget: "image", required: false, default: "", media_folder: "/assets/images/licenses", public_folder: "/assets/images/licenses", hint: "تظهر داخل الميدالية الدائرية، للشعارات/الشارات المربّعة أو الدائرية"}
+              - {label: "صورة الغلاف الكاملة (اختياري)", name: "cover", widget: "image", required: false, default: "", media_folder: "/assets/images/licenses", public_folder: "/assets/images/licenses", hint: "لعرض بطاقة/شهادة عضوية كاملة كبانر أعلى البطاقة بدل الميدالية الدائرية. استخدم هذا الحقل بدل 'صورة/شعار' وليس معه"}
+              - {label: "رابط التحقق (اختياري، رابط واحد فقط)", name: "verify_url", widget: "string", required: false, default: "", hint: "استخدمه عند وجود رابط تحقق واحد فقط. إن أضفت 'روابط ذات صلة' أدناه فسيُستخدم ذلك القسم بدلاً منه"}
+              - label: "روابط ذات صلة (اختياري، لعدة روابط)"
+                name: "links"
+                widget: "list"
+                required: false
+                summary: "{{label_ar}}"
+                fields:
+                  - {label: "نص الرابط (عربي)", name: "label_ar", widget: "string"}
+                  - {label: "Link label (EN)", name: "label_en", widget: "string"}
+                  - {label: "الرابط (URL)", name: "url", widget: "string"}
 
   - name: "badges"
     label: "الشارات الرقمية"
@@ -283,4 +339,4 @@ collections:
                 required: false
                 field: {label: "Skill", name: "item", widget: "string"}
               - {label: "صورة الشارة", name: "image", widget: "image", required: false, default: "", media_folder: "/assets/badges", public_folder: "/assets/badges"}
-              - {label: "رابط التحقق/التوثيق", name: "verify_url", widget: "string", required: false, default: "", hint: "رابط صفحة التحقق من الشارة — تصبح البطاقة كاملة قابلة للنقر إليه"}
+              - {label: "رابط التحقق/التوثيق", name: "verify_url", widget: "string", required: false, default: "", hint: "رابط صفحة التحقق من الشارة، تصبح البطاقة كاملة قابلة للنقر إليه"}

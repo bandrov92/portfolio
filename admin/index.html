@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Bandarov — إدارة المحتوى</title>
+  <title>Bandarov | إدارة المحتوى</title>
   <link rel="icon" href="../assets/images/logo.webp">
 </head>
 <body>
@@ -81,7 +81,7 @@
 
     // ---- Shared card renderer for the three "list in one file" collections ----
     function renderCard(item, getAsset, opts) {
-      var image = item.get("image");
+      var image = item.get("image") || item.get("cover");
       var credly = opts.hasCredly && item.get("credly_badge_id");
       var verifyUrl = item.get("verify_url");
       var title = item.get("title_ar");
@@ -97,7 +97,7 @@
 
       var media;
       if (credly) {
-        media = h("span", { className: "cert-placeholder" }, "شارة Credly تفاعلية — تظهر حيّة على الموقع الفعلي");
+        media = h("span", { className: "cert-placeholder" }, "شارة Credly تفاعلية، تظهر حيّة على الموقع الفعلي");
       } else if (image) {
         media = h("img", { src: image.indexOf("/assets/") === 0 ? image : getAsset(image).toString(), alt: "" });
       } else {

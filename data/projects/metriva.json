@@ -12,8 +12,8 @@
       {
         "label_ar": "نوع المشروع",
         "label_en": "Project type",
-        "value_ar": "منصة ويب (تطبيق ويب تقدّمي — PWA)",
-        "value_en": "Web platform (Progressive Web App — PWA)"
+        "value_ar": "منصة ويب (تطبيق ويب تقدّمي، PWA)",
+        "value_en": "Web platform (Progressive Web App, PWA)"
       },
       {
         "label_ar": "المجال",
@@ -38,10 +38,22 @@
         "label_en": "Status",
         "value_ar": "نسخة تشغيلية مطبقة فعلياً",
         "value_en": "Operational release, actively in use"
+      },
+      {
+        "label_ar": "نطاق المؤشرات والمسارات",
+        "label_en": "Indicator & track scope",
+        "value_ar": "6 مسارات، 4 مجالات، 49 مؤشراً",
+        "value_en": "6 tracks, 4 domains, 49 indicators"
+      },
+      {
+        "label_ar": "التسجيل النظامي",
+        "label_en": "Legal registration",
+        "value_ar": "مسجّل لدى الهيئة السعودية للملكية الفكرية",
+        "value_en": "Registered with the Saudi Authority for Intellectual Property"
       }
     ],
-    "overview_ar": "نشأ مشروع مِتريفا من حاجة ميدانية فعلية داخل بيئة العمل المدرسي، حيث كانت بيانات المتابعة موزّعة بين سجلات ورقية وملفات إلكترونية متعددة غير مرتبطة ببعضها. هذا التشتت كان يصعّب تكوين صورة واضحة عن حالة الأداء في أي لحظة، ويحوّل كل عملية مراجعة أو رفع تقرير إلى عملية تجميع يدوي مرهقة. كان الهدف من المشروع بناء بيئة رقمية موحدة تتيح متابعة الأداء والبرامج والمؤشرات والشواهد بصورة أكثر وضوحاً وقابلية للقياس، بدل الاعتماد على جهود فردية متفرقة لتجميع الصورة الكاملة.",
-    "overview_en": "METRIVA started from a real operational need inside a school work environment, where follow-up data was scattered across paper records and multiple, disconnected electronic files. This fragmentation made it difficult to form a clear picture of performance at any given moment, turning every review or reporting cycle into a manual aggregation effort. The goal was to build a unified digital environment that makes performance, programs, indicators, and evidence easier to track and measure, instead of relying on scattered individual efforts to reconstruct the full picture.",
+    "overview_ar": "مِتريفا منظومة رقمية مساندة لمتابعة التقويم الذاتي والتحسين المدرسي. هي نموذج أولي وظيفي مطبّق ميدانياً، بُني كتطبيق ويب تقدّمي (PWA). يغطي نطاقها الوظيفي 49 مؤشراً عبر 4 مجالات (الإدارة المدرسية، التعليم والتعلم، نواتج التعلم، البيئة المدرسية)، إضافة إلى مسار متابعة الجاهزية للاختبارات الوطنية (نافس) ومسار متابعة تطبيق إطار تحسين التدريس (إجادة).",
+    "overview_en": "METRIVA is a traceable digital workflow for school evaluation and improvement. It is a field-implemented functional prototype, built as a Progressive Web App (PWA). Its functional scope covers 49 indicators across 4 domains (school administration, teaching & learning, learning outcomes, and school environment), alongside a track for monitoring readiness for national assessments (Nafis) and a track for monitoring the application of the teaching improvement framework (Ejadah).",
     "challenge_items_ar": [
       "تشتت البيانات بين سجلات ورقية وملفات إلكترونية متعددة غير مرتبطة ببعضها.",
       "كثافة الإدخال اليدوي المتكرر للبيانات نفسها في أكثر من نظام أو ملف.",
@@ -123,7 +135,48 @@
       "اتخاذ القرار المبني على البيانات",
       "تصميم الأنظمة",
       "تطوير التطبيقات",
-      "الابتكار التعليمي"
+      "الابتكار التعليمي",
+      "الاعتماد المدرسي"
+    ],
+    "boundaries_items_ar": [
+      "طبقة تشغيلية مساندة، لا بديلاً عن المنصات الرسمية لوزارة التعليم وهيئة تقويم التعليم والتدريب",
+      "لا تصدر تقويماً مدرسياً رسمياً؛ أرقامها نواتج حساب داخلي تسند الحكم المهني ولا تحل محله",
+      "الشواهد الأصلية تبقى لدى مسؤوليها؛ المنظومة تُسجّل مرجعها لا تستبدلها"
+    ],
+    "boundaries_items_en": [
+      "A supporting operational layer, not a substitute for official Ministry of Education or ETEC platforms",
+      "Does not issue official school evaluations; its figures are internal computations that inform, not replace, professional judgment",
+      "Original evidence stays with its custodians; the system records its reference, not a copy"
+    ],
+    "disclosure_ar": "استُخدمت أدوات الذكاء الاصطناعي (Claude Code وCodex) أداةً مساندة في التنفيذ البرمجي، بينما تولّى المطوّر تحديد المشكلة، وتصميم بنية المنظومة، ومراجعة كل مخرج واختباره.",
+    "disclosure_en": "AI coding tools (Claude Code and Codex) supported implementation, while the developer defined the problem, designed the system architecture, and reviewed and tested every output.",
+    "alignment_items_ar": [
+      {"label": "التقويم الذاتي القائم على المعايير", "value": "تنظّم مِتريفا أعمال التحسين حول معايير ومؤشرات محددة."},
+      {"label": "الشواهد والتوثيق", "value": "تربط مِتريفا المؤشرات بالإجراءات والمسؤوليات والشواهد الداعمة."},
+      {"label": "التحسين والمتابعة", "value": "تحوّل مِتريفا أنشطة التحسين إلى إجراءات وحالات تقدّم قابلة للتتبع."},
+      {"label": "المسؤولية الجماعية لفريق العمل", "value": "تدعم مِتريفا إسناد المجالات والمؤشرات وإجراءات التحسين وفق الأدوار."},
+      {"label": "التحسين المستمر القائم على البيانات", "value": "توفر مِتريفا رؤية موحدة للإجراءات والشواهد والمسؤوليات وحالة التنفيذ."}
+    ],
+    "alignment_items_en": [
+      {"label": "Standards-Based Self-Evaluation", "value": "METRIVA organizes improvement work around defined standards and indicators."},
+      {"label": "Evidence & Documentation", "value": "METRIVA links indicators with actions, responsibilities, and supporting evidence."},
+      {"label": "Improvement & Follow-Up", "value": "METRIVA converts improvement activities into trackable actions and progress states."},
+      {"label": "Team-Based Responsibility", "value": "METRIVA supports role-based assignment of domains, indicators, and improvement actions."},
+      {"label": "Data-Informed Continuous Improvement", "value": "METRIVA provides a unified view of actions, evidence, responsibilities, and implementation progress."}
+    ],
+    "alignment_positioning_ar": "تُفعّل مِتريفا التحسين المدرسي القائم على المعايير عبر ربط المؤشرات بإجراءات التحسين، والمسؤوليات المسندة، والشواهد الداعمة، ومتابعة التقدم، ضمن مسار عمل موحّد على مستوى المدرسة.",
+    "alignment_positioning_en": "METRIVA operationalizes standards-based school improvement by linking indicators to improvement actions, assigned responsibilities, supporting evidence, and progress monitoring within a unified school-level workflow.",
+    "alignment_note_ar": "لا تحل مِتريفا محل أنظمة التقويم المدرسي أو الاعتماد الرسمية التابعة لهيئة تقويم التعليم والتدريب. هي نموذج أولي مستقل في تقنيات التعليم، صُمم لدعم التنفيذ والمتابعة الداخلية للمدرسة. والإشارة إلى وثائق الهيئة تدل على توافق مفاهيمي وتشغيلي فقط، ولا تعني اعتماداً أو إقراراً أو انتماءً رسمياً.",
+    "alignment_note_en": "METRIVA does not replace ETEC's official school evaluation or accreditation systems. It is an independent educational technology prototype designed to support internal school implementation and tracking. References to ETEC documents indicate conceptual and operational alignment only and do not imply official endorsement, accreditation, or affiliation.",
+    "alignment_references_ar": [
+      "معايير تقويم المدارس وتصنيفها واعتمادها | الإصدار الثاني، هيئة تقويم التعليم والتدريب (2026)",
+      "سياسات تقويم المدارس واعتمادها، هيئة تقويم التعليم والتدريب (2023)",
+      "دليل الخدمات الإلكترونية لتقويم المدارس واعتمادها، هيئة تقويم التعليم والتدريب"
+    ],
+    "alignment_references_en": [
+      "Standards for School Evaluation, Classification, and Accreditation | Second Edition, Education and Training Evaluation Commission (2026)",
+      "Policies for School Evaluation and Accreditation, Education and Training Evaluation Commission (2023)",
+      "Electronic Services Guide for School Evaluation and Accreditation, Education and Training Evaluation Commission"
     ]
   }
 }
