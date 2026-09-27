@@ -69,13 +69,27 @@
 <section class="reveal in" id="secChallenge" style="display:none">
   <span class="eyebrow" id="chEyebrow"></span>
   <h2 class="display" id="chTitle"></h2>
+  <p class="lead page-block" id="chIntro"></p>
   <ul class="case-bullets" id="chList"></ul>
+  <p class="case-disclosure" id="chClosing"></p>
 </section>
 
 <section class="reveal in" id="secSolution" style="display:none">
   <span class="eyebrow" id="soEyebrow"></span>
   <h2 class="display" id="soTitle"></h2>
   <ul class="case-bullets" id="soList"></ul>
+</section>
+
+<section class="reveal in" id="secMethodology" style="display:none">
+  <span class="eyebrow" id="meEyebrow"></span>
+  <h2 class="display" id="meTitle"></h2>
+  <p class="lead page-block" id="meText"></p>
+</section>
+
+<section class="reveal in" id="secFieldValidation" style="display:none">
+  <span class="eyebrow" id="fvEyebrow"></span>
+  <h2 class="display" id="fvTitle"></h2>
+  <p class="lead page-block" id="fvText"></p>
 </section>
 
 <section class="reveal in" id="secBoundaries" style="display:none">
@@ -98,6 +112,12 @@
   <p class="case-disclosure" id="alNote"></p>
   <h3 id="alRefsTitle"></h3>
   <ul class="case-bullets" id="alRefs"></ul>
+</section>
+
+<section class="reveal in" id="secLiterature" style="display:none">
+  <span class="eyebrow" id="litEyebrow"></span>
+  <h2 class="display" id="litTitle"></h2>
+  <ul class="case-bullets" id="litList"></ul>
 </section>
 
 <section class="reveal in" id="secRole" style="display:none">
@@ -261,7 +281,10 @@ window.addEventListener("DOMContentLoaded", async ()=>{
       boundaries: "حدود المنظومة",
       disclosure: "ملاحظة حول أدوات التطوير",
       alignment: "التوافق مع إطار هيئة تقويم التعليم والتدريب",
-      alignmentRefs: "مراجع رسمية"
+      alignmentRefs: "مراجع رسمية",
+      methodology: "منهجية التطوير",
+      fieldValidation: "التحقق الميداني",
+      literature: "قراءات ومراجع ذات صلة"
     } : {
       overview: "Overview",
       role: "My Role",
@@ -272,7 +295,10 @@ window.addEventListener("DOMContentLoaded", async ()=>{
       boundaries: "System Boundaries",
       disclosure: "A Note on Development Tools",
       alignment: "Regulatory Framework Alignment",
-      alignmentRefs: "Official References"
+      alignmentRefs: "Official References",
+      methodology: "Development Approach",
+      fieldValidation: "Field Validation",
+      literature: "Related Literature"
     };
     const pickList = (obj, key)=>{
       const primary = obj?.[key + (isAr ? "_ar" : "_en")];
@@ -282,7 +308,7 @@ window.addEventListener("DOMContentLoaded", async ()=>{
     };
     const pickItemField = (item, key)=> item?.[key] ?? (item?.[key + "_ar"] || item?.[key + "_en"] || "");
 
-    const extendedSectionIds = ["secOverview","secChallenge","secSolution","secBoundaries","secDisclosure","secAlignment","secRole","secCompetencies","secOutputs","secLessons","secTags"];
+    const extendedSectionIds = ["secOverview","secChallenge","secSolution","secMethodology","secFieldValidation","secBoundaries","secDisclosure","secAlignment","secLiterature","secRole","secCompetencies","secOutputs","secLessons","secTags"];
 
     if(!caseData){
       caseStudy.style.display = "none";
@@ -291,8 +317,12 @@ window.addEventListener("DOMContentLoaded", async ()=>{
     }
 
     const overviewText = pick(caseData, "overview");
+    const challengeIntro = pick(caseData, "challenge_intro");
+    const challengeClosing = pick(caseData, "challenge_closing");
     const challengeItems = pickList(caseData, "challenge_items");
     const solutionItems = pickList(caseData, "solution_items");
+    const methodologyText = pick(caseData, "methodology");
+    const fieldValidationText = pick(caseData, "field_validation");
     const roleItems = pickList(caseData, "role_items");
     const competencies = pickList(caseData, "competencies");
     const outputItems = pickList(caseData, "outputs");
@@ -304,8 +334,9 @@ window.addEventListener("DOMContentLoaded", async ()=>{
     const alignmentPositioning = pick(caseData, "alignment_positioning");
     const alignmentNote = pick(caseData, "alignment_note");
     const alignmentRefs = pickList(caseData, "alignment_references");
+    const literatureItems = pickList(caseData, "literature_items");
 
-    const isExtended = !!(overviewText || challengeItems.length || solutionItems.length || roleItems.length || competencies.length || outputItems.length || keyTakeaway || tags.length || alignmentPositioning || alignmentItems.length || alignmentNote || alignmentRefs.length);
+    const isExtended = !!(overviewText || challengeIntro || challengeClosing || challengeItems.length || solutionItems.length || methodologyText || fieldValidationText || roleItems.length || competencies.length || outputItems.length || keyTakeaway || tags.length || alignmentPositioning || alignmentItems.length || alignmentNote || alignmentRefs.length || literatureItems.length);
 
     if(isExtended){
       caseStudy.style.display = "none";
@@ -323,7 +354,10 @@ window.addEventListener("DOMContentLoaded", async ()=>{
       document.getElementById("ovText").textContent = overviewText;
 
       // Challenge
-      setSection("secChallenge","chEyebrow","chTitle", labels.eyebrow, labels.challenge, challengeItems.length>0);
+      setSection("secChallenge","chEyebrow","chTitle", labels.eyebrow, labels.challenge, !!(challengeIntro || challengeClosing || challengeItems.length));
+      const chIntroEl = document.getElementById("chIntro");
+      chIntroEl.textContent = challengeIntro;
+      chIntroEl.style.display = challengeIntro ? "" : "none";
       const chList = document.getElementById("chList");
       chList.innerHTML = "";
       challengeItems.forEach(text=>{
@@ -331,6 +365,10 @@ window.addEventListener("DOMContentLoaded", async ()=>{
         li.textContent = text;
         chList.appendChild(li);
       });
+      chList.style.display = challengeItems.length ? "" : "none";
+      const chClosingEl = document.getElementById("chClosing");
+      chClosingEl.textContent = challengeClosing;
+      chClosingEl.style.display = challengeClosing ? "" : "none";
 
       // Solution
       setSection("secSolution","soEyebrow","soTitle", labels.eyebrow, labels.solution, solutionItems.length>0);
@@ -341,6 +379,14 @@ window.addEventListener("DOMContentLoaded", async ()=>{
         li.textContent = text;
         soList.appendChild(li);
       });
+
+      // Development approach (optional | only when the project defines it)
+      setSection("secMethodology","meEyebrow","meTitle", labels.eyebrow, extLabels.methodology, !!methodologyText);
+      document.getElementById("meText").textContent = methodologyText;
+
+      // Field validation (optional | only when the project defines it)
+      setSection("secFieldValidation","fvEyebrow","fvTitle", labels.eyebrow, extLabels.fieldValidation, !!fieldValidationText);
+      document.getElementById("fvText").textContent = fieldValidationText;
 
       // System boundaries (optional | only when the project defines them)
       setSection("secBoundaries","bnEyebrow","bnTitle", labels.eyebrow, extLabels.boundaries, boundariesItems.length>0);
@@ -391,6 +437,16 @@ window.addEventListener("DOMContentLoaded", async ()=>{
       });
       alRefsTitle.style.display = alignmentRefs.length ? "" : "none";
       alRefs.style.display = alignmentRefs.length ? "" : "none";
+
+      // Related literature (optional | same citation text in both languages)
+      setSection("secLiterature","litEyebrow","litTitle", labels.eyebrow, extLabels.literature, literatureItems.length>0);
+      const litList = document.getElementById("litList");
+      litList.innerHTML = "";
+      literatureItems.forEach(text=>{
+        const li = document.createElement("li");
+        li.textContent = typeof text === "string" ? text : (text.item || "");
+        litList.appendChild(li);
+      });
 
       // Role (first person)
       setSection("secRole","roEyebrow","roTitle", labels.eyebrow, extLabels.role, roleItems.length>0);

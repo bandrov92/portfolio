@@ -6,7 +6,7 @@
   "summary_ar": "منصة رقمية لدعم التقويم الذاتي والتحسين المدرسي وإدارة المتابعة التشغيلية القائمة على البيانات.",
   "summary_en": "A digital platform supporting school self-evaluation, improvement planning, and data-driven operational follow-up.",
   "url": "",
-  "logo": "assets/images/projects/metriva-logo.jpg",
+  "logo": "assets/images/projects/metriva-logo.png",
   "case_study": {
     "quick_facts": [
       {
@@ -52,8 +52,8 @@
         "value_en": "Registered with the Saudi Authority for Intellectual Property"
       }
     ],
-    "overview_ar": "مِتريفا منظومة رقمية مساندة لمتابعة التقويم الذاتي والتحسين المدرسي. هي نموذج أولي وظيفي مطبّق ميدانياً، بُني كتطبيق ويب تقدّمي (PWA). يغطي نطاقها الوظيفي 49 مؤشراً عبر 4 مجالات (الإدارة المدرسية، التعليم والتعلم، نواتج التعلم، البيئة المدرسية)، إضافة إلى مسار متابعة الجاهزية للاختبارات الوطنية (نافس) ومسار متابعة تطبيق إطار تحسين التدريس (إجادة).",
-    "overview_en": "METRIVA is a traceable digital workflow for school evaluation and improvement. It is a field-implemented functional prototype, built as a Progressive Web App (PWA). Its functional scope covers 49 indicators across 4 domains (school administration, teaching & learning, learning outcomes, and school environment), alongside a track for monitoring readiness for national assessments (Nafis) and a track for monitoring the application of the teaching improvement framework (Ejadah).",
+    "overview_ar": "مِتريفا منظومة رقمية مساندة لمتابعة التقويم الذاتي والتحسين المدرسي. هي نموذج أولي وظيفي مطبّق ميدانياً، بُني كتطبيق ويب تقدّمي (PWA). يغطي نطاقها الوظيفي 49 مؤشراً عبر 4 مجالات (الإدارة المدرسية، التعليم والتعلم، نواتج التعلم، البيئة المدرسية)، إضافة إلى مسار متابعة الجاهزية لـ\"نافس\" (الاختبارات الوطنية، هيئة تقويم التعليم والتدريب) ومسار متابعة تطبيق \"إجادة\" (الإطار الرسمي لتحسين الممارسات التعليمية الصادر عن وزارة التعليم عام 2026).",
+    "overview_en": "METRIVA is a traceable digital workflow for school evaluation and improvement. It is a field-implemented functional prototype, built as a Progressive Web App (PWA). Its functional scope covers 49 indicators across 4 domains (school administration, teaching & learning, learning outcomes, and school environment), alongside a track for monitoring readiness for Nafis (the National Assessments, administered by the Education and Training Evaluation Commission) and a track for monitoring the application of Ejadah (the official teaching-improvement framework issued by the Ministry of Education in 2026).",
     "challenge_items_ar": [
       "تشتت البيانات بين سجلات ورقية وملفات إلكترونية متعددة غير مرتبطة ببعضها.",
       "كثافة الإدخال اليدوي المتكرر للبيانات نفسها في أكثر من نظام أو ملف.",
@@ -62,15 +62,40 @@
       "عدم وضوح المسؤوليات المرتبطة بتحديث كل مؤشر أو شاهد بعينه.",
       "صعوبة قياس التقدم عبر الزمن في ظل غياب خط أساس موثّق ونقاط مقارنة واضحة."
     ],
+    "challenge_items_en": [
+      "Data scattered across paper records and multiple unconnected electronic files.",
+      "Heavy, repetitive manual entry of the same data across more than one system or file.",
+      "No single reference bringing together tracking indicators, programs, and evidence in one place.",
+      "Inconsistent documentation practices across departments and programs, making comparison and aggregation difficult.",
+      "Unclear ownership for updating each specific indicator or piece of evidence.",
+      "Difficulty measuring progress over time without a documented baseline or clear comparison points."
+    ],
+    "challenge_intro_ar": "توثّق دراسة سعودية شملت 697 مدرسة حكومية تحديات تشغيلية متكررة في التخطيط وتوفر البيانات اللازمة لتقييم خطط التحسين وتعديلها (المنتشري، 2025).",
+    "challenge_intro_en": "A 2025 study covering 697 Saudi public schools found recurring operational challenges in planning and in the availability of data needed to evaluate and adjust improvement plans (Al-Montashri, 2025).",
+    "challenge_closing_ar": "يتقاطع هذا الواقع مع ما وثّقته دراسات سعودية ودولية حول معوقات التقويم الذاتي المدرسي (انظر: قراءات ومراجع ذات صلة).",
+    "challenge_closing_en": "This pattern mirrors barriers documented in Saudi and international research on school self-evaluation implementation (see Related Literature).",
     "solution_items_ar": [
       "مركز متابعة موحد يجمع بيانات الأداء والبرامج في بيئة واحدة بدل الملفات المتفرقة.",
       "ربط المؤشرات بالبرامج والشواهد الداعمة لها، بحيث يظهر الدليل مرتبطاً بالمؤشر مباشرة.",
       "لوحات مؤشرات لحظية تعرض حالة الأداء أولاً بأول دون انتظار تجميع يدوي.",
       "سجل تدقيق يوثّق كل تحديث: من أجراه، وماذا تغيّر، ومتى.",
       "توضيح المسؤوليات عبر تحديد من يملك تحديث كل مؤشر أو برنامج.",
-      "متابعة الخطة التشغيلية ومساري \"نافس\" و\"إجادة\" ضمن بيئة واحدة بدل جداول منفصلة.",
+      "متابعة الخطة التشغيلية ومساري \"نافس\" (الاختبارات الوطنية، هيئة تقويم التعليم والتدريب) و\"إجادة\" (الإطار الرسمي لتحسين الممارسات التعليمية الصادر عن وزارة التعليم عام 2026) ضمن بيئة واحدة بدل جداول منفصلة.",
       "حفظ خطوط الأساس والمقارنات الزمنية لإتاحة قياس التقدم من فترة لأخرى بدل الاكتفاء بلقطة واحدة."
     ],
+    "solution_items_en": [
+      "A unified tracking hub bringing performance and program data into one environment instead of scattered files.",
+      "Indicators linked directly to their programs and supporting evidence, so each piece of evidence appears attached to its indicator.",
+      "Real-time indicator dashboards showing performance status as it happens, without waiting for manual aggregation.",
+      "An audit log documenting every update: who made it, what changed, and when.",
+      "Clear ownership by identifying who is responsible for updating each indicator or program.",
+      "Tracking the operational plan alongside the Nafis (National Assessments, Education and Training Evaluation Commission) and Ejadah (official teaching-improvement framework, Ministry of Education, 2026) tracks within one environment instead of separate spreadsheets.",
+      "Baselines and time-based comparisons preserved so progress can be measured period over period, rather than relying on a single snapshot."
+    ],
+    "methodology_ar": "اعتمد تطوير مِتريفا نهجاً تكرارياً مرتكزاً على الميدان، عبر ثماني مراحل: تحديد المشكلة الميدانية، تحليل مسار العمل القائم، اشتقاق المتطلبات الوظيفية، تصميم النموذج الأولي، التطوير والاختبار التكراري، التطبيق الميداني، تقييم الحالة الراهنة، ثم التحسين المستمر. استُقيت المتطلبات من واقع إجراءات التقويم والتحسين الفعلية في المدرسة، بما يشمل مؤشرات التقويم الذاتي، والخطة التشغيلية، ومتابعة \"نافس\" (الاختبارات الوطنية) وتطبيق إطار \"إجادة\" (وزارة التعليم، 2026).",
+    "methodology_en": "METRIVA was built through a field-informed, iterative process spanning eight stages: identifying the field problem, analyzing the current workflow, deriving functional requirements, prototype design, iterative development and testing, field implementation, current-state assessment, and refinement. Requirements were drawn directly from the school's actual evaluation and improvement procedures, including self-evaluation indicators, the operational plan, Nafis (National Assessments) follow-up, and the application of the Ejadah framework (Ministry of Education, 2026).",
+    "field_validation_ar": "أُجري استبيان ميداني لتقييم الحالة الراهنة لدى منسوبي المدرسة المضيفة (18 استجابة من أصل 25 منسوباً، بنسبة استجابة 72%). أظهرت النتائج تقييماً عاماً إيجابياً لممارسات المتابعة القائمة (4.10 من 5)، إلى جانب مؤشرات احتكاك تشغيلي محددة: 61.1% يعتمدون أكثر من وسيلة لمعرفة حالة العمل، و38.9% يعدّون جمع الشواهد المهمة الأكثر استهلاكاً للوقت، و27.8% يعدّون الإدخال اليدوي للبيانات التحدي الرقمي الأبرز. تصف هذه النتائج السياق التشغيلي الذي صُمم مِتريفا استجابة له، ولا تمثل قياساً لأثره؛ إذ يتطلب قياس الأثر على الكفاءة وجودة القرار ونتائج المدرسة تقييماً ميدانياً مضبوطاً لاحقاً.",
+    "field_validation_en": "A current-state survey was conducted with staff at the host school (18 of 25 staff responded, a 72.0% response rate). Results showed an overall positive perception of existing follow-up practices (4.10 out of 5), alongside specific indicators of operational friction: 61.1% used more than one means to determine work status, 38.9% identified evidence collection as the most time-consuming task, and 27.8% identified manual data entry as the main digital challenge. These findings describe the operational context METRIVA was designed to address; they are not a measurement of METRIVA's own effect. Measuring effects on efficiency, decision quality, or school outcomes requires a further controlled field evaluation.",
     "role_items_ar": [
       "دراسة الواقع الميداني وتحليل الاحتياج الفعلي قبل البدء بأي تصميم.",
       "تشخيص الفجوات التشغيلية في أسلوب المتابعة القائم.",
@@ -81,6 +106,17 @@
       "تصميم مؤشرات القياس وطريقة عرضها في لوحات المتابعة.",
       "وضع آليات الحوكمة والمتابعة، بما يشمل تحديد الصلاحيات وتفعيل سجل التدقيق.",
       "تدريب المستخدمين على المنصة ودعم التطبيق الفعلي بعد الإطلاق."
+    ],
+    "role_items_en": [
+      "Studying the on-the-ground reality and analyzing the actual need before starting any design work.",
+      "Diagnosing operational gaps in the existing tracking approach.",
+      "Designing the operating model that defines the required data, its sources, and its flow between the platform's components.",
+      "Designing the user experience to fit the nature of school work and the daily pace of use.",
+      "Building the data structure that links indicators to programs and evidence.",
+      "Developing the platform as a Progressive Web App (PWA).",
+      "Designing the measurement indicators and how they are displayed on tracking dashboards.",
+      "Establishing governance and monitoring mechanisms, including access permissions and the audit log.",
+      "Training users on the platform and supporting actual implementation after launch."
     ],
     "competencies_ar": [
       {
@@ -112,17 +148,58 @@
         "desc": "تحديد الصلاحيات، وتفعيل سجلات تدقيق للتحديثات، ومراعاة استمرارية العمل عند تصميم آليات المتابعة."
       }
     ],
+    "competencies_en": [
+      {
+        "title": "First: Institutional Analysis and Process Improvement",
+        "desc": "The ability to understand existing procedures, identify their weak points, and translate operational problems into practical requirements that can be designed and implemented."
+      },
+      {
+        "title": "Second: Performance Management and Indicator Measurement",
+        "desc": "Building clear tracking indicators, designing dashboards that reflect actual performance, and setting baselines that allow results to be compared over time."
+      },
+      {
+        "title": "Third: Data-Informed Decision-Making",
+        "desc": "Gathering data from its multiple sources and connecting it to its institutional context, supporting decisions grounded in documented evidence rather than impressions."
+      },
+      {
+        "title": "Fourth: Digital Transformation",
+        "desc": "Redesigning paper-based and scattered procedures within a unified digital environment that preserves the existing operational logic while simplifying its execution."
+      },
+      {
+        "title": "Fifth: Project Management",
+        "desc": "Leading the full project lifecycle, from identifying the need through design and development, to operation and post-launch support."
+      },
+      {
+        "title": "Sixth: Technical Design and Development",
+        "desc": "Designing and developing a Progressive Web App, building a data structure that serves the operating logic, and managing the flow of information between its components."
+      },
+      {
+        "title": "Seventh: Governance and Risk Management",
+        "desc": "Defining access permissions, activating audit logs for updates, and accounting for business continuity when designing tracking mechanisms."
+      }
+    ],
     "outputs_ar": [
       "منصة تشغيلية متكاملة قيد الاستخدام الفعلي.",
       "متابعة موحدة لمؤشرات التقويم الذاتي بدل تشتتها بين ملفات متعددة.",
       "لوحات متابعة مرئية تعرض حالة الأداء أولاً بأول.",
       "سجل تدقيق يوثّق كل تحديث على البيانات والمؤشرات.",
       "إدارة منظمة لبرامج التحسين المدرسي ومتابعة تنفيذها.",
-      "إدارة مسارات \"نافس\" و\"إجادة\" ضمن بيئة واحدة.",
+      "إدارة مسارات \"نافس\" (الاختبارات الوطنية، هيئة تقويم التعليم والتدريب) و\"إجادة\" (الإطار الرسمي لتحسين الممارسات التعليمية الصادر عن وزارة التعليم عام 2026) ضمن بيئة واحدة.",
       "آلية للقياس الدوري والمقارنة الزمنية بين الفترات."
     ],
+    "outputs_en": [
+      "A fully operational platform in active use.",
+      "Unified tracking of self-evaluation indicators instead of their being scattered across multiple files.",
+      "Visual tracking dashboards showing performance status as it happens.",
+      "An audit log documenting every update to data and indicators.",
+      "Organized management of school improvement programs and tracking of their implementation.",
+      "Managing the Nafis (National Assessments, Education and Training Evaluation Commission) and Ejadah (official teaching-improvement framework, Ministry of Education, 2026) tracks within one environment.",
+      "A mechanism for periodic measurement and time-based comparison between periods."
+    ],
     "lesson_ar": "أظهرت تجربة هذا المشروع أن نجاح أي حل رقمي في البيئة المدرسية لا يرتبط بجودة التقنية وحدها، بل بمدى فهم الإجراءات الفعلية، ووضوح المؤشرات والمسؤوليات، وجودة البيانات المُدخلة، ومدى تبنّي المستخدمين للأداة في عملهم اليومي. كل عنصر من هذه العناصر قادر على تعطيل أثر الحل الرقمي إن أُهمل، بصرف النظر عن مستوى التصميم التقني.",
+    "lesson_en": "This project showed that the success of any digital solution in a school setting is not tied to technical quality alone, but to how well the actual procedures are understood, how clear the indicators and responsibilities are, the quality of the data entered, and how fully users adopt the tool in their daily work. Neglecting any one of these elements can undermine the digital solution's impact, regardless of the technical design's sophistication.",
     "key_takeaway_ar": "تحويل جهود متفرقة إلى نظام عمل مؤسسي أكثر وضوحاً وقابلية للمتابعة.",
+    "key_takeaway_en": "Turning scattered efforts into a clearer, more trackable institutional way of working.",
     "tags_ar": [
       "التحول الرقمي",
       "إدارة الأداء",
@@ -137,6 +214,21 @@
       "تطوير التطبيقات",
       "الابتكار التعليمي",
       "الاعتماد المدرسي"
+    ],
+    "tags_en": [
+      "Digital Transformation",
+      "Performance Management",
+      "Institutional Development",
+      "Business Analysis",
+      "Project Management",
+      "Data Governance",
+      "Institutional Excellence",
+      "School Evaluation",
+      "Data-Informed Decision-Making",
+      "Systems Design",
+      "Application Development",
+      "Educational Innovation",
+      "School Accreditation"
     ],
     "boundaries_items_ar": [
       "طبقة تشغيلية مساندة، لا بديلاً عن المنصات الرسمية لوزارة التعليم وهيئة تقويم التعليم والتدريب",
@@ -171,12 +263,30 @@
     "alignment_references_ar": [
       "معايير تقويم المدارس وتصنيفها واعتمادها | الإصدار الثاني، هيئة تقويم التعليم والتدريب (2026)",
       "سياسات تقويم المدارس واعتمادها، هيئة تقويم التعليم والتدريب (2023)",
-      "دليل الخدمات الإلكترونية لتقويم المدارس واعتمادها، هيئة تقويم التعليم والتدريب"
+      "دليل الخدمات الإلكترونية لتقويم المدارس واعتمادها، هيئة تقويم التعليم والتدريب",
+      "البرنامج الوطني للاختبارات (نافس) | هيئة تقويم التعليم والتدريب"
     ],
     "alignment_references_en": [
       "Standards for School Evaluation, Classification, and Accreditation | Second Edition, Education and Training Evaluation Commission (2026)",
       "Policies for School Evaluation and Accreditation, Education and Training Evaluation Commission (2023)",
-      "Electronic Services Guide for School Evaluation and Accreditation, Education and Training Evaluation Commission"
+      "Electronic Services Guide for School Evaluation and Accreditation, Education and Training Evaluation Commission",
+      "National Assessments Program (Nafis) | Education and Training Evaluation Commission"
+    ],
+    "literature_items_ar": [
+      "Education and Training Evaluation Commission. (2026). Procedural Guide for External School Evaluation of General Education Schools (3rd ed.).",
+      "Al-Montashri, A. A. (2025). Barriers to excellence in school evaluation in Makkah's public schools under ETEC standards and ways to address them. Arab Journal of Educational and Psychological Sciences, 9(52), 293–354.",
+      "Al-Shahri, S. A. (2025). Perceptions of self-evaluation team members regarding implementation challenges: A qualitative study based on the experience of self-evaluation in primary schools in Southern Khamis Mushait. Journal of Educational and Psychological Sciences, 9(11), 72–94.",
+      "Vanari, K., Reinaru, D., & Eisenschmidt, E. (2025). Data use for school self-evaluation: The process, factors, and leadership practices in Estonian schools. Studies in Educational Evaluation, 85, Article 101465.",
+      "Hofer, S. I., Taut, S., & Holzberger, D. (2026). What do we know about internal school evaluation? A systematic review. Studies in Educational Evaluation, 90, Article 101612.",
+      "Alonzo, D., Quimno, V., Townend, G., & Oo, C. Z. (2024). Using information and communication technology (ICT)-based data systems to support teacher data-driven decision-making: Insights from the literature (2013–2023). Educational Assessment, Evaluation and Accountability, 36, 433–451."
+    ],
+    "literature_items_en": [
+      "Education and Training Evaluation Commission. (2026). Procedural Guide for External School Evaluation of General Education Schools (3rd ed.).",
+      "Al-Montashri, A. A. (2025). Barriers to excellence in school evaluation in Makkah's public schools under ETEC standards and ways to address them. Arab Journal of Educational and Psychological Sciences, 9(52), 293–354.",
+      "Al-Shahri, S. A. (2025). Perceptions of self-evaluation team members regarding implementation challenges: A qualitative study based on the experience of self-evaluation in primary schools in Southern Khamis Mushait. Journal of Educational and Psychological Sciences, 9(11), 72–94.",
+      "Vanari, K., Reinaru, D., & Eisenschmidt, E. (2025). Data use for school self-evaluation: The process, factors, and leadership practices in Estonian schools. Studies in Educational Evaluation, 85, Article 101465.",
+      "Hofer, S. I., Taut, S., & Holzberger, D. (2026). What do we know about internal school evaluation? A systematic review. Studies in Educational Evaluation, 90, Article 101612.",
+      "Alonzo, D., Quimno, V., Townend, G., & Oo, C. Z. (2024). Using information and communication technology (ICT)-based data systems to support teacher data-driven decision-making: Insights from the literature (2013–2023). Educational Assessment, Evaluation and Accountability, 36, 433–451."
     ]
   }
 }

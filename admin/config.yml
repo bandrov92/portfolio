@@ -81,6 +81,10 @@ collections:
             widget: "list"
             required: false
             field: {label: "Item", name: "item", widget: "string"}
+          - {label: "افتتاحية التحدي (عربي، اختياري)", name: "challenge_intro_ar", widget: "text", required: false, default: ""}
+          - {label: "Challenge introduction (EN, optional)", name: "challenge_intro_en", widget: "text", required: false, default: ""}
+          - {label: "ختام التحدي (عربي، اختياري)", name: "challenge_closing_ar", widget: "text", required: false, default: ""}
+          - {label: "Challenge closing (EN, optional)", name: "challenge_closing_en", widget: "text", required: false, default: ""}
           - label: "بنود الحل (عربي، بديل موسّع عن حقل الحل أعلاه)"
             name: "solution_items_ar"
             widget: "list"
@@ -91,6 +95,10 @@ collections:
             widget: "list"
             required: false
             field: {label: "Item", name: "item", widget: "string"}
+          - {label: "منهجية التطوير (عربي، اختياري)", name: "methodology_ar", widget: "text", required: false, default: ""}
+          - {label: "Development approach (EN, optional)", name: "methodology_en", widget: "text", required: false, default: ""}
+          - {label: "التحقق الميداني (عربي، اختياري)", name: "field_validation_ar", widget: "text", required: false, default: ""}
+          - {label: "Field validation (EN, optional)", name: "field_validation_en", widget: "text", required: false, default: ""}
           - label: "دوري في المشروع | بصيغة المتكلم (عربي)"
             name: "role_items_ar"
             widget: "list"
@@ -183,6 +191,16 @@ collections:
             widget: "list"
             required: false
             field: {label: "Title", name: "item", widget: "string"}
+          - label: "قراءات ومراجع ذات صلة (عربي، اختياري)"
+            name: "literature_items_ar"
+            widget: "list"
+            required: false
+            field: {label: "مرجع", name: "item", widget: "string"}
+          - label: "Related literature (EN, optional)"
+            name: "literature_items_en"
+            widget: "list"
+            required: false
+            field: {label: "Reference", name: "item", widget: "string"}
 
   - name: "certificates"
     label: "الشهادات التدريبية"

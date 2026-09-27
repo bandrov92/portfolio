@@ -1,6 +1,6 @@
 # PROJECT_STATUS.md
 
-آخر تحديث: 2026-09-25 — راجع `git log` للتأكد من الحالة الحقيقية عند القراءة، هذا الملف تصوير لحظي وقد يصبح قديماً.
+آخر تحديث: 2026-09-27 — راجع `git log` للتأكد من الحالة الحقيقية عند القراءة، هذا الملف تصوير لحظي وقد يصبح قديماً.
 
 ## توحيد الهوية والاعتمادات وشبكة المشاريع (دُفع 2026-09-25)
 
@@ -19,6 +19,15 @@
 ما تبقى مفتوحاً في TODO بـ`IDENTITY.md`: الاسم الإنجليزي الرسمي للزمالة الوطنية في التعليم الإلكتروني؛ نوع درجة الماجستير بالإنجليزية (M.Ed. أم M.A.)؛ الجهة المانحة لشهادة «أساسيات المعايير والكفايات المهنية التربوية»؛ الأرقام (مستخدمو Teacher Pro SA، أعضاء مجتمع تيليجرام، عدد الورش).
 
 تنويه داخلي: نتائج مسابقة سيف 2026 وجائزة جامعة الملك خالد للتميز معلّقة، ومحظور نشرها في أي نص عام إلى أن تصدر النتيجة الرسمية ويوافق المالك على النشر.
+
+## دراسة حالة مِتريفا ثنائية اللغة (تلي `b1b6f48`)
+
+آخر commit على `master` قبل هذا الدفع هو `b1b6f48`. هذا الدفع يستبدله.
+
+- دراسة حالة مِتريفا أصبحت ثنائية اللغة بالكامل. الأقسام السبعة التي كانت عربية فقط صارت لها نظير إنجليزي: التحدي (`challenge_items`)، الحل (`solution_items`)، دوري في المشروع (`role_items`)، الكفاءات (`competencies`)، المخرجات (`outputs`)، الدروس المستفادة (`lesson` و`key_takeaway`)، والكلمات المفتاحية (`tags`).
+- أُضيف قسم «منهجية التطوير» (`methodology_ar` / `methodology_en`) بعد «الحل»، ثم «التحقق الميداني» (`field_validation_ar` / `field_validation_en`)، ثم قسم «قراءات ومراجع ذات صلة» (`literature_items_ar` / `literature_items_en`) بعد التوافق التنظيمي. جملة افتتاحية وختامية للتحدي (`challenge_intro` / `challenge_closing`). مرجع رابع للتوافق: البرنامج الوطني للاختبارات (نافس).
+- توضيح نافس وإجادة صار قاعدة دائمة في قاموس المصطلحات في `IDENTITY.md`. في النطاق الوظيفي لسجل الأدلة تُذكر الصيغة الكاملة. في نص المنهجية على الموقع تبقى الصيغة المختصرة لأن التوضيح الكامل موجود في النظرة العامة.
+- حقول لوحة الإدارة في `admin/config.yml` تطابق هذه الحقول حتى لا يسقطها حفظ لاحق. شعار صفحة المشروع صار `assets/images/projects/metriva-logo.png`.
 
 ## آخر ما تم إنجازه
 
@@ -52,7 +61,7 @@
 
 ## آخر نسخة منشورة
 
-- آخر commit مدفوع بنجاح إلى `master`: `d8dcd25` — "Publish issued NELC OTT and eLXD certificates, and highlight graduate credentials on the homepage." نُشر عبر GitHub Actions (`Deploy to Cloudflare Workers`, run 34980951478, conclusion: success). تحقّقت الصفحة الحية: `/certificates` ← 200 مع صور OTT/eLXD وأرقام الشهادات، `/assets/images/certs/nelc-ott-professional.webp` و`nelc-elxd-professional.webp` ← 200، وبطاقات `.card-featured` ظاهرة في الصفحة الرئيسية، مع غياب `pending: true` من JSON الحي. (راجع `git log -1` للتأكد من الـhash الفعلي وقت القراءة إن تغيّر لاحقاً).
+- آخر commit مدفوع إلى `master` قبل دراسة الحالة الثنائية اللغة: `b1b6f48`. السطر الأقدم `d8dcd25` (شهادتا NELC، run 34980951478) لم يعد رأس الفرع. بعد دفع هذا الملف يُستبدل `b1b6f48` بهاش الالتزام الجديد، ويُتحقق من GitHub Actions على `https://github.com/bandrov92/portfolio/actions`.
 - خط النشر: push إلى `master` → GitHub Actions (`deploy.yml`) → `wrangler deploy --secrets-file` → Cloudflare Worker `portfolio` → `bandaralasmari.com`.
 - تحقّق دائماً من نجاح آخر تشغيل فعلياً هنا: `https://github.com/bandrov92/portfolio/actions` (لا تثق بملخّص أي أداة، تحقّق من الصفحة الحقيقية أو بـ`curl`).
 
