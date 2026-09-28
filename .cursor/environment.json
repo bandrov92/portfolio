@@ -1,0 +1,17 @@
+{
+  "name": "Portfolio (Cloudflare Worker + static site)",
+  "install": "npx --yes wrangler@4 --version",
+  "terminals": [
+    {
+      "name": "wrangler dev",
+      "command": "npx --yes wrangler@4 dev --ip 0.0.0.0 --port 8787 --persist-to /tmp/wrangler-state",
+      "description": "Runs the Cloudflare Worker (src/worker.js) with the static-site ASSETS binding, including /api/auth + /api/callback, _redirects and _headers. Serves the whole site at http://localhost:8787 (and /admin/ Decap CMS). State is persisted outside the repo root to avoid a file-watch reload loop."
+    }
+  ],
+  "ports": [
+    {
+      "name": "site",
+      "port": 8787
+    }
+  ]
+}
