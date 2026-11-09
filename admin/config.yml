@@ -71,6 +71,12 @@ collections:
               - {label: "Value (EN)", name: "value_en", widget: "string", required: false, default: ""}
           - {label: "نظرة عامة | نص موسّع (عربي)", name: "overview_ar", widget: "text", required: false, default: ""}
           - {label: "Overview | extended text (EN)", name: "overview_en", widget: "text", required: false, default: ""}
+          - {label: "التأهل للمسابقة والمعرض (عربي، اختياري)", name: "exhibition_ar", widget: "text", required: false, default: ""}
+          - {label: "Qualification for the competition and exhibition (EN, optional)", name: "exhibition_en", widget: "text", required: false, default: ""}
+          - {label: "شعار المسابقة للوضع الفاتح (اختياري)", name: "exhibition_logo_dark", widget: "image", required: false, default: "", hint: "النسخة الداكنة من الشعار، تظهر على الخلفية الفاتحة", media_folder: "/assets/images/projects", public_folder: "/assets/images/projects"}
+          - {label: "شعار المسابقة للوضع الداكن (اختياري)", name: "exhibition_logo_light", widget: "image", required: false, default: "", hint: "النسخة الفاتحة من الشعار، تظهر على الخلفية الداكنة", media_folder: "/assets/images/projects", public_folder: "/assets/images/projects"}
+          - {label: "رابط المسابقة (اختياري)", name: "exhibition_url", widget: "string", required: false, default: ""}
+          - {label: "الملصق العلمي (اختياري، يُضاف بعد انطلاق المعرض)", name: "exhibition_poster", widget: "image", required: false, default: "", media_folder: "/assets/images/projects", public_folder: "/assets/images/projects"}
           - label: "بنود التحدي (عربي، بديل موسّع عن حقل التحدي أعلاه)"
             name: "challenge_items_ar"
             widget: "list"

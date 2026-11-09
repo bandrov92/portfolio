@@ -12,7 +12,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,500&family=Inter:wght@300;400;500;600&family=Amiri:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/site.css?v=20260909-1">
-<link rel="stylesheet" href="css/pages.css?v=20260909-1">
+<link rel="stylesheet" href="css/pages.css?v=20261109-1">
 </head>
 <body class="inner">
 
@@ -64,6 +64,22 @@
   <span class="eyebrow" id="ovEyebrow"></span>
   <h2 class="display" id="ovTitle"></h2>
   <p class="lead page-block" id="ovText"></p>
+</section>
+
+<section class="reveal in" id="secExhibition" style="display:none">
+  <span class="eyebrow" id="exEyebrow"></span>
+  <h2 class="display" id="exTitle"></h2>
+  <div class="exhibition-row">
+    <img id="exLogoDark" class="exhibition-logo is-dark" alt="">
+    <img id="exLogoLight" class="exhibition-logo is-light" alt="">
+    <div>
+      <p class="lead page-block" id="exText"></p>
+      <a id="exLink" class="exhibition-link" href="" target="_blank" rel="noopener noreferrer"></a>
+    </div>
+  </div>
+  <a id="exPosterLink" class="exhibition-poster" href="" target="_blank" rel="noopener noreferrer">
+    <img id="exPoster" alt="">
+  </a>
 </section>
 
 <section class="reveal in" id="secChallenge" style="display:none">
@@ -284,7 +300,9 @@ window.addEventListener("DOMContentLoaded", async ()=>{
       alignmentRefs: "مراجع رسمية",
       methodology: "منهجية التطوير",
       fieldValidation: "التحقق الميداني",
-      literature: "قراءات ومراجع ذات صلة"
+      literature: "قراءات ومراجع ذات صلة",
+      exhibition: "التأهل للمسابقة والمعرض",
+      exhibitionLink: "الموقع الرسمي"
     } : {
       overview: "Overview",
       role: "My Role",
@@ -298,7 +316,9 @@ window.addEventListener("DOMContentLoaded", async ()=>{
       alignmentRefs: "Official References",
       methodology: "Development Approach",
       fieldValidation: "Field Validation",
-      literature: "Related Literature"
+      literature: "Related Literature",
+      exhibition: "Qualification for the competition and exhibition",
+      exhibitionLink: "Official website"
     };
     const pickList = (obj, key)=>{
       const primary = obj?.[key + (isAr ? "_ar" : "_en")];
@@ -308,7 +328,7 @@ window.addEventListener("DOMContentLoaded", async ()=>{
     };
     const pickItemField = (item, key)=> item?.[key] ?? (item?.[key + "_ar"] || item?.[key + "_en"] || "");
 
-    const extendedSectionIds = ["secOverview","secChallenge","secSolution","secMethodology","secFieldValidation","secBoundaries","secDisclosure","secAlignment","secLiterature","secRole","secCompetencies","secOutputs","secLessons","secTags"];
+    const extendedSectionIds = ["secOverview","secExhibition","secChallenge","secSolution","secMethodology","secFieldValidation","secBoundaries","secDisclosure","secAlignment","secLiterature","secRole","secCompetencies","secOutputs","secLessons","secTags"];
 
     if(!caseData){
       caseStudy.style.display = "none";
@@ -335,8 +355,14 @@ window.addEventListener("DOMContentLoaded", async ()=>{
     const alignmentNote = pick(caseData, "alignment_note");
     const alignmentRefs = pickList(caseData, "alignment_references");
     const literatureItems = pickList(caseData, "literature_items");
+    const exhibitionText = pick(caseData, "exhibition");
+    const exhibitionLogoDark = caseData.exhibition_logo_dark || "";
+    const exhibitionLogoLight = caseData.exhibition_logo_light || "";
+    const exhibitionUrl = caseData.exhibition_url || "";
+    const exhibitionPoster = (caseData.exhibition_poster || "").trim();
+    const hasExhibition = !!(exhibitionText || exhibitionLogoDark || exhibitionLogoLight || exhibitionPoster);
 
-    const isExtended = !!(overviewText || challengeIntro || challengeClosing || challengeItems.length || solutionItems.length || methodologyText || fieldValidationText || roleItems.length || competencies.length || outputItems.length || keyTakeaway || tags.length || alignmentPositioning || alignmentItems.length || alignmentNote || alignmentRefs.length || literatureItems.length);
+    const isExtended = !!(overviewText || challengeIntro || challengeClosing || challengeItems.length || solutionItems.length || methodologyText || fieldValidationText || roleItems.length || competencies.length || outputItems.length || keyTakeaway || tags.length || alignmentPositioning || alignmentItems.length || alignmentNote || alignmentRefs.length || literatureItems.length || hasExhibition);
 
     if(isExtended){
       caseStudy.style.display = "none";
@@ -352,6 +378,56 @@ window.addEventListener("DOMContentLoaded", async ()=>{
       // Overview
       setSection("secOverview","ovEyebrow","ovTitle", labels.eyebrow, extLabels.overview, !!overviewText);
       document.getElementById("ovText").textContent = overviewText;
+
+      // Competition qualification (optional | poster stays hidden until a file is set)
+      setSection("secExhibition","exEyebrow","exTitle", labels.eyebrow, extLabels.exhibition, hasExhibition);
+      const exText = document.getElementById("exText");
+      exText.textContent = exhibitionText;
+      exText.style.display = exhibitionText ? "" : "none";
+      const logoAlt = isAr ? "شعار مسابقة ومعرض سيف" : "SAIF logo";
+      const exLogoDark = document.getElementById("exLogoDark");
+      const exLogoLight = document.getElementById("exLogoLight");
+      if(exhibitionLogoDark){
+        exLogoDark.src = exhibitionLogoDark;
+        exLogoDark.alt = logoAlt;
+        exLogoDark.style.display = "";
+      }else{
+        exLogoDark.removeAttribute("src");
+        exLogoDark.alt = "";
+        exLogoDark.style.display = "none";
+      }
+      if(exhibitionLogoLight){
+        exLogoLight.src = exhibitionLogoLight;
+        exLogoLight.alt = logoAlt;
+        exLogoLight.style.display = "";
+      }else{
+        exLogoLight.removeAttribute("src");
+        exLogoLight.alt = "";
+        exLogoLight.style.display = "none";
+      }
+      const exLink = document.getElementById("exLink");
+      if(exhibitionUrl){
+        exLink.href = exhibitionUrl;
+        exLink.textContent = extLabels.exhibitionLink;
+        exLink.style.display = "";
+      }else{
+        exLink.removeAttribute("href");
+        exLink.textContent = "";
+        exLink.style.display = "none";
+      }
+      const exPosterLink = document.getElementById("exPosterLink");
+      const exPoster = document.getElementById("exPoster");
+      if(exhibitionPoster){
+        exPosterLink.href = exhibitionPoster;
+        exPoster.src = exhibitionPoster;
+        exPoster.alt = isAr ? "الملصق العلمي لمِتريفا" : "METRIVA scientific poster";
+        exPosterLink.style.display = "";
+      }else{
+        exPosterLink.removeAttribute("href");
+        exPoster.removeAttribute("src");
+        exPoster.alt = "";
+        exPosterLink.style.display = "none";
+      }
 
       // Challenge
       setSection("secChallenge","chEyebrow","chTitle", labels.eyebrow, labels.challenge, !!(challengeIntro || challengeClosing || challengeItems.length));

@@ -54,6 +54,12 @@
     ],
     "overview_ar": "مِتريفا منظومة رقمية مساندة لمتابعة التقويم الذاتي والتحسين المدرسي. هي نموذج أولي وظيفي مطبّق ميدانياً، بُني كتطبيق ويب تقدّمي (PWA). يغطي نطاقها الوظيفي 49 مؤشراً عبر 4 مجالات (الإدارة المدرسية، التعليم والتعلم، نواتج التعلم، البيئة المدرسية)، إضافة إلى مسار متابعة الجاهزية لـ\"نافس\" (الاختبارات الوطنية، هيئة تقويم التعليم والتدريب) ومسار متابعة تطبيق \"إجادة\" (الإطار الرسمي لتحسين الممارسات التعليمية الصادر عن وزارة التعليم عام 2026).",
     "overview_en": "METRIVA is a traceable digital workflow for school evaluation and improvement. It is a field-implemented functional prototype, built as a Progressive Web App (PWA). Its functional scope covers 49 indicators across 4 domains (school administration, teaching & learning, learning outcomes, and school environment), alongside a track for monitoring readiness for Nafis (the National Assessments, administered by the Education and Training Evaluation Commission) and a track for monitoring the application of Ejadah (the official teaching-improvement framework issued by the Ministry of Education in 2026).",
+    "exhibition_ar": "تأهلت مِتريفا للمشاركة في مسابقة ومعرض سيف العالمية للأمن والتقنية (SAIF)، في الرياض، 24–26 نوفمبر 2026.",
+    "exhibition_en": "METRIVA has qualified to take part in SAIF, Security & Technology Competition and Expo, in Riyadh, 24–26 November 2026.",
+    "exhibition_logo_dark": "assets/images/projects/saif-logo-dark.svg",
+    "exhibition_logo_light": "assets/images/projects/saif-logo-light.svg",
+    "exhibition_url": "https://saifair.sa/",
+    "exhibition_poster": "",
     "challenge_items_ar": [
       "تشتت البيانات بين سجلات ورقية وملفات إلكترونية متعددة غير مرتبطة ببعضها.",
       "كثافة الإدخال اليدوي المتكرر للبيانات نفسها في أكثر من نظام أو ملف.",
